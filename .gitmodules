@@ -1,0 +1,57 @@
+[submodule ".vim/bundle/jshint2.vim"]
+	path = .vim/bundle/jshint2.vim
+	url = https://github.com/Shutnik/jshint2.vim.git
+[submodule ".vim/bundle/moonscript-vim"]
+	path = .vim/bundle/moonscript-vim
+	url = https://github.com/leafo/moonscript-vim.git
+[submodule ".vim/bundle/neocomplcache.vim"]
+	path = .vim/bundle/neocomplcache.vim
+	url = https://github.com/Shougo/neocomplcache.vim
+[submodule ".vim/bundle/nerdcommenter"]
+	path = .vim/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter
+[submodule ".vim/bundle/nerdtree"]
+	path = .vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule ".vim/bundle/supertab"]
+	path = .vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
+[submodule ".vim/bundle/tagbar"]
+	path = .vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git
+[submodule ".vim/bundle/tagbar-phpctags.vim"]
+	path = .vim/bundle/tagbar-phpctags.vim
+	url = https://github.com/vim-php/tagbar-phpctags.vim
+[submodule ".vim/bundle/vaxe"]
+	path = .vim/bundle/vaxe
+	url = https://github.com/jdonaldson/vaxe
+[submodule ".vim/bundle/vim-bundler"]
+	path = .vim/bundle/vim-bundler
+	url = git://github.com/tpope/vim-bundler.git
+[submodule ".vim/bundle/vim-cmake"]
+	path = .vim/bundle/vim-cmake
+	url = https://github.com/jansenm/vim-cmake
+[submodule ".vim/bundle/vim-fugitive"]
+	path = .vim/bundle/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
+[submodule ".vim/bundle/vim-git"]
+	path = .vim/bundle/vim-git
+	url = https://github.com/tpope/vim-git
+[submodule ".vim/bundle/vim-gocode"]
+	path = .vim/bundle/vim-gocode
+	url = https://github.com/Blackrush/vim-gocode
+[submodule ".vim/bundle/vim-godef"]
+	path = .vim/bundle/vim-godef
+	url = https://github.com/dgryski/vim-godef.git
+[submodule ".vim/bundle/vim-misc"]
+	path = .vim/bundle/vim-misc
+	url = https://github.com/xolox/vim-misc.git
+[submodule ".vim/bundle/vim-rails"]
+	path = .vim/bundle/vim-rails
+	url = https://github.com/tpope/vim-rails.git
+[submodule ".vim/bundle/vim-scala"]
+	path = .vim/bundle/vim-scala
+	url = https://github.com/derekwyatt/vim-scala
+[submodule ".vim/bundle/vim-ctrlspace"]
+	path = .vim/bundle/vim-ctrlspace
+	url = https://github.com/szw/vim-ctrlspace.git
