@@ -14,6 +14,8 @@ if v:progname =~? "evim"
   finish
 endif
 
+set hidden
+
 "set t_Co=256
 colorscheme aldmeris
 
@@ -130,6 +132,7 @@ command -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
 "nnoremap <F12>     :ShowSpaces 1<cr>
 nnoremap <S-F12>   m`:TrimSpaces<cr>``
 vnoremap <S-F12>   :TrimSpaces<cr>
+
 " Go tools bindings
 nnoremap <Leader>gb :!go build<cr>
 nnoremap <Leader>gc :!go build "%:p"<cr>
@@ -194,6 +197,9 @@ au BufRead,BufNewFile *.md set filetype=markdown
 
 " Go up directories to try to find a tags file for a project
 set tags=tags;/
+
+" Prefer horizontal splits
+let g:ctrlspace_use_horizontal_splits=1
 
 " Sort scala imports into 3 main groups, Core, 3rd party, & 1st party
 let g:scala_sort_across_groups=1
