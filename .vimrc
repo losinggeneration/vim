@@ -133,11 +133,16 @@ command -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
 nnoremap <S-F12>   m`:TrimSpaces<cr>``
 vnoremap <S-F12>   :TrimSpaces<cr>
 
+" Use goimports for Fmt
+let g:gofmt_command = "goimports"
+
 " Go tools bindings
 nnoremap <Leader>gb :!go build<cr>
 nnoremap <Leader>gc :!go build "%:p"<cr>
-nnoremap <Leader>gf :!go fmt<cr>
+nnoremap <Leader>gf :Fmt<cr>
+nnoremap <Leader>gF :!go fmt<cr>
 nnoremap <Leader>gl :!golint "%:p"<cr>
+nnoremap <Leader>gt :!go test ./...<cr>
 
 " Godeps tool bindings
 nnoremap <Leader>gdg :!godep get<cr>
