@@ -55,9 +55,6 @@
 [submodule ".vim/bundle/vim-ctrlspace"]
 	path = .vim/bundle/vim-ctrlspace
 	url = https://github.com/szw/vim-ctrlspace.git
-[submodule ".vim/bundle/docker.vim"]
-	path = .vim/bundle/docker.vim
-	url = https://github.com/docker/docker
 [submodule "bundle/vim-elixir"]
 	path = bundle/vim-elixir
 	url = https://github.com/elixir-lang/vim-elixir.git
