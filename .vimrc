@@ -133,24 +133,36 @@ command -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
 nnoremap <S-F12>   m`:TrimSpaces<cr>``
 vnoremap <S-F12>   :TrimSpaces<cr>
 
+
 " Use goimports for Fmt
-let g:gofmt_command = "goimports"
+let g:go_fmt_command = "goimports"
+
+" Enable syntax-highlighting for Functions, Methods and Structs.
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+
+" Use neosnippet
+let g:go_snippet_engine = "neosnippet"
 
 " Go tools bindings
-nnoremap <Leader>gb :!go build<cr>
-nnoremap <Leader>gc :!go build "%:p"<cr>
-nnoremap <Leader>gf :Fmt<cr>
-nnoremap <Leader>gF :!go fmt<cr>
-nnoremap <Leader>gl :!golint "%:p"<cr>
-nnoremap <Leader>gt :!go test ./...<cr>
+au FileType go nmap <Leader>b <Plug>(go-build)
+au FileType go nmap <Leader>c :!go build "%:p"<cr>
+au FileType go nmap <Leader>f :GoFmt<cr>
+au FileType go nmap <Leader>F :!go fmt<cr>
+au FileType go nmap <Leader>l <Plug>(go-lint)
+au FileType go nmap <Leader>t <Plug>(go-test)
+au FileType go nmap <Leader>v <Plug>(go-vet)
+au FileType go nmap <Leader>d <Plug>(go-doc)
+au FileType go nmap <Leader>r <Plug>(go-rename)
 
 " Godeps tool bindings
-nnoremap <Leader>gdg :!godep get<cr>
+au FileType go nmap <Leader>gdg :!godep get<cr>
 
 " Moonscript tools bindings
-nnoremap <Leader>mc :!moonc "%:p"<cr>
-nnoremap <Leader>mb :!moonc "%:p:h"<cr>
-nnoremap <Leader>ml :!moonc -l "%:p"<cr>
+au FileType moon nmap <Leader>c :!moonc "%:p"<cr>
+au FileType moon nmap <Leader>b :!moonc "%:p:h"<cr>
+au FileType moon nmap <Leader>l :!moonc -l "%:p"<cr>
 
 function! ShowWhitespace()
   " show tabs and whitespace at eol
@@ -200,47 +212,11 @@ call pathogen#helptags()
 " .md is markdown
 au BufRead,BufNewFile *.md set filetype=markdown
 
-" Go up directories to try to find a tags file for a project
-set tags=tags;/
-
 " Prefer horizontal splits
 let g:ctrlspace_use_horizontal_splits=1
 
 " Sort scala imports into 3 main groups, Core, 3rd party, & 1st party
 let g:scala_sort_across_groups=1
-
-" Format Go files on save
-au FileType go au BufWritePre <buffer> Fmt
-" Update ctags for Go files on save
-au BufWritePost *.go silent! !ctags -R &
-" Tagbar setup for gotags
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
 
 " Trigger SuperTab
 let g:SuperTabDefaultCompletionType = "context"
@@ -275,18 +251,8 @@ nnoremap <silent> vs <C-w>s
 nnoremap <silent> Q :q<cr>
 
 let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': ['c', 'go'],
-                           \ 'passive_filetypes': ['html'] }
-
-" neocomplcache options
-let g:neocomplcache_enable_at_startup = 1 " always load neocc
-let g:neocomplcache_enable_auto_select = 1 " auto-popup!
-if !exists('g:neocomplcache_omni_patterns')
-	let g:neocomplcache_omni_patterns = {} " set a default pattern dict
-endif
-
-" this tells neocc when to try for completions... after '.', '(', etc.
-let g:neocomplcache_omni_patterns.haxe = '\v([\]''"\)]|\w|(^\s*))(\.|\()'
+                           \ 'active_filetypes': ['c', 'go', 'javascript'],
+                           \ 'passive_filetypes': ['html', 'json'] }
 
 " Vaxe related options
 set completeopt=menu
@@ -297,4 +263,7 @@ nnoremap <F3> :NERDTreeToggle<CR>
 " Map F4 to toggle Tagbar
 nnoremap <F4> :TagbarToggle<CR>
 inoremap <F4> :TagbarToggle<CR>
+
+" Map <Leader>cd to change directories to the directory of the current file
+nnoremap <Leader>cd :cd %:p:h<cr>
 
