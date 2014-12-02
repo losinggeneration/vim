@@ -218,14 +218,6 @@ let g:ctrlspace_use_horizontal_splits=1
 " Sort scala imports into 3 main groups, Core, 3rd party, & 1st party
 let g:scala_sort_across_groups=1
 
-" Trigger SuperTab
-let g:SuperTabDefaultCompletionType = "context"
-" Prefere omnicomplete
-let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-" define the omnifunc
-let g:SuperTabContextDiscoverDiscovery =
-	\ ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
-
 " Some code folding options
 set foldmethod=syntax
 set foldnestmax=10
@@ -249,6 +241,10 @@ nnoremap <silent> vv <C-w>v
 nnoremap <silent> vs <C-w>s
 " Map Q to :q
 nnoremap <silent> Q :q<cr>
+
+let g:UltiSnipsExpandTrigger="<c-cr>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': ['c', 'go', 'javascript'],
