@@ -212,9 +212,6 @@ call pathogen#helptags()
 " .md is markdown
 au BufRead,BufNewFile *.md set filetype=markdown
 
-" Prefer horizontal splits
-let g:ctrlspace_use_horizontal_splits=1
-
 " Sort scala imports into 3 main groups, Core, 3rd party, & 1st party
 let g:scala_sort_across_groups=1
 
