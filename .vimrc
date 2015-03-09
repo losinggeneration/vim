@@ -168,6 +168,11 @@ au FileType moon nmap <Leader>c :!moonc "%:p"<cr>
 au FileType moon nmap <Leader>b :!moonc "%:p:h"<cr>
 au FileType moon nmap <Leader>l :!moonc -l "%:p"<cr>
 
+" Ruby & rails options
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+
 function! ShowWhitespace()
   " show tabs and whitespace at eol
   let b:showWS = 1
