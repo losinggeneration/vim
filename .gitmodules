@@ -21,13 +21,13 @@
 	url = https://github.com/jdonaldson/vaxe
 [submodule ".vim/bundle/vim-bundler"]
 	path = .vim/bundle/vim-bundler
-	url = git://github.com/tpope/vim-bundler.git
+	url = https://github.com/tpope/vim-bundler.git
 [submodule ".vim/bundle/vim-cmake"]
 	path = .vim/bundle/vim-cmake
 	url = https://github.com/jansenm/vim-cmake
 [submodule ".vim/bundle/vim-fugitive"]
 	path = .vim/bundle/vim-fugitive
-	url = git://github.com/tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule ".vim/bundle/vim-git"]
 	path = .vim/bundle/vim-git
 	url = https://github.com/tpope/vim-git
