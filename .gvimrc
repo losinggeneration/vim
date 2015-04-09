@@ -4,8 +4,7 @@ colorscheme gruvbox
 filetype plugin on
 
 " :help builtin-tools
-" Fucking print button!
-aunmenu ToolBar.Print
+set guioptions-=T
 " Also remove from the file menu in all modes
 aunmenu File.Print
 aunmenu File.-SEP4-
