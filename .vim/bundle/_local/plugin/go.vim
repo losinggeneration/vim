@@ -25,4 +25,5 @@ au FileType go nmap <Leader>r <Plug>(go-rename)
 au FileType go nmap <Leader>i <Plug>(go-implements)
 
 " Godeps tool bindings
-au FileType go nmap <Leader>gdg :!godep get<cr>
+au FileType go nmap <Leader>ggd :!godep get<cr>
+au FileType go nmap <Leader>ggd :!godep go build<cr>
