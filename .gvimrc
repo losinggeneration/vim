@@ -3,7 +3,7 @@ colorscheme gruvbox
 
 filetype plugin on
 
-" :help builtin-tools
+" remove ToolBar
 set guioptions-=T
 " Also remove from the file menu in all modes
 aunmenu File.Print
