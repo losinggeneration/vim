@@ -1,4 +1,6 @@
-"colorscheme aldmeris
+" Interestingly, to get gruvbox to work from the menu launcher, loading
+" aldmeris first cause it to work as expected
+colorscheme aldmeris
 colorscheme gruvbox
 
 filetype plugin on
