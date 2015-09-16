@@ -94,3 +94,9 @@
 [submodule ".vim/bundle/elm.vim"]
 	path = .vim/bundle/elm.vim
 	url = https://github.com/lambdatoast/elm.vim.git
+[submodule ".vim/bundle/sideways.vim"]
+	path = .vim/bundle/sideways.vim
+	url = https://github.com/AndrewRadev/sideways.vim.git
+[submodule ".vim/bundle/vim-coffee-script"]
+	path = .vim/bundle/vim-coffee-script
+	url = https://github.com/kchmck/vim-coffee-script.git
