@@ -20,3 +20,7 @@ nmap <Leader>dab <Leader>vabd
 
 "nmap <Leader>dap Vj]}d
 "nmap <Leader>yap Vj]}y
+
+" Sideways helpers
+nmap <Leader>sl :SidewaysLeft<CR>
+nmap <Leader>sr :SidewaysRight<CR>
