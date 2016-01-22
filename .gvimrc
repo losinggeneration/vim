@@ -1,6 +1,3 @@
-" Interestingly, to get gruvbox to work from the menu launcher, loading
-" aldmeris first cause it to work as expected
-colorscheme aldmeris
 colorscheme gruvbox
 
 filetype plugin on
@@ -40,3 +37,9 @@ endfunction
 
 map <c-t> :call DmenuOpen("tabe")<cr>
 map <c-f> :call DmenuOpen("e")<cr>
+
+" load in a local configuration outside of source control
+try
+	source ~/.gvimrc.local
+catch
+endtry
