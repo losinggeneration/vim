@@ -12,10 +12,6 @@ set nocompatible
 call pathogen#infect()
 call pathogen#helptags()
 
-"set t_Co=256
-"colorscheme aldmeris
-colorscheme gruvbox
-
 " Check for whitespace damage
 let c_space_errors = 1
 
@@ -26,15 +22,14 @@ let mapleader = ","
 set backspace=indent,eol,start
 
 if has("vms")
-	set nobackup		" do not keep a backup file, use versions instead
+	set nobackup   " do not keep a backup file, use versions instead
 else
-	set backup		" keep a backup file
+	set backup     " keep a backup file
 endif
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
-"setlocal spell spelllang=en	"Set the spelling locale"
+set history=500    " keep 500 lines of command line history
+set ruler          " show the cursor position all the time
+set showcmd        " display incomplete commands
+set incsearch      " do incremental searching
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -45,9 +40,6 @@ if &t_Co > 2 || has("gui_running")
 	highlight Normal guibg=black guifg=White
 endif
 
-"set formatoptions=crt
-"set textwidth=80
-"set expandtab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
@@ -64,9 +56,4 @@ set foldmethod=syntax
 set foldnestmax=10
 set nofoldenable
 set foldlevel=0
-
-" Map for reformatting a file
-map <Leader>rf mzgg=G`z<CR>
-" Map <Leader>cd to change directories to the directory of the current file
-nnoremap <Leader>cd :cd %:p:h<cr>
 

@@ -28,3 +28,7 @@ nmap <Leader>sr :SidewaysRight<CR>
 " Find TODO & FIXME notes
 nmap <Leader>todo /\c\<\(to\s*do\)\\|\(fix\s*me\)\>/ <cr>
 
+" Map for reformatting a file
+map <Leader>rf mzgg=G`z<CR>
+" Map <Leader>cd to change directories to the directory of the current file
+nnoremap <Leader>cd :cd %:p:h<cr>
