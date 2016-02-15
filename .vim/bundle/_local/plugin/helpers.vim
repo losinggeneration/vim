@@ -26,7 +26,7 @@ nmap <Leader>sl :SidewaysLeft<CR>
 nmap <Leader>sr :SidewaysRight<CR>
 
 " Find TODO & FIXME notes
-nmap <Leader>todo /\c\<\(to\s*do\)\\|\(fix\s*me\)\>/ <cr>
+nmap <Leader>todo /\c\<\(to\(\s\\|-\)*do\)\\|\(fix\(\s\\|-\)*me\)\>/ <cr>
 
 " Map for reformatting a file
 map <Leader>rf mzgg=G`z<CR>
