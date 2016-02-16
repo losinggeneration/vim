@@ -23,7 +23,7 @@ set foldnestmax=10
 set nofoldenable
 set foldlevel=0
 
-set encoding=utf-8
+"set encoding=utf-8
 set scrolloff=3
 set autoindent
 set showmode

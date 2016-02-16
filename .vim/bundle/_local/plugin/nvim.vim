@@ -7,6 +7,7 @@ if has("nvim")
 
 	colorscheme gruvbox
 
-	" terminal bindings
-	:tnoremap <Esc> <C-\><C-n>
+	" Map Esc to exit insert mode in the terminal
+	tnoremap <Esc> <C-\><C-n>
+	tnoremap jj <C-\><C-n>
 endif
