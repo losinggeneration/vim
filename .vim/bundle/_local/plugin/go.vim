@@ -16,7 +16,6 @@ let g:go_snippet_engine = "neosnippet"
 
 " Go tools bindings
 au FileType go nmap <Leader>b <Plug>(go-build)
-au FileType go nmap <Leader>gb :!go build<cr>
 au FileType go nmap <Leader>f :GoFmt<cr>
 au FileType go nmap <Leader>c <Plug>(go-callees)
 au FileType go nmap <Leader>cr <Plug>(go-callers)
@@ -33,7 +32,7 @@ au FileType go nmap <Leader>n <Plug>(go-run)
 
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>i <Plug>(go-implements)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
 " Godeps tool bindings
 au FileType go nmap <Leader>ggd :!godep get<cr>
