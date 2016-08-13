@@ -1,7 +1,7 @@
 " These only work with C like languages and only if the closing } of a
 " function is on the first column of a new line
 " select the entire function
-nmap <Leader>vaf ][[{V$]}v
+nmap <Leader>vaf ][[{V$]}
 
 " yank an entire function
 nmap <Leader>yaf <Leader>vafy
@@ -17,9 +17,6 @@ nmap <Leader>yab <Leader>vaby
 
 " delete a block
 nmap <Leader>dab <Leader>vabd
-
-"nmap <Leader>dap Vj]}d
-"nmap <Leader>yap Vj]}y
 
 " Sideways helpers
 nmap <Leader>sl :SidewaysLeft<CR>
