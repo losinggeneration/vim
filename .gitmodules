@@ -118,3 +118,6 @@
 [submodule ".vim/bundle/vim-gitgutter"]
 	path = .vim/bundle/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
+[submodule ".vim/bundle/vim-sort-motion"]
+	path = .vim/bundle/vim-sort-motion
+	url = https://github.com/christoomey/vim-sort-motion.git
