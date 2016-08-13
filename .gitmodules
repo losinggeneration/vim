@@ -103,3 +103,9 @@
 [submodule ".vim/bundle/vim-expand-region"]
 	path = .vim/bundle/vim-expand-region
 	url = https://github.com/terryma/vim-expand-region.git
+[submodule ".vim/bundle/vim-less"]
+	path = .vim/bundle/vim-less
+	url = https://github.com/luishdez/vim-less.git
+[submodule ".vim/bundle/vim-minimap"]
+	path = .vim/bundle/vim-minimap
+	url = https://github.com/severin-lemaignan/vim-minimap
