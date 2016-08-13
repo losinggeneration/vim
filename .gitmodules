@@ -121,3 +121,9 @@
 [submodule ".vim/bundle/vim-sort-motion"]
 	path = .vim/bundle/vim-sort-motion
 	url = https://github.com/christoomey/vim-sort-motion.git
+[submodule ".vim/bundle/vim-json"]
+	path = .vim/bundle/vim-json
+	url = https://github.com/elzr/vim-json.git
+[submodule ".vim/bundle/vim-jsx"]
+	path = .vim/bundle/vim-jsx
+	url = https://github.com/mxw/vim-jsx.git
