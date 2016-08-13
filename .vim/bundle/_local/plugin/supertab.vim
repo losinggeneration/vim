@@ -1,1 +1,1 @@
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
+let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"

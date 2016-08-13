@@ -1,10 +1,17 @@
+let g:syntastic_go_checkers = ['go', 'gofmt']
+"let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+
 let g:syntastic_mode_map = { 'mode': 'active',
-			\ 'active_filetypes': ['c', 'go', 'javascript'],
-			\ 'passive_filetypes': ['html', 'json'] }
+			\ 'active_filetypes': ['c', 'javascript'],
+			\ 'passive_filetypes': ['go', 'php', 'html', 'json'] }
 
 " Error navigation
+nmap <Leader>sc :SyntasticCheck<cr>
 nmap <Leader>n :lne<cr>
 nmap <Leader>p :lp<cr>
+
+" javascript preference
+let g:syntastic_javascript_checkers = ['eslint']
 
 " Syntastic recommended settings
 set statusline+=%#warningmsg#
