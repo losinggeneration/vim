@@ -28,12 +28,6 @@
 [submodule ".vim/bundle/vim-git"]
 	path = .vim/bundle/vim-git
 	url = https://github.com/tpope/vim-git
-[submodule ".vim/bundle/vim-gocode"]
-	path = .vim/bundle/vim-gocode
-	url = https://github.com/Blackrush/vim-gocode
-[submodule ".vim/bundle/vim-godef"]
-	path = .vim/bundle/vim-godef
-	url = https://github.com/dgryski/vim-godef.git
 [submodule ".vim/bundle/vim-misc"]
 	path = .vim/bundle/vim-misc
 	url = https://github.com/xolox/vim-misc.git
