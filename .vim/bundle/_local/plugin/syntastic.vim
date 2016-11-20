@@ -12,6 +12,7 @@ nmap <Leader>p :lp<cr>
 
 " javascript preference
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'eslint_d'
 
 " Syntastic recommended settings
 set statusline+=%#warningmsg#
