@@ -1,12 +1,13 @@
-let g:syntastic_go_checkers = ['go', 'gofmt']
+let g:syntastic_go_checkers = ['gotype', 'gofmt']
 "let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 
 let g:syntastic_mode_map = { 'mode': 'active',
-			\ 'active_filetypes': ['c', 'javascript'],
-			\ 'passive_filetypes': ['go', 'php', 'html', 'json'] }
+			\ 'active_filetypes': ['c', 'javascript', 'go'],
+			\ 'passive_filetypes': ['php', 'html', 'json'] }
 
 " Error navigation
 nmap <Leader>sc :SyntasticCheck<cr>
+nmap <Leader>ss :SyntasticReset<cr>
 nmap <Leader>n :lne<cr>
 nmap <Leader>p :lp<cr>
 

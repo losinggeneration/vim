@@ -1,10 +1,12 @@
 " Use goimports for Fmt
 let g:go_fmt_command = "goimports"
 let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_enabled = ['vet', 'errcheck', 'staticheck', 'deadcode', 'gotype', 'vetshadow', 'varcheck', 'goconst', 'interfacer', 'gosimple', 'structcheck']
+let g:go_metalinter_deadline = "10s"
 
 "let g:go_auto_type_info = 1
-let g:go_fmt_fail_silently = 0
+let g:go_fmt_autosave = 1
+let g:go_fmt_fail_silently = 1
 let g:go_list_type = "quickfix"
 
 " Enable syntax-highlighting for Functions, Methods and Structs.
