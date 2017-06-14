@@ -3,10 +3,6 @@
 set nocompatible
 set modelines=0
 
-execute pathogen#infect()
-syntax on
-filetype plugin indent on
-
 highlight TabS term=standout cterm=standout gui=standout
 highlight STabs term=standout cterm=standout gui=standout
 highlight link LineEndWS Error
