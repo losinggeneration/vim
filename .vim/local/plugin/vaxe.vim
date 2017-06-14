@@ -1,3 +1,4 @@
 " Vaxe related options
-set completeopt=menu
+" This breaks Go function preview/tip
+"set completeopt=menu
 set autowrite
