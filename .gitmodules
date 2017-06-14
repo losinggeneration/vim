@@ -127,3 +127,6 @@
 [submodule ".vim/bundle/phpcomplete.vim"]
 	path = .vim/bundle/phpcomplete.vim
 	url = https://github.com/shawncplus/phpcomplete.vim.git
+[submodule ".vim/bundle/investigate.vim"]
+	path = .vim/bundle/investigate.vim
+	url = https://github.com/keith/investigate.vim
