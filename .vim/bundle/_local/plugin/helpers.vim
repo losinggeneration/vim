@@ -29,3 +29,5 @@ nmap <Leader>todo /\c\<\(to\(\s\\|-\)*do\)\\|\(fix\(\s\\|-\)*me\)\>/ <cr>
 map <Leader>rf mzgg=G`z<CR>
 " Map <Leader>cd to change directories to the directory of the current file
 nnoremap <Leader>cd :cd %:p:h<cr>
+
+nmap <Leader>jq GVgg :!jq .<cr>
