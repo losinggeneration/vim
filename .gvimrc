@@ -4,9 +4,13 @@ filetype plugin on
 
 " remove ToolBar
 set guioptions-=T
-" Also remove from the file menu in all modes
+" remove Print from the file menu in all modes
 aunmenu File.Print
-aunmenu File.-SEP4-
+try
+  " this fails on OS X, or at least File.-SEP4- did
+  aunmenu File.-SEP3-
+catch
+endtry
 
 " Map alt-[1-9] to change tabs
 map <silent> <A-1> :tabn 1<cr>
