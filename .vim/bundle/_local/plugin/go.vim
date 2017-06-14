@@ -1,12 +1,23 @@
 " Use goimports for Fmt
-let g:go_fmt_command = "goimports"
-let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-let g:go_metalinter_enabled = ['vet', 'errcheck', 'staticheck', 'deadcode', 'gotype', 'vetshadow', 'varcheck', 'goconst', 'interfacer', 'gosimple', 'structcheck']
-let g:go_metalinter_deadline = "10s"
-
-"let g:go_auto_type_info = 1
+let g:go_fmt_command = 'goimports'
 let g:go_fmt_autosave = 1
 let g:go_fmt_fail_silently = 1
+" this will restore folds and attempt to preserve undo history
+let g:go_fmt_experimental = 1
+
+let g:go_info_mode = 'guru'
+
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_enabled = ['vet', 'errcheck', 'staticcheck', 'deadcode',
+	\'gotype', 'vetshadow', 'varcheck', 'goconst', 'interfacer', 'gosimple',
+	\'structcheck', 'unused', 'gocyclo', 'misspell', 'ineffassign', 'testify',
+	\'unparam']
+"let g:go_metalinter_autosave_enabled = g:go_metalinter_enabled
+let g:go_metalinter_deadline = '20s'
+let g:go_metalinter_args = ['-j16', '--linter="testify:go test {path}:Error Trace:\s+(?P<path>.*?\.go):(?P<line>\d+)$\s+Error:\s+(?P<message>[^\n]+)"']
+let g:go_metalinter_autosave_args = ['-j16', '--fast']
+
+"let g:go_auto_type_info = 1
 let g:go_list_type = "quickfix"
 
 " Enable syntax-highlighting for Functions, Methods and Structs.
@@ -23,6 +34,9 @@ let g:go_highlight_operators = 0
 " Use neosnippet
 let g:go_snippet_engine = "ultrisnippet"
 
+" Use indent mode for folding
+au FileType go setlocal foldmethod=indent
+
 " Go tools bindings
 au FileType go nmap <Leader>b <Plug>(go-build)
 au FileType go nmap <Leader>f :GoFmt<cr>
@@ -36,6 +50,7 @@ au FileType go nmap <Leader>tct <Plug>(go-coverage-toggle)
 au FileType go nmap <Leader>tcc <Plug>(go-coverage-clear)
 au FileType go nmap <Leader>v <Plug>(go-vet)
 au FileType go nmap <Leader>d <Plug>(go-doc)
+au FileType go nmap <Leader>gi <Plug>(go-install)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>r <Plug>(go-rename)
 au FileType go nmap <Leader>s <Plug>(go-implements)
