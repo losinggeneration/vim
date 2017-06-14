@@ -17,7 +17,6 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'xolox/vim-misc'
 Plug 'AndrewRadev/sideways.vim'
-Plug 'ervandew/supertab'
 
 " UI additions
 Plug 'szw/vim-ctrlspace'
