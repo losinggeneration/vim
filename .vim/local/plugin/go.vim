@@ -5,8 +5,6 @@ let g:go_fmt_fail_silently = 1
 " this will restore folds and attempt to preserve undo history
 let g:go_fmt_experimental = 1
 
-let g:go_info_mode = 'guru'
-
 let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 let g:go_metalinter_enabled = ['vet', 'errcheck', 'staticcheck', 'deadcode',
 	\'gotype', 'vetshadow', 'varcheck', 'goconst', 'interfacer', 'gosimple',
@@ -17,8 +15,16 @@ let g:go_metalinter_deadline = '20s'
 let g:go_metalinter_args = ['-j16', '--linter="testify:go test {path}:Error Trace:\s+(?P<path>.*?\.go):(?P<line>\d+)$\s+Error:\s+(?P<message>[^\n]+)"']
 let g:go_metalinter_autosave_args = ['-j16', '--fast']
 
-"let g:go_auto_type_info = 1
-let g:go_list_type = "quickfix"
+let g:go_auto_type_info = 1
+let g:go_list_type = 'quickfix'
+let g:go_info_mode = 'gocode'
+
+" echodoc does better than this
+let g:go_echo_go_info = 0
+" This stops Go function preview/tip
+set completeopt=menu
+
+let g:go_template_use_pkg = 1
 
 " Enable syntax-highlighting for Functions, Methods and Structs.
 let g:go_highlight_functions = 1
@@ -32,7 +38,7 @@ let g:go_highlight_interfaces = 0
 let g:go_highlight_operators = 0
 
 " Use neosnippet
-let g:go_snippet_engine = "ultrisnippet"
+let g:go_snippet_engine = 'neosnippet'
 
 " Use indent mode for folding
 au FileType go setlocal foldmethod=indent

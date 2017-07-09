@@ -1,4 +1,4 @@
-let g:syntastic_go_checkers = ['gotype', 'gofmt']
+let g:syntastic_go_checkers = ['gotype', 'gofmt', 'errcheck']
 "let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 
 let g:syntastic_mode_map = { 'mode': 'active',

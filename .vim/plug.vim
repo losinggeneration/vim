@@ -3,10 +3,23 @@ call plug#begin()
 Plug '~/.vim/local'
 
 " coding improvments
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer --tern-completer --racer-completer --clang-completer' }
 Plug 'scrooloose/syntastic'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'Shougo/echodoc.vim', { 'do': 'make' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+
+" deoplete code completion language support
+Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
+Plug 'zchee/deoplete-zsh'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
+Plug 'wokalski/autocomplete-flow', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'Shougo/neco-vim', { 'for': 'vim' }
+Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
+Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
+Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
+Plug 'pbogut/deoplete-elm', { 'do': 'npm install -g elm-oracle', 'for': 'elm' }
 
 " editing improvements
 Plug 'christoomey/vim-sort-motion'
@@ -42,8 +55,8 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries', 'for': 'go' }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'luishdez/vim-less', { 'for': 'less' }
 Plug 'elzr/vim-json', { 'for': 'json' }
-Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 
 " used but not common anymore
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
