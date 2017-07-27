@@ -1,5 +1,5 @@
-let g:syntastic_go_checkers = ['gotype', 'gofmt', 'errcheck']
-"let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_go_checkers = ['gotype', 'errcheck', 'govet', 'gofmt']
+let g:syntastic_go_gotype_args = "-a"
 
 let g:syntastic_mode_map = { 'mode': 'active',
 			\ 'active_filetypes': ['c', 'javascript', 'go'],
