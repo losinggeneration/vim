@@ -61,6 +61,7 @@ au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>r <Plug>(go-rename)
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>y <Plug>(go-run)
+au FileType go nmap <Leader>a :GoAlternate<cr>
 au FileType go nmap gd <Plug>(go-def)
 
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
