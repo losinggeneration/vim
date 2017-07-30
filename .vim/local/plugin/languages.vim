@@ -12,6 +12,7 @@ call Src_type('php', '/languages/php.vim')
 call Src_type('php', '/languages/phpcomplete.vim')
 call Src_type('ruby', '/languages/ruby.vim')
 call Src_type('scala', '/languages/scala.vim')
+call Src_type('moon', '/languages/moon.vim')
 
 " cleanup as it's not needed
 :delfunction Src_type
