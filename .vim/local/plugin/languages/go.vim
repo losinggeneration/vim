@@ -5,15 +5,31 @@ let g:go_fmt_fail_silently = 1
 " this will restore folds and attempt to preserve undo history
 let g:go_fmt_experimental = 1
 
-let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-let g:go_metalinter_enabled = ['vet', 'errcheck', 'staticcheck', 'deadcode',
-	\'gotype', 'vetshadow', 'varcheck', 'goconst', 'interfacer', 'gosimple',
-	\'structcheck', 'unused', 'gocyclo', 'misspell', 'ineffassign', 'testify',
-	\'unparam']
-"let g:go_metalinter_autosave_enabled = g:go_metalinter_enabled
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'gocyclo']
 let g:go_metalinter_deadline = '20s'
-let g:go_metalinter_args = ['-j16', '--linter="testify:go test {path}:Error Trace:\s+(?P<path>.*?\.go):(?P<line>\d+)$\s+Error:\s+(?P<message>[^\n]+)"']
-let g:go_metalinter_autosave_args = ['-j16', '--fast']
+let g:go_metalinter_enabled = [
+			\ 'aligncheck',
+			\ 'deadcode',
+			\ 'errcheck',
+			\ 'gas',
+			\ 'goconst',
+			\ 'gocyclo',
+			\ 'gofmt',
+			\ 'goimports',
+			\ 'gotype',
+			\ 'ineffassign',
+			\ 'interfacer',
+			\ 'megacheck',
+			\ 'misspell',
+			\ 'safesql',
+			\ 'structcheck',
+			\ 'unconvert',
+			\ 'unparam',
+			\ 'varcheck',
+			\ 'vet',
+			\ 'vetshadow',
+			\ ]
 
 let g:go_auto_type_info = 1
 let g:go_list_type = 'quickfix'
