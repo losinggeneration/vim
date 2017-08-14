@@ -1,4 +1,7 @@
-let g:syntastic_go_checkers = ['gotype', 'errcheck', 'govet', 'gofmt']
+" Go preferences
+let g:syntastic_go_checkers = ['gotype', 'go']
+" lighter weight, but doesn't seem to always catch everything
+" let g:syntastic_go_checkers = ['gotype', 'errcheck', 'govet', 'gofmt']
 let g:syntastic_go_gotype_args = "-a"
 
 let g:syntastic_mode_map = { 'mode': 'active',
