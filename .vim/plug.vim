@@ -5,21 +5,25 @@ Plug '~/.vim/local'
 " coding improvments
 Plug 'scrooloose/syntastic'
 Plug 'Shougo/echodoc.vim', { 'do': 'make' }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 
-" deoplete code completion language support
-Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
-Plug 'zchee/deoplete-zsh'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
-Plug 'wokalski/autocomplete-flow', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'Shougo/neco-vim', { 'for': 'vim' }
-Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
-Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
-Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
-Plug 'pbogut/deoplete-elm', { 'do': 'npm install -g elm-oracle', 'for': 'elm' }
+if has("nvim")
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+	" deoplete code completion language support
+	Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
+	Plug 'zchee/deoplete-zsh'
+	Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
+	Plug 'wokalski/autocomplete-flow', { 'for': ['javascript', 'javascript.jsx'] }
+	Plug 'Shougo/neco-vim', { 'for': 'vim' }
+	Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+	Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
+	Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
+	Plug 'pbogut/deoplete-elm', { 'do': 'npm install -g elm-oracle', 'for': 'elm' }
+else
+	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+endif
 
 " editing improvements
 Plug 'christoomey/vim-sort-motion'

@@ -5,9 +5,10 @@ if has("nvim")
 		colorscheme aldmeris
 	endif
 
-	colorscheme gruvbox
-
 	" Map Esc to exit insert mode in the terminal
 	tnoremap <Esc> <C-\><C-n>
 	tnoremap jj <C-\><C-n>
 endif
+
+colorscheme gruvbox
+
