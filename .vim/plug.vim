@@ -75,4 +75,6 @@ Plug 'leafo/moonscript-vim', { 'for': 'moon' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+Plug 'peterhoeg/vim-qml', { 'for': 'qml' }
+
 call plug#end()
