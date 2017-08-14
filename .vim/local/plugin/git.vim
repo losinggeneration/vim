@@ -1,3 +1,3 @@
-nmap <Leader>gd :Gdiff<cr>
-nmap <Leader>gc :Gcommit<cr>
-nmap <Leader>gcv :Gcommit -v<cr>
+nmap <Leader>Gd :Gdiff<cr>
+nmap <Leader>Gc :Gcommit<cr>
+nmap <Leader>Gcv :Gcommit -v<cr>
