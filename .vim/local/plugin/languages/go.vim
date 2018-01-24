@@ -60,6 +60,13 @@ let g:go_highlight_operators = 0
 " Use neosnippet
 let g:go_snippet_engine = 'neosnippet'
 
+function! go#UpdateTags(start, end, count, ...) abort
+	call call("go#tags#Remove", [a:start, a:end, a:count] + a:000)
+	call call("go#tags#Add", [a:start, a:end, a:count] + a:000)
+endfunction
+
+command! -nargs=* -range GoUpdateTags call go#UpdateTags(<line1>, <line2>, <count>, <f-args>)
+
 " Use indent mode for folding
 au FileType go setlocal foldmethod=indent
 
@@ -79,6 +86,7 @@ au FileType go nmap <Leader>d <Plug>(go-doc)
 au FileType go nmap <Leader>gi <Plug>(go-install)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>r <Plug>(go-rename)
+au FileType go nmap <Leader>ref <Plug>(go-referrers)
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>y <Plug>(go-run)
 au FileType go nmap <Leader>a :GoAlternate<cr>
