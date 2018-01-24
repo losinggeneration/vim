@@ -1,3 +1,7 @@
+if empty(&filetype)
+	finish
+endif
+
 let g:php_syntax_extensions_enabled=["core","curl","date","hash","iconv","json","mbstring","mcrypt","openssl","reflection","standard","bcmath"]
 let g:php_folding=2
 au FileType php setlocal foldmethod=syntax

@@ -1,3 +1,7 @@
+if empty(&filetype)
+	finish
+endif
+
 " Moonscript tools bindings
 au FileType moon nmap <Leader>c :!moonc "%:p"<cr>
 au FileType moon nmap <Leader>b :!moonc "%:p:h"<cr>
