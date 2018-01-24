@@ -4,19 +4,21 @@ let g:syntastic_go_checkers = ['gotype', 'go']
 " let g:syntastic_go_checkers = ['gotype', 'errcheck', 'govet', 'gofmt']
 let g:syntastic_go_gotype_args = "-a"
 
+" Javascript preferences
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'eslint_d'
+
 let g:syntastic_mode_map = { 'mode': 'active',
 			\ 'active_filetypes': ['c', 'javascript', 'go'],
 			\ 'passive_filetypes': ['php', 'html', 'json'] }
 
-" Error navigation
+" quick keys to check, reset, & toggle mode
 nmap <Leader>sc :SyntasticCheck<cr>
 nmap <Leader>ss :SyntasticReset<cr>
+nmap <Leader>st :SyntasticToggleMode<cr>
+" Error navigation
 nmap <Leader>n :lne<cr>
 nmap <Leader>p :lp<cr>
-
-" javascript preference
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec = 'eslint_d'
 
 " Syntastic recommended settings
 set statusline+=%#warningmsg#
