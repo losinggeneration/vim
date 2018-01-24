@@ -21,6 +21,7 @@ if has("nvim")
 	Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
 	Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 	Plug 'pbogut/deoplete-elm', { 'do': 'npm install -g elm-oracle', 'for': 'elm' }
+	Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 else
 	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
 endif
@@ -55,14 +56,18 @@ Plug 'tomasr/molokai'
 Plug 'veloce/vim-aldmeris'
 
 " every day languages
-Plug 'fatih/vim-go', { 'tag': 'v1.13', 'do': ':GoInstallBinaries', 'for': 'go' }
+Plug 'fatih/vim-go', { 'tag': 'v1.16', 'do': ':GoInstallBinaries', 'for': 'go' }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'luishdez/vim-less', { 'for': 'less' }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'maralla/vim-toml-enhance', { 'for': 'toml' }
+Plug 'mattn/vim-sqlfmt', { 'for': ['sql', 'mysql'], 'do': 'go get -u  github.com/jackc/sqlfmt/cmd/sqlfmt' }
 
 " used but not common anymore
+Plug 'fatih/vim-nginx'
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'vim-php/tagbar-phpctags.vim', { 'for': 'php' }
