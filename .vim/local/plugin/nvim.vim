@@ -2,7 +2,7 @@ if has("nvim")
 	set background=dark
 	" hack around poorly behaving clients :(
 	if has('gui_running')
-		colorscheme aldmeris
+		colorscheme desert
 	endif
 
 	" Map Esc to exit insert mode in the terminal
@@ -10,5 +10,5 @@ if has("nvim")
 	tnoremap jj <C-\><C-n>
 endif
 
-colorscheme gruvbox
+source <sfile>:p:h/colorscheme.vim
 
