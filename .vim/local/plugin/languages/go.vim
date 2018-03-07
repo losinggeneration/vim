@@ -13,7 +13,7 @@ let g:go_metalinter_autosave = 1
 let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'gocyclo']
 let g:go_metalinter_deadline = '20s'
 let g:go_metalinter_enabled = [
-			\ 'aligncheck',
+			\ 'maligned',
 			\ 'deadcode',
 			\ 'errcheck',
 			\ 'gas',
