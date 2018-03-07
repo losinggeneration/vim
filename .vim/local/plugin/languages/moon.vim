@@ -3,6 +3,6 @@ if empty(&filetype)
 endif
 
 " Moonscript tools bindings
-au FileType moon nmap <Leader>c :!moonc "%:p"<cr>
-au FileType moon nmap <Leader>b :!moonc "%:p:h"<cr>
-au FileType moon nmap <Leader>l :!moonc -l "%:p"<cr>
+nmap <Leader>c :!moonc "%:p"<cr>
+nmap <Leader>b :!moonc "%:p:h"<cr>
+nmap <Leader>l :!moonc -l "%:p"<cr>
