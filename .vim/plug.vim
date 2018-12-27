@@ -23,7 +23,22 @@ if has("nvim")
 	Plug 'pbogut/deoplete-elm', { 'do': 'npm install -g elm-oracle', 'for': 'elm' }
 	Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 else
-	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+	if v:version >= 800
+		" NVM (seems to have problems with neosnippets)
+		"Plug 'roxma/vim-hug-neovim-rpc'
+		"Plug 'roxma/nvim-completion-manager'
+		"Plug 'roxma/ncm-flow'
+
+		" VIM script async completion
+		Plug 'prabirshrestha/asyncomplete.vim'
+		Plug 'prabirshrestha/async.vim'
+		Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+		"Plug 'prabirshrestha/vim-lsp'
+		"Plug 'prabirshrestha/asyncomplete-lsp.vim'
+		"Plug 'prabirshrestha/asyncomplete-gocode.vim'
+	elseif v:version >= 740 && has('patch1578')
+		Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+	endif
 endif
 
 " editing improvements
@@ -44,6 +59,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'severin-lemaignan/vim-minimap'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'Shougo/denite.nvim'
+
+" utilities
+" TODO add pomodoro timer
 
 " git shit
 Plug 'airblade/vim-gitgutter'
@@ -56,7 +76,7 @@ Plug 'tomasr/molokai'
 Plug 'veloce/vim-aldmeris'
 
 " every day languages
-Plug 'fatih/vim-go', { 'tag': 'v1.16', 'do': ':GoInstallBinaries', 'for': 'go' }
+Plug 'fatih/vim-go', { 'tag': 'v1.19', 'do': ':GoInstallBinaries', 'for': 'go' }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'luishdez/vim-less', { 'for': 'less' }
 Plug 'elzr/vim-json', { 'for': 'json' }
@@ -65,6 +85,9 @@ Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'maralla/vim-toml-enhance', { 'for': 'toml' }
 Plug 'mattn/vim-sqlfmt', { 'for': ['sql', 'mysql'], 'do': 'go get -u  github.com/jackc/sqlfmt/cmd/sqlfmt' }
+" Typescript
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
 
 " used but not common anymore
 Plug 'fatih/vim-nginx'
@@ -76,6 +99,7 @@ Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
 " less used languages
+Plug 'rhysd/vim-crystal'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixer' }
 Plug 'jdonaldson/vaxe', { 'for': 'haxe' }
@@ -85,5 +109,6 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'peterhoeg/vim-qml', { 'for': 'qml' }
+Plug 'aklt/plantuml-syntax'
 
 call plug#end()

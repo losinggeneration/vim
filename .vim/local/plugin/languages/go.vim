@@ -2,6 +2,15 @@ if empty(&filetype)
 	finish
 endif
 
+"au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options({
+"\ 'name': 'gocode',
+"\ 'whitelist': ['go'],
+"\ 'completor': function('asyncomplete#sources#gocode#completor'),
+"\ 'config': {
+"\    'gocode_path': expand('~/Programs/bin/gocode')
+"\  },
+"\ }))
+
 " Use goimports for Fmt
 let g:go_fmt_command = 'goimports'
 let g:go_fmt_autosave = 1
@@ -10,7 +19,9 @@ let g:go_fmt_fail_silently = 1
 let g:go_fmt_experimental = 1
 
 let g:go_metalinter_autosave = 1
-let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'gocyclo']
+let g:go_metalinter_autosave_enabled = ['vet', 'vetshadow', 'errcheck', 'ineffassign', 'gotype', 'gofmt']
+"let g:go_metalinter_command = '--tests -D golint -D lll'
+let g:go_metalinter_command = '--enable-all --tests -D golint -D lll -E errcheck'
 let g:go_metalinter_deadline = '20s'
 let g:go_metalinter_enabled = [
 			\ 'maligned',
@@ -35,6 +46,7 @@ let g:go_metalinter_enabled = [
 			\ 'vetshadow',
 			\ ]
 
+let g:go_auto_sameids = 1
 let g:go_auto_type_info = 1
 let g:go_list_type = 'quickfix'
 let g:go_info_mode = 'gocode'
@@ -48,7 +60,7 @@ let g:go_template_use_pkg = 1
 
 " Enable syntax-highlighting for Functions, Methods and Structs.
 let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
+let g:go_highlight_function_calls = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_types = 1
 let g:go_highlight_build_constraints = 1
@@ -58,7 +70,7 @@ let g:go_highlight_interfaces = 0
 let g:go_highlight_operators = 0
 
 " Use neosnippet
-let g:go_snippet_engine = 'neosnippet'
+let g:go_snippet_engine = 'ultrasnips'
 
 function! go#UpdateTags(start, end, count, ...) abort
 	call call("go#tags#Remove", [a:start, a:end, a:count] + a:000)
@@ -89,7 +101,10 @@ nmap <Leader>r <Plug>(go-rename)
 nmap <Leader>ref <Plug>(go-referrers)
 nmap <Leader>s <Plug>(go-implements)
 nmap <Leader>y <Plug>(go-run)
+nmap <Leader>if <Plug>(go-iferr)
 nmap <Leader>a :GoAlternate<cr>
+nmap <Leader>si :GoSameIds<cr>
+nmap <Leader>sic :GoSameIdsClear<cr>
 nmap gd <Plug>(go-def)
 
 nmap <Leader>ds <Plug>(go-def-split)
