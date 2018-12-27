@@ -18,6 +18,24 @@ ln -s ~/.vim.git/.vim ~/
 ln -s ~/.vim.git/.vimrc ~/
 ln -s ~/.vim.git/.gvimrc ~/
 ```
+## NeoVIM initial setup
+
+This is only really needed on a fresh install with neovim not setup yet.
+
+```shell
+mkdir -p ~/.config
+ln -s ~/.vim ~/.config/nvim
+ln -s ~/.vimrc ~/.vim/init.vim
+# install neovim for python 2 & 3
+pip install neovim
+pip3 install neovim
+```
+
+## Install Plugins
+
+```shell
+vim +UpdateRemotePlugins +PlugInstall +qall
+```
 
 # Features
 
