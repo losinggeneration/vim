@@ -21,16 +21,21 @@ endif
 
 if has("nvim") || v:version >= 800
 	" deoplete code completion language support
-	Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
 	Plug 'zchee/deoplete-zsh'
-	Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
-	Plug 'wokalski/autocomplete-flow', { 'for': ['javascript', 'javascript.jsx'] }
 	Plug 'Shougo/neco-vim', { 'for': 'vim' }
 	Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+
+	Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
+	Plug 'wokalski/autocomplete-flow', { 'for': ['javascript', 'javascript.jsx'] }
+
+	Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
 	Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
 
 	Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
+
 	Plug 'pbogut/deoplete-elm', { 'do': 'npm install -g elm-oracle', 'for': 'elm' }
+	Plug 'reasonml-editor/vim-reason-plus', { 'for': 'reason' }
+
 	Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 endif
 
