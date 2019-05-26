@@ -43,6 +43,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'xolox/vim-misc'
 Plug 'AndrewRadev/sideways.vim'
+Plug 'ajh17/VimCompletesMe'
 
 " UI additions
 Plug 'szw/vim-ctrlspace'
@@ -77,13 +78,17 @@ Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'maralla/vim-toml-enhance', { 'for': 'toml' }
-Plug 'mattn/vim-sqlfmt', { 'for': ['sql', 'mysql'], 'do': 'go get -u  github.com/jackc/sqlfmt/cmd/sqlfmt' }
+Plug 'mattn/vim-sqlfmt', { 'for': ['sql', 'mysql'], 'do': 'go get -u github.com/jackc/sqlfmt/cmd/sqlfmt' }
 " Typescript
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
 Plug 'reasonml-editor/vim-reason-plus', { 'for': 'reason' }
 Plug 'jordwalke/vim-reasonml', { 'for': 'reason' }
 
+" Python
+Plug 'vim-scripts/indentpython.vim', { 'for': 'python' }
+Plug 'nvie/vim-flake8', { 'for': 'python' }
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
 
 " used but not common anymore
 Plug 'fatih/vim-nginx'
@@ -105,6 +110,6 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'peterhoeg/vim-qml', { 'for': 'qml' }
-Plug 'aklt/plantuml-syntax'
+Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
 
 call plug#end()
