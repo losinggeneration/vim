@@ -81,6 +81,9 @@ Plug 'mattn/vim-sqlfmt', { 'for': ['sql', 'mysql'], 'do': 'go get -u  github.com
 " Typescript
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
+Plug 'reasonml-editor/vim-reason-plus', { 'for': 'reason' }
+Plug 'jordwalke/vim-reasonml', { 'for': 'reason' }
+
 
 " used but not common anymore
 Plug 'fatih/vim-nginx'
