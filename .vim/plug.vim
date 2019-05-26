@@ -11,7 +11,15 @@ Plug 'Shougo/neosnippet-snippets'
 
 if has("nvim")
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+elseif v:version >= 800
+	Plug 'Shougo/deoplete.nvim'
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
+elseif v:version >= 704 && has('patch1578')
+	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer --rust-completer --java-completer --ts-completer' }
+endif
 
+if has("nvim") || v:version >= 800
 	" deoplete code completion language support
 	Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
 	Plug 'zchee/deoplete-zsh'
@@ -20,26 +28,10 @@ if has("nvim")
 	Plug 'Shougo/neco-vim', { 'for': 'vim' }
 	Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 	Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
+
 	Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 	Plug 'pbogut/deoplete-elm', { 'do': 'npm install -g elm-oracle', 'for': 'elm' }
 	Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-else
-	if v:version >= 800
-		" NVM (seems to have problems with neosnippets)
-		"Plug 'roxma/vim-hug-neovim-rpc'
-		"Plug 'roxma/nvim-completion-manager'
-		"Plug 'roxma/ncm-flow'
-
-		" VIM script async completion
-		Plug 'prabirshrestha/asyncomplete.vim'
-		Plug 'prabirshrestha/async.vim'
-		Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-		"Plug 'prabirshrestha/vim-lsp'
-		"Plug 'prabirshrestha/asyncomplete-lsp.vim'
-		"Plug 'prabirshrestha/asyncomplete-gocode.vim'
-	elseif v:version >= 740 && has('patch1578')
-		Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
-	endif
 endif
 
 " editing improvements
