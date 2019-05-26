@@ -14,42 +14,24 @@ endif
 " Use goimports for Fmt
 let g:go_fmt_command = 'goimports'
 let g:go_fmt_autosave = 1
+let g:go_mod_fmt_autosave = 1
 let g:go_fmt_fail_silently = 1
 " this will restore folds and attempt to preserve undo history
 let g:go_fmt_experimental = 1
 
-let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave = 0
 let g:go_metalinter_autosave_enabled = ['vet', 'vetshadow', 'errcheck', 'ineffassign', 'gotype', 'gofmt']
 "let g:go_metalinter_command = '--tests -D golint -D lll'
-let g:go_metalinter_command = '--enable-all --tests -D golint -D lll -E errcheck'
-let g:go_metalinter_deadline = '20s'
-let g:go_metalinter_enabled = [
-			\ 'maligned',
-			\ 'deadcode',
-			\ 'errcheck',
-			\ 'gas',
-			\ 'goconst',
-			\ 'gocyclo',
-			\ 'gofmt',
-			\ 'goimports',
-			\ 'gotype',
-			\ 'ineffassign',
-			\ 'interfacer',
-			\ 'megacheck',
-			\ 'misspell',
-			\ 'safesql',
-			\ 'structcheck',
-			\ 'unconvert',
-			\ 'unparam',
-			\ 'varcheck',
-			\ 'vet',
-			\ 'vetshadow',
-			\ ]
+"let g:go_metalinter_command = 'gometalinter --enable-all --tests -D golint -D lll -E errcheck'
+let g:go_metalinter_disabled = ['golint']
+let g:go_metalinter_enabled = ['deadcode', 'dupl', 'errcheck', 'gochecknoglobals', 'gochecknoinits', 'goconst', 'gocyclo', 'gofmt', 'goimports', 'golint', 'gosec', 'gotypex', 'ineffassign', 'interfacer', 'maligned', 'misspell', 'nakedret', 'safesql', 'staticcheck', 'structcheck', 'test', 'testify', 'unconvert', 'unparam', 'varcheck', 'vet', 'vetshadow']
+let g:go_metalinter_deadline = '30s'
 
 let g:go_auto_sameids = 1
 let g:go_auto_type_info = 1
 let g:go_list_type = 'quickfix'
 let g:go_info_mode = 'gocode'
+let g:go_def_mode = 'gopls'
 
 " echodoc does better than this
 let g:go_echo_go_info = 0
