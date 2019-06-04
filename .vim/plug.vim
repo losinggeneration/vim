@@ -2,6 +2,8 @@ call plug#begin()
 " my settings and extensions
 Plug '~/.vim/local'
 
+Plug 'ciaranm/securemodelines'
+
 " coding improvments
 "Plug 'scrooloose/syntastic'
 Plug 'w0rp/ale'
