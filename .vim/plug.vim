@@ -65,6 +65,7 @@ Plug 'Shougo/denite.nvim'
 
 " utilities
 " TODO add pomodoro timer
+Plug 'robertbasic/vim-hugo-helper'
 
 " git shit
 Plug 'airblade/vim-gitgutter'
@@ -79,6 +80,7 @@ Plug 'veloce/vim-aldmeris'
 " every day languages
 "Plug 'fatih/vim-go', { 'tag': 'v0.19', 'do': ':GoInstallBinaries', 'for': 'go' }
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries', 'for': 'go' }
+Plug 'ziglang/zig.vim', { 'for': 'zig' }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'luishdez/vim-less', { 'for': 'less' }
 Plug 'elzr/vim-json', { 'for': 'json' }
