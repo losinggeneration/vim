@@ -51,8 +51,8 @@ let g:go_highlight_structs = 0
 let g:go_highlight_interfaces = 0
 let g:go_highlight_operators = 0
 
-" Use neosnippet
-let g:go_snippet_engine = 'ultrasnips'
+" Use automatic detection
+"let g:go_snippet_engine = 'neosnippet'
 
 function! go#UpdateTags(start, end, count, ...) abort
 	call call("go#tags#Remove", [a:start, a:end, a:count] + a:000)
