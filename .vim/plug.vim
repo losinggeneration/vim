@@ -77,7 +77,7 @@ Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
 Plug 'veloce/vim-aldmeris'
 
-" every day languages
+" common languages
 "Plug 'fatih/vim-go', { 'tag': 'v0.19', 'do': ':GoInstallBinaries', 'for': 'go' }
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries', 'for': 'go' }
 Plug 'ziglang/zig.vim', { 'for': 'zig' }
@@ -89,35 +89,46 @@ Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'maralla/vim-toml-enhance', { 'for': 'toml' }
 Plug 'mattn/vim-sqlfmt', { 'for': ['sql', 'mysql'], 'do': 'go get -u github.com/jackc/sqlfmt/cmd/sqlfmt' }
+
 " Typescript
-Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi'
-Plug 'reasonml-editor/vim-reason-plus', { 'for': 'reason' }
-Plug 'jordwalke/vim-reasonml', { 'for': 'reason' }
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+
+" Vue
+Plug 'leafOfTree/vim-vue-plugin', { 'for': 'vue' }
+Plug 'mattn/emmet-vim'
 
 " Python
 Plug 'vim-scripts/indentpython.vim', { 'for': 'python' }
 Plug 'nvie/vim-flake8', { 'for': 'python' }
-Plug 'python-mode/python-mode', { 'branch': 'develop' }
+Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': 'python' }
 
-" used but not common anymore
-Plug 'fatih/vim-nginx'
+" Mostly personal project languages
+Plug 'jdonaldson/vaxe', { 'for': 'haxe' }
+Plug 'leafo/moonscript-vim', { 'for': 'moon' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'ElmCast/elm-vim', { 'for': 'elm' }
+Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
+Plug 'elixir-lang/vim-elixir', { 'for': 'elixer' }
+
+" Reason
+Plug 'reasonml-editor/vim-reason-plus', { 'for': 'reason' }
+Plug 'jordwalke/vim-reasonml', { 'for': 'reason' }
+
+" Random just in case languages
+" PHP
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
-Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'vim-php/tagbar-phpctags.vim', { 'for': 'php' }
+Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
+
+" Ruby
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
-" less used languages
-Plug 'rhysd/vim-crystal'
+Plug 'fatih/vim-nginx', { 'for': 'nginx' }
+Plug 'rhysd/vim-crystal', { 'for': 'crystal' }
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
-Plug 'elixir-lang/vim-elixir', { 'for': 'elixer' }
-Plug 'jdonaldson/vaxe', { 'for': 'haxe' }
-Plug 'ElmCast/elm-vim', { 'for': 'elm' }
-Plug 'leafo/moonscript-vim', { 'for': 'moon' }
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'peterhoeg/vim-qml', { 'for': 'qml' }
 Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
