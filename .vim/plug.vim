@@ -11,35 +11,46 @@ Plug 'Shougo/echodoc.vim', { 'do': 'make' }
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 
-if has("nvim")
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-elseif v:version >= 800
-	Plug 'Shougo/deoplete.nvim'
-	Plug 'roxma/nvim-yarp'
-	Plug 'roxma/vim-hug-neovim-rpc'
+if !exists("g:use_deoplete")
+	let g:use_deoplete = 0
+endif
+
+if has("nvim") || v:version >= 800
+	if g:use_deoplete
+		Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+		" deoplete code completion language support
+		Plug 'zchee/deoplete-zsh'
+		Plug 'Shougo/neco-vim', { 'for': 'vim' }
+		Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+
+		Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern', 'for': ['javascript', 'javascript.jsx'] }
+		Plug 'wokalski/autocomplete-flow', { 'for': ['javascript', 'javascript.jsx'] }
+
+		"Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
+		Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
+
+		Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
+
+		Plug 'pbogut/deoplete-elm', { 'do': 'yarn global add elm-oracle', 'for': 'elm' }
+		Plug 'reasonml-editor/vim-reason-plus', { 'for': 'reason' }
+
+		Plug 'kristijanhusak/deoplete-phpactor', { 'for': 'php' }
+
+		Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+		Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs', 'for': 'php' }
+	else
+		Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	endif
 elseif v:version >= 704 && has('patch1578')
 	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer --rust-completer --java-completer --ts-completer' }
 endif
 
-if has("nvim") || v:version >= 800
-	" deoplete code completion language support
-	Plug 'zchee/deoplete-zsh'
-	Plug 'Shougo/neco-vim', { 'for': 'vim' }
-	Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-
-	Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
-	Plug 'wokalski/autocomplete-flow', { 'for': ['javascript', 'javascript.jsx'] }
-
-	Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
-	Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
-
-	Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
-
-	Plug 'pbogut/deoplete-elm', { 'do': 'npm install -g elm-oracle', 'for': 'elm' }
-	Plug 'reasonml-editor/vim-reason-plus', { 'for': 'reason' }
-
-	Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+if !has("nvim") && v:version >= 800
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
 
 " editing improvements
 Plug 'christoomey/vim-sort-motion'
