@@ -19,24 +19,30 @@ let g:go_fmt_fail_silently = 1
 " this will restore folds and attempt to preserve undo history
 let g:go_fmt_experimental = 1
 
+let g:go_rename_command = 'gopls'
+let g:go_gopls_enabled = 1
+let g:go_code_completion_enabled = 1
+
 let g:go_metalinter_autosave = 0
 let g:go_metalinter_autosave_enabled = ['vet', 'vetshadow', 'errcheck', 'ineffassign', 'gotype', 'gofmt']
 "let g:go_metalinter_command = '--tests -D golint -D lll'
 "let g:go_metalinter_command = 'gometalinter --enable-all --tests -D golint -D lll -E errcheck'
 let g:go_metalinter_disabled = ['golint']
-let g:go_metalinter_enabled = ['deadcode', 'dupl', 'errcheck', 'gochecknoglobals', 'gochecknoinits', 'goconst', 'gocyclo', 'gofmt', 'goimports', 'golint', 'gosec', 'gotypex', 'ineffassign', 'interfacer', 'maligned', 'misspell', 'nakedret', 'safesql', 'staticcheck', 'structcheck', 'test', 'testify', 'unconvert', 'unparam', 'varcheck', 'vet', 'vetshadow']
-let g:go_metalinter_deadline = '30s'
+"let g:go_metalinter_enabled = ['deadcode', 'dupl', 'errcheck', 'gochecknoglobals', 'gochecknoinits', 'goconst', 'gocyclo', 'gofmt', 'goimports', 'golint', 'gosec', 'gotypex', 'ineffassign', 'interfacer', 'maligned', 'misspell', 'nakedret', 'safesql', 'staticcheck', 'structcheck', 'test', 'testify', 'unconvert', 'unparam', 'varcheck', 'vet', 'vetshadow']
+let g:go_metalinter_enabled = ['deadcode', 'dupl', 'errcheck', 'gochecknoglobals', 'gochecknoinits', 'goconst', 'gocyclo', 'gofmt', 'goimports', 'govet', 'gosec', 'ineffassign', 'interfacer', 'maligned', 'misspell', 'nakedret', 'staticcheck', 'structcheck', 'unconvert', 'unparam', 'varcheck', 'vet', 'vetshadow']
+let g:go_metalinter_deadline = '60s'
 
-let g:go_auto_sameids = 1
-let g:go_auto_type_info = 1
+"let g:go_auto_sameids = 1
+"let g:go_auto_type_info = 1
 let g:go_list_type = 'quickfix'
-let g:go_info_mode = 'gocode'
+let g:go_info_mode = 'gopls'
 let g:go_def_mode = 'gopls'
 
 " echodoc does better than this
 let g:go_echo_go_info = 0
-" This stops Go function preview/tip
-set completeopt=menu
+"
+" This stops autocomplete preview/tip & autoinserting text
+set completeopt=menu,noinsert,noselect
 
 let g:go_template_use_pkg = 1
 
@@ -64,6 +70,15 @@ command! -nargs=* -range GoUpdateTags call go#UpdateTags(<line1>, <line2>, <coun
 " Use indent mode for folding
 setlocal foldmethod=indent
 
+" Launch gopls when Go files are in use
+"let g:LanguageClient_serverCommands['go'] = ['gopls']
+call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+
+" Run gofmt on save
+autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+"let g:ale_linters['go'] = ['gopls']
+"let g:ale_linters['go'] = ['golangci_lint', 'govet', 'gotype', 'gosimple', 'gobuild']
+
 " Go tools bindings
 nmap <Leader>b <Plug>(go-build)
 nmap <Leader>f :GoFmt<cr>
@@ -72,6 +87,7 @@ nmap <Leader>cr <Plug>(go-callers)
 nmap <Leader>cs <Plug>(go-callstack)
 nmap <Leader>l <Plug>(go-metalinter)
 nmap <Leader>t <Plug>(go-test)
+nmap <Leader>tf <Plug>(go-test-func)
 nmap <Leader>tc <Plug>(go-coverage)
 nmap <Leader>tct <Plug>(go-coverage-toggle)
 nmap <Leader>tcc <Plug>(go-coverage-clear)
@@ -92,6 +108,8 @@ nmap gd <Plug>(go-def)
 nmap <Leader>ds <Plug>(go-def-split)
 nmap <Leader>dv <Plug>(go-def-vertical)
 nmap <Leader>dt <Plug>(go-def-tab)
+nmap <Leader>dp <Plug>(go-deps)
+nmap <Leader>df <Plug>(go-files)
 
 nmap <Leader>gd <Plug>(go-doc)
 nmap <Leader>gv <Plug>(go-doc-vertical)
