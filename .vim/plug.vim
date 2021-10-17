@@ -117,6 +117,9 @@ Plug 'vim-scripts/indentpython.vim', { 'for': 'python' }
 Plug 'nvie/vim-flake8', { 'for': 'python' }
 Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': 'python' }
 
+" Mostly employment project languages
+Plug 'hashivim/vim-terraform', { 'for': 'terraform' }" Mostly personal project languages
+
 " Mostly personal project languages
 Plug 'jdonaldson/vaxe', { 'for': 'haxe' }
 Plug 'leafo/moonscript-vim', { 'for': 'moon' }
