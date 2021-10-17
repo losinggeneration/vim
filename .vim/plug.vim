@@ -6,7 +6,7 @@ Plug 'ciaranm/securemodelines'
 
 " coding improvments
 "Plug 'scrooloose/syntastic'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'Shougo/echodoc.vim', { 'do': 'make' }
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
