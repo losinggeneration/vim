@@ -63,6 +63,7 @@ Plug 'tpope/vim-surround'
 Plug 'xolox/vim-misc'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'ajh17/VimCompletesMe'
+Plug 'Yggdroot/indentLine'
 
 " UI additions
 Plug 'szw/vim-ctrlspace'

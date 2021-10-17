@@ -33,6 +33,7 @@ if has("autocmd")
 		" tabs
 		autocmd Filetype go setlocal noet ts=4 sts=4 sw=4 list lcs=tab:»-,trail:…
 		autocmd Filetype vim setlocal noet ts=4 sts=4 sw=4 list lcs=tab:»-,trail:…
+		autocmd Filetype zsh setlocal noet ts=4 sts=4 sw=4 list lcs=tab:»-,trail:…
 
 		" When editing a file, always jump to the last known cursor position.
 		" Don't do it when the position is invalid or when inside an event handler
@@ -42,6 +43,7 @@ if has("autocmd")
 					\   exe "normal g`\"" |
 					\ endif
 
+		let g:indentLine_char = '⦙'
 	augroup END
 else
 	set autoindent		" always set autoindenting on
