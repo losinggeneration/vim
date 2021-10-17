@@ -30,10 +30,10 @@ let g:go_metalinter_autosave_enabled = ['vet', 'vetshadow', 'errcheck', 'ineffas
 let g:go_metalinter_disabled = ['golint']
 "let g:go_metalinter_enabled = ['deadcode', 'dupl', 'errcheck', 'gochecknoglobals', 'gochecknoinits', 'goconst', 'gocyclo', 'gofmt', 'goimports', 'golint', 'gosec', 'gotypex', 'ineffassign', 'interfacer', 'maligned', 'misspell', 'nakedret', 'safesql', 'staticcheck', 'structcheck', 'test', 'testify', 'unconvert', 'unparam', 'varcheck', 'vet', 'vetshadow']
 let g:go_metalinter_enabled = ['deadcode', 'dupl', 'errcheck', 'gochecknoglobals', 'gochecknoinits', 'goconst', 'gocyclo', 'gofmt', 'goimports', 'govet', 'gosec', 'ineffassign', 'interfacer', 'maligned', 'misspell', 'nakedret', 'staticcheck', 'structcheck', 'unconvert', 'unparam', 'varcheck', 'vet', 'vetshadow']
-let g:go_metalinter_deadline = '60s'
+let g:go_metalinter_deadline = '30s'
 
 "let g:go_auto_sameids = 1
-"let g:go_auto_type_info = 1
+let g:go_auto_type_info = 1
 let g:go_list_type = 'quickfix'
 let g:go_info_mode = 'gopls'
 let g:go_def_mode = 'gopls'
@@ -71,13 +71,15 @@ command! -nargs=* -range GoUpdateTags call go#UpdateTags(<line1>, <line2>, <coun
 setlocal foldmethod=indent
 
 " Launch gopls when Go files are in use
-"let g:LanguageClient_serverCommands['go'] = ['gopls']
+let g:LanguageClient_serverCommands['go'] = ['gopls']
 call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 
 " Run gofmt on save
-autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+"autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+"let g:ale_linters['go'] = []
 "let g:ale_linters['go'] = ['gopls']
-"let g:ale_linters['go'] = ['golangci_lint', 'govet', 'gotype', 'gosimple', 'gobuild']
+"let g:ale_linters['go'] = ['gopls', 'golangci_lint', 'govet', 'gotype', 'gosimple', 'gobuild']
+"let g:ale_completion_enabled = 0
 
 " Go tools bindings
 nmap <Leader>b <Plug>(go-build)
