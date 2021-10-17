@@ -18,6 +18,7 @@ call Src_type('php', '/languages/php.vim')
 call Src_type('php', '/languages/phpcomplete.vim')
 call Src_type('python', '/languages/python.vim')
 call Src_type('reason', '/languages/reason.vim')
+call Src_type('rescript', '/languages/rescript.vim')
 call Src_type('ruby,eruby', '/languages/ruby.vim')
 call Src_type('scala', '/languages/scala.vim')
 augroup END

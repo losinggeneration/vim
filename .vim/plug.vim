@@ -35,6 +35,7 @@ if has("nvim") || v:version >= 800
 
 		Plug 'pbogut/deoplete-elm', { 'do': 'yarn global add elm-oracle', 'for': 'elm' }
 		Plug 'reasonml-editor/vim-reason-plus', { 'for': 'reason' }
+		Plug 'rescript-lang/vim-rescript', { 'for': 'rescript' }
 
 		Plug 'kristijanhusak/deoplete-phpactor', { 'for': 'php' }
 
