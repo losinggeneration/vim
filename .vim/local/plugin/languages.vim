@@ -22,6 +22,7 @@ call Src_type('rescript', '/languages/rescript.vim')
 call Src_type('ruby,eruby', '/languages/ruby.vim')
 call Src_type('scala', '/languages/scala.vim')
 call Src_type('terraform', '/languages/terraform.vim')
+call Src_type('typescript,typescript.tsx', '/languages/tsx.vim')
 augroup END
 
 " cleanup as it's not needed
