@@ -26,7 +26,10 @@ nmap <Leader>sr :SidewaysRight<CR>
 nmap <Leader>todo /\c\<\(to\(\s\\|-\)*do\)\\|\(fix\(\s\\|-\)*me\)\>/ <cr>
 
 " Map for reformatting a file
-map <Leader>rf mzgg=G`z<CR>
+"map <Leader>rf mzgg=G`z<CR>
+map <Leader>rf :Autoformat<CR>
+map <Leader>rfl :AutoformatLine<CR>
+
 " Map <Leader>cd to change directories to the directory of the current file
 nnoremap <Leader>cd :cd %:p:h<cr>
 

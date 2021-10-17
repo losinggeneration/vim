@@ -10,6 +10,7 @@ Plug 'dense-analysis/ale'
 Plug 'Shougo/echodoc.vim', { 'do': 'make' }
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'Chiel92/vim-autoformat'
 
 if !exists("g:use_deoplete")
 	let g:use_deoplete = 0
