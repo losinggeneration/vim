@@ -44,6 +44,6 @@ map <c-f> :call DmenuOpen("e")<cr>
 
 " load in a local configuration outside of source control
 try
-	source ~/.gvimrc.local
+  source ~/.gvimrc.local
 catch
 endtry

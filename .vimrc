@@ -9,4 +9,3 @@ source ~/.vim/plug.vim
 highlight TabS term=standout cterm=standout gui=standout
 highlight STabs term=standout cterm=standout gui=standout
 highlight link LineEndWS Error
-

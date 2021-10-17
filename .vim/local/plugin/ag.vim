@@ -1,4 +1,5 @@
 " The Silver Searcher
+if 0
 if executable('ag')
 	" Use ag over grep
 	set grepprg=ag\ --vimgrep\ --nogroup\ --nocolor\ --ignore\ \"*~\"
@@ -11,10 +12,12 @@ if executable('ag')
 
 	" bind K to grep word under cursor
 	nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR><CR>
-	nnoremap <Leader>K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR><CR>
 
 	" bind \ (backward slash) to grep shortcut
 	command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw|
 
 	nnoremap \ :Ag<SPACE>
 endif
+endif
+
+nnoremap <Leader>K :Ag <C-R><C-W><CR>
