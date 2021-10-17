@@ -18,7 +18,7 @@ endif
 
 if has("nvim") || v:version >= 800
 	if g:use_deoplete
-		Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+		Plug 'Shougo/deoplete.nvim', { 'tag': '6.1', 'do': ':UpdateRemotePlugins' }
 
 		" deoplete code completion language support
 		Plug 'zchee/deoplete-zsh'
@@ -40,7 +40,7 @@ if has("nvim") || v:version >= 800
 		Plug 'kristijanhusak/deoplete-phpactor', { 'for': 'php' }
 
 		Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-		Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs', 'for': 'php' }
+		"Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs', 'for': 'php' }
 	else
 		Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	endif
@@ -57,6 +57,7 @@ endif
 " editing improvements
 Plug 'christoomey/vim-sort-motion'
 Plug 'terryma/vim-expand-region'
+Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
@@ -65,6 +66,7 @@ Plug 'xolox/vim-misc'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'ajh17/VimCompletesMe'
 Plug 'Yggdroot/indentLine'
+Plug 'pedrohdz/vim-yaml-folds'
 
 " UI additions
 Plug 'szw/vim-ctrlspace'
@@ -74,7 +76,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'severin-lemaignan/vim-minimap'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'Shougo/denite.nvim'
 
 " utilities
@@ -118,7 +121,7 @@ Plug 'nvie/vim-flake8', { 'for': 'python' }
 Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': 'python' }
 
 " Mostly employment project languages
-Plug 'hashivim/vim-terraform', { 'for': 'terraform' }" Mostly personal project languages
+Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 
 " Mostly personal project languages
 Plug 'jdonaldson/vaxe', { 'for': 'haxe' }
