@@ -24,8 +24,7 @@ This is only really needed on a fresh install with neovim not setup yet.
 
 ```shell
 mkdir -p ~/.config
-ln -s ~/.vim ~/.config/nvim
-ln -s ~/.vimrc ~/.vim/init.vim
+ln -s ~/.vim/.in ~/.config/nvim
 # install neovim for python 2 & 3
 pip install neovim
 pip3 install neovim
