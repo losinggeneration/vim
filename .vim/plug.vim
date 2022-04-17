@@ -1,6 +1,13 @@
 call plug#begin()
 " my settings and extensions
-Plug '~/.vim/local'
+"Plug '~/.vim/local'
+
+" color schemes
+Plug 'morhetz/gruvbox'
+"Plug 'tomasr/molokai'
+"Plug 'veloce/vim-aldmeris'
+
+if 0
 
 Plug 'ciaranm/securemodelines'
 
@@ -8,17 +15,25 @@ Plug 'ciaranm/securemodelines'
 "Plug 'scrooloose/syntastic'
 Plug 'dense-analysis/ale'
 Plug 'Shougo/echodoc.vim', { 'do': 'make' }
-Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'honza/vim-snippets'
 Plug 'Chiel92/vim-autoformat'
 
 if !exists("g:use_deoplete")
 	let g:use_deoplete = 0
 endif
 
-if has("nvim") || v:version >= 800
+if !exists("g:use_cmp")
+	let g:use_cmp = 0
+endif
+
+if v:version >= 800
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
+
 	if g:use_deoplete
 		Plug 'Shougo/deoplete.nvim', { 'tag': '6.1', 'do': ':UpdateRemotePlugins' }
+		Plug 'Shougo/neosnippet'
 
 		" deoplete code completion language support
 		Plug 'zchee/deoplete-zsh'
@@ -41,18 +56,36 @@ if has("nvim") || v:version >= 800
 
 		Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 		"Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs', 'for': 'php' }
+	elseif g:use_cmp
+		Plug 'neovim/nvim-lspconfig'
+		Plug 'hrsh7th/cmp-nvim-lsp'
+		Plug 'hrsh7th/cmp-buffer'
+		Plug 'hrsh7th/cmp-path'
+		Plug 'hrsh7th/cmp-cmdline'
+		Plug 'hrsh7th/nvim-cmp'
+
+		"Plug 'notomo/cmp-neosnippet'
+		Plug 'dcampos/nvim-snippy'
+		Plug 'dcampos/cmp-snippy'
+		"Plug 'Shougo/neosnippet-snippets'
+		"Plug 'L3MON4D3/LuaSnip'
+		"Plug 'saadparwaiz1/cmp_luasnip'
+		Plug 'hrsh7th/cmp-nvim-lua'
+		"Plug 'f3fora/cmp-spell'
+		Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' }
+		Plug 'ray-x/navigator.lua'
+		Plug 'windwp/nvim-autopairs'
+		Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+		Plug 'ray-x/go.nvim'
 	else
 		Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	endif
+
+	Plug 'is0n/fm-nvim'
+	Plug 'Shougo/denite.nvim'
 elseif v:version >= 704 && has('patch1578')
 	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer --rust-completer --java-completer --ts-completer' }
 endif
-
-if !has("nvim") && v:version >= 800
-	Plug 'roxma/nvim-yarp'
-	Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
 
 " editing improvements
 Plug 'christoomey/vim-sort-motion'
@@ -68,6 +101,8 @@ Plug 'ajh17/VimCompletesMe'
 Plug 'Yggdroot/indentLine'
 Plug 'pedrohdz/vim-yaml-folds'
 
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': ['md', 'markdown'] }
+
 " UI additions
 Plug 'szw/vim-ctrlspace'
 Plug 'majutsushi/tagbar'
@@ -78,7 +113,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'severin-lemaignan/vim-minimap'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'Shougo/denite.nvim'
 
 " utilities
 " TODO add pomodoro timer
@@ -89,16 +123,11 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 
-" color schemes
-Plug 'morhetz/gruvbox'
-Plug 'tomasr/molokai'
-Plug 'veloce/vim-aldmeris'
-
 " common languages
-"Plug 'fatih/vim-go', { 'tag': 'v0.19', 'do': ':GoInstallBinaries', 'for': 'go' }
+"Plug 'fatih/vim-go', { 'tag': 'v1.25', 'do': ':GoInstallBinaries', 'for': 'go' }
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries', 'for': 'go' }
+"Plug 'zchee/nvim-go', { 'do': 'make PKG=.', 'for': 'go' }
 Plug 'ziglang/zig.vim', { 'for': 'zig' }
-Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'luishdez/vim-less', { 'for': 'less' }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
@@ -132,7 +161,7 @@ Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixer' }
 
 " Reason
-Plug 'reasonml-editor/vim-reason-plus', { 'for': 'reason' }
+"Plug 'reasonml-editor/vim-reason-plus', { 'for': 'reason' }
 Plug 'jordwalke/vim-reasonml', { 'for': 'reason' }
 
 " Random just in case languages
@@ -154,3 +183,6 @@ Plug 'peterhoeg/vim-qml', { 'for': 'qml' }
 Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
 
 call plug#end()
+endif
+
+colorscheme desert256
