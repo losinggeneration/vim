@@ -29,7 +29,8 @@ let g:go_metalinter_autosave_enabled = ['vet', 'vetshadow', 'errcheck', 'ineffas
 "let g:go_metalinter_command = 'gometalinter --enable-all --tests -D golint -D lll -E errcheck'
 let g:go_metalinter_disabled = ['golint']
 "let g:go_metalinter_enabled = ['deadcode', 'dupl', 'errcheck', 'gochecknoglobals', 'gochecknoinits', 'goconst', 'gocyclo', 'gofmt', 'goimports', 'golint', 'gosec', 'gotypex', 'ineffassign', 'interfacer', 'maligned', 'misspell', 'nakedret', 'safesql', 'staticcheck', 'structcheck', 'test', 'testify', 'unconvert', 'unparam', 'varcheck', 'vet', 'vetshadow']
-let g:go_metalinter_enabled = ['deadcode', 'dupl', 'errcheck', 'gochecknoglobals', 'gochecknoinits', 'goconst', 'gocyclo', 'gofmt', 'goimports', 'govet', 'gosec', 'ineffassign', 'interfacer', 'maligned', 'misspell', 'nakedret', 'staticcheck', 'structcheck', 'unconvert', 'unparam', 'varcheck', 'vet', 'vetshadow']
+let g:go_metalinter_enabled = ['all']
+"let g:go_metalinter_enabled = ['deadcode', 'dupl', 'errcheck', 'gochecknoglobals', 'gochecknoinits', 'goconst', 'gocyclo', 'gofmt', 'goimports', 'govet', 'gosec', 'ineffassign', 'interfacer', 'maligned', 'misspell', 'nakedret', 'staticcheck', 'structcheck', 'unconvert', 'unparam', 'varcheck', 'vet', 'vetshadow']
 let g:go_metalinter_deadline = '30s'
 
 "let g:go_auto_sameids = 1
@@ -72,7 +73,10 @@ setlocal foldmethod=indent
 
 " Launch gopls when Go files are in use
 let g:LanguageClient_serverCommands['go'] = ['gopls']
-call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+
+if g:use_deoplete
+	call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+endif
 
 " Run gofmt on save
 "autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()

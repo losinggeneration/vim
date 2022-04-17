@@ -1,3 +1,4 @@
+if g:use_deoplete
 let g:neosnippet#enable_completed_snippet = 1
 
 " Plugin key-mappings.
@@ -19,4 +20,13 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " For conceal markers.
 if has('conceal')
   set conceallevel=2 concealcursor=niv
+endif
+endif
+
+if 0
+	imap <expr> <C-k> snippy#can_expand_or_advance() ? '<Plug>(snippy-expand-or-next)' : '<Tab>'
+	imap <expr> <C-S-k> snippy#can_jump(-1) ? '<Plug>(snippy-previous)' : '<Tab>'
+	smap <expr> <C-k> snippy#can_jump(1) ? '<Plug>(snippy-next)' : '<Tab>'
+	smap <expr> <C-S-k> snippy#can_jump(-1) ? '<Plug>(snippy-previous)' : '<Tab>'
+	xmap <Tab> <Plug>(snippy-cut-text)
 endif
