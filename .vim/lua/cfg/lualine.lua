@@ -23,8 +23,8 @@ end
 
 require('lualine').setup {
   options = {
-    theme = 'gruvbox_dark',
-    globalstatus = true
+    theme = 'gruvbox-material',
+    globalstatus = true,
   },
   sections = {
     lualine_c = {'filename', pomo},
@@ -34,4 +34,3 @@ require('lualine').setup {
     'fugitive',
   },
 }
-

@@ -51,7 +51,7 @@ return require('packer').startup(function()
       requires = {
         'Shougo/neosnippet',
         -- deoplete code completion language support
-        'neovim/nvim-lspconfig',
+        {'neovim/nvim-lspconfig', config = function() require("cfg.lspconfig") end},
         {'zchee/deoplete-zsh', ft = 'zsh'},
         {'Shougo/neco-vim', ft = 'vim'},
         {'zchee/deoplete-jedi', ft = 'python'},
@@ -83,7 +83,7 @@ return require('packer').startup(function()
         'hrsh7th/cmp-path', -- filesystem paths
         'hrsh7th/cmp-cmdline', -- command line suggestions
         'hrsh7th/cmp-omni', -- Vim's omnifunc
-        'neovim/nvim-lspconfig', -- nvim's LSP configuration
+        {'neovim/nvim-lspconfig', config = function() require("cfg.lspconfig") end}, -- nvim's LSP configuration
 
         -- vsnip
         --'hrsh7th/cmp-vsnip',
@@ -173,7 +173,8 @@ return require('packer').startup(function()
 
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = function() require("cfg.lualine") end,
   }
 
   -- utilities
@@ -196,7 +197,10 @@ return require('packer').startup(function()
 
   -- git shit
   use {
-    'lewis6991/gitsigns.nvim',
+    {
+      'lewis6991/gitsigns.nvim',
+      config = function() require("cfg.gitsigns") end,
+    },
     'tpope/vim-fugitive',
     'tpope/vim-git',
   }
