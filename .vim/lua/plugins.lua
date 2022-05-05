@@ -160,8 +160,6 @@ return require('packer').startup(function()
     'majutsushi/tagbar',
     'scrooloose/nerdcommenter',
     'scrooloose/nerdtree',
-    --'vim-airline/vim-airline',
-    --'vim-airline/vim-airline-themes',
     'severin-lemaignan/vim-minimap',
     {'junegunn/fzf', run = function() fn['fzf#install'](0) end},
     'junegunn/fzf.vim',
