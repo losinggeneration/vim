@@ -43,6 +43,7 @@ return require('packer').startup(function()
 
   -- completion
   if vim.g.use_deoplete then
+    vim.g.completions_loaded = true
     use {
       'Shougo/deoplete.nvim',
       tag = '6.1',
@@ -73,6 +74,7 @@ return require('packer').startup(function()
       }
     }
   elseif vim.g.use_cmp then
+    vim.g.completions_loaded = true
     use {
       'hrsh7th/nvim-cmp',
       requires = {

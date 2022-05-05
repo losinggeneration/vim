@@ -1,3 +1,7 @@
+if !exists("g:completion_loaded")
+	finish
+endif
+
 " this has to be set outside of the function
 let s:languages_path=expand('<sfile>:p:h')
 

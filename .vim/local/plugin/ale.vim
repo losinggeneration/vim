@@ -1,3 +1,7 @@
+if !exists("g:ale_lint_on_save")
+	finish
+endif
+
 let g:airline#extensions#ale#enabled = 1
 
 let g:ale_lint_on_text_changed=1
