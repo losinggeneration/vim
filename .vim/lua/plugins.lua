@@ -182,7 +182,7 @@ return require('packer').startup(function()
 
   -- git shit
   use {
-    'airblade/vim-gitgutter',
+    'lewis6991/gitsigns.nvim',
     'tpope/vim-fugitive',
     'tpope/vim-git',
   }
