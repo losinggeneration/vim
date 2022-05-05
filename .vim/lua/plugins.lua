@@ -161,8 +161,14 @@ return require('packer').startup(function()
     'scrooloose/nerdcommenter',
     'scrooloose/nerdtree',
     'severin-lemaignan/vim-minimap',
-    {'junegunn/fzf', run = function() fn['fzf#install'](0) end},
-    'junegunn/fzf.vim',
+    use {
+      'ibhagwan/fzf-lua',
+      -- optional for icon support
+      requires = {
+        'kyazdani42/nvim-web-devicons',
+        { 'junegunn/fzf', run = './install --bin', },
+      }
+    }
   }
 
   use {
