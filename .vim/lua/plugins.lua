@@ -173,8 +173,18 @@ return require('packer').startup(function()
 
   use {
     'nvim-lualine/lualine.nvim',
+    disable = false,
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function() require("cfg.lualine") end,
+  }
+  use {
+    'windwp/windline.nvim',
+    disable = true,
+    requires = {
+      'nvim-lua/plenary.nvim',
+      { 'kyazdani42/nvim-web-devicons', opt = true },
+    },
+    config = function() require("cfg.windline") end,
   }
 
   -- utilities
