@@ -238,6 +238,13 @@ return require('packer').startup(function()
   use {'rescript-lang/vim-rescript', ft = 'rescript'}
 
   -- Random just in case languages
+  use {'google/vim-jsonnet',
+    config = function()
+	  vim.go.jsonnet_fmt_on_save = 0
+    end,
+    ft = 'jsonnet',
+  }
+
   -- PHP
   use {
     {'StanAngeloff/php.vim', ft = 'php'},
