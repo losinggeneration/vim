@@ -1,4 +1,4 @@
-if g:use_deoplete
+if g:completion == 'deoplete'
 let g:neosnippet#enable_completed_snippet = 1
 
 " Plugin key-mappings.

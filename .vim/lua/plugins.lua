@@ -4,6 +4,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
+vim.g.completion = 'cmp' -- one of ['deoplete', 'cmp'] or unset
+
 vim.cmd([[
 augroup packer_user_config
 autocmd!
@@ -18,7 +20,7 @@ return require('packer').startup(function()
   use {
     '~/.vim/local',
     as = 'local.nvim',
-    after = {'nvim-lspconfig', 'gruvbox'},
+    after = {'gruvbox-material'},
   }
 
   -- color schemes
@@ -42,8 +44,7 @@ return require('packer').startup(function()
   }
 
   -- completion
-  if vim.g.use_deoplete then
-    vim.g.completions_loaded = true
+  if vim.g.completion == 'deoplete' then
     use {
       'Shougo/deoplete.nvim',
       tag = '6.1',
@@ -73,8 +74,7 @@ return require('packer').startup(function()
         --{'roxma/LanguageServer-php-neovim',  run = 'composer install && composer run-script parse-stubs', ft = 'php'},
       }
     }
-  elseif vim.g.use_cmp then
-    vim.g.completions_loaded = true
+  elseif vim.g.completion == 'cmp' then
     use {
       'hrsh7th/nvim-cmp',
       requires = {

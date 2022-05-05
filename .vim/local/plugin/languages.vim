@@ -1,4 +1,4 @@
-if !exists("g:completion_loaded")
+if !exists("g:completion")
 	finish
 endif
 

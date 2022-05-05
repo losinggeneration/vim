@@ -74,7 +74,7 @@ setlocal foldmethod=indent
 " Launch gopls when Go files are in use
 let g:LanguageClient_serverCommands['go'] = ['gopls']
 
-if g:use_deoplete
+if g:completion == 'deoplete'
 	call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 endif
 
