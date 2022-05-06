@@ -100,7 +100,7 @@ return require('packer').startup(function()
 
         -- snippy
         'dcampos/cmp-snippy',
-        'dcampos/nvim-snippy',
+        {'dcampos/nvim-snippy', config = function() require("cfg.snippy") end},
 
         -- neosnippet
         --'notomo/cmp-neosnippet',
