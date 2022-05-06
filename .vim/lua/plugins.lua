@@ -167,7 +167,7 @@ return require('packer').startup(function()
     'tpope/vim-surround',
     'xolox/vim-misc',
     'AndrewRadev/sideways.vim',
-    'ajh17/VimCompletesMe',
+    --'ackyshake/VimCompletesMe',
     'Yggdroot/indentLine',
     'pedrohdz/vim-yaml-folds',
     'tpope/vim-endwise',
