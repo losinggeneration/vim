@@ -33,9 +33,7 @@ return require('packer').startup(function()
 
   -- coding improvments
   use {
-    --'scrooloose/syntastic',
     'ciaranm/securemodelines',
-    'dense-analysis/ale',
     {'Shougo/echodoc.vim', run = 'make'},
     'Shougo/neosnippet-snippets',
     'honza/vim-snippets',

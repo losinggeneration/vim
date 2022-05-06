@@ -71,19 +71,9 @@ command! -nargs=* -range GoUpdateTags call go#UpdateTags(<line1>, <line2>, <coun
 " Use indent mode for folding
 setlocal foldmethod=indent
 
-" Launch gopls when Go files are in use
-let g:LanguageClient_serverCommands['go'] = ['gopls']
-
 if g:completion == 'deoplete'
 	call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 endif
-
-" Run gofmt on save
-"autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
-"let g:ale_linters['go'] = []
-"let g:ale_linters['go'] = ['gopls']
-"let g:ale_linters['go'] = ['gopls', 'golangci_lint', 'govet', 'gotype', 'gosimple', 'gobuild']
-"let g:ale_completion_enabled = 0
 
 " Go tools bindings
 nmap <Leader>b <Plug>(go-build)
