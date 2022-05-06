@@ -108,7 +108,7 @@ return require('packer').startup(function()
 
         {'hrsh7th/cmp-nvim-lua', ft = {'lua', 'vim'}}, -- Nvim API completions
         --'f3fora/cmp-spell', -- spelling suggestions
-        {'windwp/nvim-autopairs'},
+        {'windwp/nvim-autopairs', config = function() require("cfg.autopairs") end},
         {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'},
         {'reasonml-editor/vim-reason-plus', ft = 'reason'},
         {'ray-x/go.nvim', ft = 'go'},
