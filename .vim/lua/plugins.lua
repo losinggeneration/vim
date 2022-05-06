@@ -126,6 +126,18 @@ return require('packer').startup(function()
     }
 
     use {
+      'nvim-telescope/telescope.nvim',
+      requires = {
+        'nvim-lua/plenary.nvim'
+      }
+    }
+
+    use {
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+    }
+
+    use {
       'jose-elias-alvarez/null-ls.nvim',
       requires = {
         'nvim-lua/plenary.nvim'
