@@ -121,6 +121,16 @@ return require('packer').startup(function()
         run = 'cd lua/fzy && make',
       },
     }
+
+    use {
+      'jose-elias-alvarez/null-ls.nvim',
+      requires = {
+        'nvim-lua/plenary.nvim'
+      },
+	  config = function()
+        require 'cfg.null-ls'
+      end,
+    }
   end
 
   -- editing improvements
