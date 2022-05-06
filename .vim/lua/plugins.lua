@@ -35,10 +35,14 @@ return require('packer').startup(function()
   use {
     'ciaranm/securemodelines',
     {'Shougo/echodoc.vim', run = 'make'},
+    'vim-autoformat/vim-autoformat',
+    'is0n/fm-nvim',
+  }
+
+  -- snippets used by the snippet plugins
+  use {
     'Shougo/neosnippet-snippets',
     'honza/vim-snippets',
-    'Chiel92/vim-autoformat',
-    'is0n/fm-nvim',
   }
 
   -- completion
@@ -67,11 +71,10 @@ return require('packer').startup(function()
         {'reasonml-editor/vim-reason-plus', ft = 'reason'},
 
         {'kristijanhusak/deoplete-phpactor', ft = 'php'},
-
-        --{'autozimu/LanguageClient-neovim', branch = 'next', run = 'bash install.sh'},
-        --{'roxma/LanguageServer-php-neovim',  run = 'composer install && composer run-script parse-stubs', ft = 'php'},
-      }
+      },
     }
+
+    use {'fatih/vim-go', run = ':GoInstallBinaries', ft = 'go'}
   elseif vim.g.completion == 'cmp' then
     use {
       'hrsh7th/nvim-cmp',
@@ -81,7 +84,7 @@ return require('packer').startup(function()
         'hrsh7th/cmp-path', -- filesystem paths
         'hrsh7th/cmp-cmdline', -- command line suggestions
         'hrsh7th/cmp-omni', -- Vim's omnifunc
-        {'neovim/nvim-lspconfig', config = function() require("cfg.lspconfig") end}, -- nvim's LSP configuration
+        {'neovim/nvim-lspconfig', config = function() require("cfg.lspconfig") end}, -- nvim's LSP server specific configuration
 
         -- vsnip
         --'hrsh7th/cmp-vsnip',
@@ -110,6 +113,7 @@ return require('packer').startup(function()
         {'reasonml-editor/vim-reason-plus', ft = 'reason'},
         {'ray-x/go.nvim', ft = 'go'},
       },
+	  config = function() require("cfg.cmp") end,
     }
 
     use {
@@ -225,9 +229,6 @@ return require('packer').startup(function()
 
   -- common languages
   use {
-    --{'fatih/vim-go', tag = 'v1.25', run = ':GoInstallBinaries', ft = 'go' },
-    {'fatih/vim-go', run = ':GoInstallBinaries', ft = 'go'},
-    --{'zchee/nvim-go', run = 'make PKG=.', ft = 'go'},
     {'ziglang/zig.vim', ft = 'zig'},
     {'luishdez/vim-less', ft = 'less'},
     {'elzr/vim-json', ft = 'json'},

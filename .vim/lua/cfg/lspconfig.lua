@@ -1,5 +1,14 @@
 local lspconfig = require("lspconfig")
 local configs = require("lspconfig/configs") -- Make sure this is a slash (as theres some metamagic happening behind the scenes)
+--
+--[[
+-- Setup lspconfig.
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+require('lspconfig').zls.setup {
+	capabilities = capabilities
+}
+--]]
 
 --[[
 if not lspconfig.teal then
@@ -26,9 +35,27 @@ lspconfig.teal.setup{}
 --local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 if not lspconfig.zls then
-   lspconfig.zls.setup {}
+	lspconfig.zls.setup({})
 end
 
 if not lspconfig.gopls then
-   lspconfig.gopls.setup {}
+	lspconfig.gopls.setup({
+		cmd = { "gopls", "-remote=auto" },
+		settings = {
+			gopls = {
+				analyses = {
+					unusedparams = true,
+				},
+				staticcheck = true,
+				verboseOutput = true,
+			},
+		},
+	})
 end
+
+lspconfig.golangci_lint_ls.setup({
+	init_options = {
+		command = { "golangci-lint", "run", "--enable-all", "--disable", "lll", "--out-format", "json" },
+	},
+	filetypes = { "go" },
+})
