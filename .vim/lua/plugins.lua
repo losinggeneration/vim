@@ -122,6 +122,7 @@ return require('packer').startup(function()
         'ray-x/guihua.lua', -- GUI utils, not completions
         run = 'cd lua/fzy && make',
       },
+      config = function() require("cfg.navigator") end,
     }
 
     use {
