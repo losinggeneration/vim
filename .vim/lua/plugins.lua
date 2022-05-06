@@ -108,6 +108,8 @@ return require('packer').startup(function()
         --'notomo/cmp-neosnippet',
         --'Shougo/neosnippet-snippets',
 
+		{'petertriho/cmp-git', requires = 'nvim-lua/plenary.nvim', config = function() require("cmp_git").setup() end},
+
         {'hrsh7th/cmp-nvim-lua', ft = {'lua', 'vim'}}, -- Nvim API completions
         --'f3fora/cmp-spell', -- spelling suggestions
         {'windwp/nvim-autopairs', config = function() require("cfg.autopairs") end},
@@ -240,6 +242,17 @@ return require('packer').startup(function()
     },
     'tpope/vim-fugitive',
     'tpope/vim-git',
+    {
+      'pwntester/octo.nvim',
+      requires = {
+        'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope.nvim',
+        'kyazdani42/nvim-web-devicons',
+      },
+      config = function ()
+        require"octo".setup()
+      end
+    },
   }
 
   -- common languages

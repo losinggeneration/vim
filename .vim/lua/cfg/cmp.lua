@@ -48,6 +48,8 @@ cmp.setup({
 		-- { name = 'luasnip' }, -- For luasnip users.
 		{ name = "snippy" }, -- For snippy users.
 		-- { name = 'neosnippet' }, -- For neosnippet users.
+
+		{ name = "git" },
 	}, {
 		{ name = "buffer" },
 	}),
