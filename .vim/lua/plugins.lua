@@ -111,7 +111,7 @@ return require('packer').startup(function()
         {'windwp/nvim-autopairs', config = function() require("cfg.autopairs") end},
         {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = function() require("cfg.treesitter") end},
         {'reasonml-editor/vim-reason-plus', ft = 'reason'},
-        {'ray-x/go.nvim', ft = 'go'},
+        {'ray-x/go.nvim', ft = 'go', config = function() require("cfg.languages.go") end},
       },
 	  config = function() require("cfg.cmp") end,
     }
