@@ -29,6 +29,8 @@ return require('packer').startup(function()
     'sainnhe/gruvbox-material',
     'tomasr/molokai',
     'veloce/vim-aldmeris',
+	'bluz71/vim-moonfly-colors',
+	'bluz71/vim-nightfly-guicolors',
   }
 
   -- coding improvments
