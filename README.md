@@ -1,16 +1,18 @@
-# VIM configuration
+# Vim configuration
 
-My personal VIM settings. A lot (but not all) assumes NeoVIM. Really, it's
+My personal Vim settings. A lot (but not all) assumes Neovim. Really, it's
 basically just code completion that will break without. Some plugins also
-require a fairly new version of VIM. I believe the default OS X Sierra
-bundled VIM isn't isn't new enough (as an example.)
+require a fairly new version of Vim. I believe the default OS X Sierra
+bundled Vim isn't isn't new enough (as an example.)
 
 # Requirements
 
-* NeoVIM v0.2.0+ is mostly what I've tested with.
+* Neovim v0.7.0+ is mostly what I've tested with.
 * Git
 
 # Install
+
+This is needed for both the stripped down Vim as well as Neovim.
 
 ```shell
 git clone https://github.com/losinggeneration/vim.git ~/.vim.git
@@ -18,9 +20,10 @@ ln -s ~/.vim.git/.vim ~/
 ln -s ~/.vim.git/.vimrc ~/
 ln -s ~/.vim.git/.gvimrc ~/
 ```
-## NeoVIM initial setup
 
-This is only really needed on a fresh install with neovim not setup yet.
+## Neovim initial setup
+
+This is only really needed on a fresh install with Neovim not setup yet.
 
 ```shell
 mkdir -p ~/.config
@@ -30,10 +33,16 @@ pip install neovim
 pip3 install neovim
 ```
 
-## Install Plugins
+## Install Vim Plugins
 
 ```shell
 vim +UpdateRemotePlugins +PlugInstall +qall
+```
+
+## Install Neovim Plugins
+
+```shell
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 ```
 
 # Features
