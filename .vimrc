@@ -3,6 +3,7 @@
 set nocompatible
 set modelines=0
 
+source ~/.vim/settings.vim
 source ~/.vim/plug.vim
 
 highlight TabS term=standout cterm=standout gui=standout

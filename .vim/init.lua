@@ -1,5 +1,6 @@
 vim.opt.modelines = 0
 
+require "cfg.settings"
 require 'plugins'
 require 'colors'
 
