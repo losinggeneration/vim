@@ -29,8 +29,8 @@ return require('packer').startup(function()
     'sainnhe/gruvbox-material',
     'tomasr/molokai',
     'veloce/vim-aldmeris',
-	'bluz71/vim-moonfly-colors',
-	'bluz71/vim-nightfly-guicolors',
+    'bluz71/vim-moonfly-colors',
+    'bluz71/vim-nightfly-guicolors',
   }
 
   -- coding improvments
@@ -108,7 +108,7 @@ return require('packer').startup(function()
         --'notomo/cmp-neosnippet',
         --'Shougo/neosnippet-snippets',
 
-		{'petertriho/cmp-git', requires = 'nvim-lua/plenary.nvim', config = function() require("cmp_git").setup() end},
+        {'petertriho/cmp-git', requires = 'nvim-lua/plenary.nvim', config = function() require("cmp_git").setup() end},
 
         {'hrsh7th/cmp-nvim-lua', ft = {'lua', 'vim'}}, -- Nvim API completions
         --'f3fora/cmp-spell', -- spelling suggestions
@@ -117,7 +117,7 @@ return require('packer').startup(function()
         {'reasonml-editor/vim-reason-plus', ft = 'reason'},
         {'ray-x/go.nvim', ft = 'go', config = function() require("cfg.languages.go") end},
       },
-	  config = function() require("cfg.cmp") end,
+      config = function() require("cfg.cmp") end,
     }
 
     use {
@@ -146,9 +146,7 @@ return require('packer').startup(function()
       requires = {
         'nvim-lua/plenary.nvim'
       },
-	  config = function()
-        require 'cfg.null-ls'
-      end,
+      config = function() require('cfg.null-ls') end,
     }
   end
 
@@ -171,7 +169,7 @@ return require('packer').startup(function()
     'tpope/vim-surround',
     'xolox/vim-misc',
     'AndrewRadev/sideways.vim',
-    --'ackyshake/VimCompletesMe',
+    'ackyshake/VimCompletesMe',
     'Yggdroot/indentLine',
     'pedrohdz/vim-yaml-folds',
     'tpope/vim-endwise',
@@ -305,7 +303,7 @@ return require('packer').startup(function()
   -- Random just in case languages
   use {'google/vim-jsonnet',
     config = function()
-	  vim.go.jsonnet_fmt_on_save = 0
+      vim.go.jsonnet_fmt_on_save = 0
     end,
     ft = 'jsonnet',
   }
