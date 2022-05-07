@@ -1,5 +1,5 @@
 -- nvim-snippy
-require'snippy'.setup({
+require("snippy").setup({
 	mappings = {
 		is = {
 			["<C-k>"] = "expand_or_advance",

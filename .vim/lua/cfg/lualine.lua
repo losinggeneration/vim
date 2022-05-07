@@ -1,4 +1,4 @@
-local timer = require 'timer'
+local timer = require("timer")
 local t = timer.new({
 	on_tick = function() end,
 	timeout = nil,
@@ -13,7 +13,7 @@ local function time()
 end
 
 local pomo = function()
-	local status = require('pomodoro').statusline()
+	local status = require("pomodoro").statusline()
 	if string.match(status, "inactive") then
 		return ""
 	end
@@ -21,16 +21,16 @@ local pomo = function()
 	return status
 end
 
-require('lualine').setup {
-  options = {
-    theme = 'gruvbox-material',
-    globalstatus = true,
-  },
-  sections = {
-    lualine_c = {'filename', pomo},
-    lualine_z = {'location', time},
-  },
-  extensions = {
-    'fugitive',
-  },
-}
+require("lualine").setup({
+	options = {
+		theme = "gruvbox-material",
+		globalstatus = true,
+	},
+	sections = {
+		lualine_c = { "filename", pomo },
+		lualine_z = { "location", time },
+	},
+	extensions = {
+		"fugitive",
+	},
+})

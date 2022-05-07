@@ -1,5 +1,5 @@
 -- treesitter textobject support
-require "nvim-treesitter.configs".setup {
+require("nvim-treesitter.configs").setup({
 	incremental_selection = {
 		enable = enable,
 		keymaps = {
@@ -7,8 +7,8 @@ require "nvim-treesitter.configs".setup {
 			init_selection = "gnn", -- maps in normal mode to init the node/scope selection
 			node_incremental = "grn", -- increment to the upper named parent
 			scope_incremental = "grc", -- increment to the upper scope (as defined in locals.scm)
-			node_decremental = "grm" -- decrement to the previous node
-		}
+			node_decremental = "grm", -- decrement to the previous node
+		},
 	},
 
 	textobjects = {
@@ -18,8 +18,8 @@ require "nvim-treesitter.configs".setup {
 			enable = enable,
 			peek_definition_code = {
 				["DF"] = "@function.outer",
-				["DF"] = "@class.outer"
-			}
+				["DF"] = "@class.outer",
+			},
 		},
 		keymaps = {
 			["iL"] = {
@@ -41,27 +41,27 @@ require "nvim-treesitter.configs".setup {
 			["as"] = "@statement.outer",
 			["ad"] = "@comment.outer",
 			["am"] = "@call.outer",
-			["im"] = "@call.inner"
+			["im"] = "@call.inner",
 		},
 		move = {
 			enable = enable,
 			set_jumps = true, -- whether to set jumps in the jumplist
 			goto_next_start = {
 				["]m"] = "@function.outer",
-				["]]"] = "@class.outer"
+				["]]"] = "@class.outer",
 			},
 			goto_next_end = {
 				["]M"] = "@function.outer",
-				["]["] = "@class.outer"
+				["]["] = "@class.outer",
 			},
 			goto_previous_start = {
 				["[m"] = "@function.outer",
-				["[["] = "@class.outer"
+				["[["] = "@class.outer",
 			},
 			goto_previous_end = {
 				["[M"] = "@function.outer",
-				["[]"] = "@class.outer"
-			}
+				["[]"] = "@class.outer",
+			},
 		},
 		select = {
 			enable = enable,
@@ -77,18 +77,18 @@ require "nvim-treesitter.configs".setup {
 					cpp = "(function_definition) @function",
 					c = "(function_definition) @function",
 					java = "(method_declaration) @function",
-					go = "(method_declaration) @function"
-				}
-			}
+					go = "(method_declaration) @function",
+				},
+			},
 		},
 		swap = {
 			enable = enable,
 			swap_next = {
-				["<leader>a"] = "@parameter.inner"
+				["<leader>a"] = "@parameter.inner",
 			},
 			swap_previous = {
-				["<leader>A"] = "@parameter.inner"
-			}
-		}
-	}
-}
+				["<leader>A"] = "@parameter.inner",
+			},
+		},
+	},
+})
