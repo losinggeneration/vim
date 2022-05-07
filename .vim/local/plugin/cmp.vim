@@ -1,4 +1,4 @@
-if g:completion == 'cmp'
+if exists("g:completion") && g:completion == 'cmp'
 	set completeopt=menu,menuone,noselect
 
 " LuaSnip keymap

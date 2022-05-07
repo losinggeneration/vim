@@ -2,8 +2,6 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 set modelines=0
-let g:use_deoplete=1
-let g:use_cmp=0
 
 source ~/.vim/plug.vim
 
