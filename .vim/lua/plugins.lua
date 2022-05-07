@@ -45,7 +45,7 @@ return require("packer").startup(function()
 		"ciaranm/securemodelines",
 		{ "Shougo/echodoc.vim", run = "make" },
 		"vim-autoformat/vim-autoformat",
-		"is0n/fm-nvim",
+		--"is0n/fm-nvim", -- fuzzy finders 
 	})
 
 	-- snippets used by the snippet plugins
