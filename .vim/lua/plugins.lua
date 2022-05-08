@@ -45,7 +45,7 @@ return require("packer").startup(function()
 		"ciaranm/securemodelines",
 		{ "Shougo/echodoc.vim", run = "make" },
 		"vim-autoformat/vim-autoformat",
-		--"is0n/fm-nvim", -- fuzzy finders 
+		--"is0n/fm-nvim", -- fuzzy finders
 	})
 
 	-- snippets used by the snippet plugins
@@ -370,7 +370,12 @@ return require("packer").startup(function()
 	use({
 		{ "StanAngeloff/php.vim", ft = "php" },
 		{ "vim-php/tagbar-phpctags.vim", ft = "php" },
-		{ "phpactor/phpactor", run = "composer install", ft = "php" },
+		{
+			"phpactor/phpactor",
+			tag = "0.18.1",
+			run = "composer install --no-dev -o",
+			ft = "php",
+		},
 	})
 
 	-- Ruby
