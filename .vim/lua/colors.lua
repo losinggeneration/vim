@@ -14,15 +14,15 @@ end
 
 local term = os.getenv("TERM")
 if matcher(term, "^%s", "rxvt", "screen", "putty") then
-	vim.api.nvim_set_option("termguicolors", false)
+	vim.opt.termguicolors = false
 elseif matcher(term, "^%s", "tmux", "item", "iterm", "gnome") then
-	vim.api.nvim_set_option({ "termguicolors", true })
+	vim.opt.termguicolors = true
 elseif matcher(term, "^%s", "xterm") ~= "" then
 	if (os.getenv("XTERM_VERSION") or os.getenv("KONSOLE_VERSION") or os.getenv("VTE_VERSION")) ~= "" then
-		vim.api.nvim_set_option("termguicolors", true)
+		vim.opt.termguicolors = true
 	else
-		vim.api.nvim_set_option("termguicolors", true)
+		vim.opt.termguicolors = true
 	end
 else
-	vim.api.nvim_set_option("termguicolors", true)
+	vim.opt.termguicolors = false
 end
