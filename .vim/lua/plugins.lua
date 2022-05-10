@@ -361,7 +361,7 @@ return require("packer").startup(function()
 	use({
 		"google/vim-jsonnet",
 		config = function()
-			vim.go.jsonnet_fmt_on_save = 0
+			vim.g.jsonnet_fmt_on_save = 0
 		end,
 		ft = "jsonnet",
 	})
