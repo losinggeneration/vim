@@ -218,7 +218,7 @@ return require("packer").startup(function()
 			disable = true,
 		},
 		"tpope/vim-surround",
-		"xolox/vim-misc",
+		--"xolox/vim-misc",
 		"AndrewRadev/sideways.vim",
 		"ackyshake/VimCompletesMe",
 		"Yggdroot/indentLine",
