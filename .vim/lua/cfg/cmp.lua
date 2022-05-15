@@ -1,5 +1,6 @@
 -- Setup nvim-cmp.
 local cmp = require("cmp")
+local snippy = require("snippy")
 
 cmp.setup({
 	preselect = cmp.PreselectMode.None,
@@ -9,7 +10,7 @@ cmp.setup({
 			-- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
 			-- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
 			-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-			require("snippy").expand_snippet(args.body) -- For `snippy` users.
+			snippy.expand_snippet(args.body) -- For `snippy` users.
 		end,
 	},
 	mapping = cmp.mapping.preset.insert({
@@ -24,20 +25,26 @@ cmp.setup({
 		-- Accept currently selected item. If none selected, `select` first item.
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
-		["<Tab>"] = function(fallback)
+		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
+			elseif snippy.can_expand() then
+				snippy.expand()
+			elseif snippy.can_expand_or_advance() then
+				snippy.expand_or_advance()
 			else
 				fallback()
 			end
-		end,
-		["<S-Tab>"] = function(fallback)
+		end, {"i", "s"}),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
+			elseif snippy.can_jump(-1) then
+				snippy.previous()
 			else
 				fallback()
 			end
-		end,
+		end, {"i", "s"}),
 	}),
 	sources = cmp.config.sources({
 		{ name = "nvim_lua" },
