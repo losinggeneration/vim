@@ -331,7 +331,7 @@ return require("packer").startup(function()
 
 	-- Vue
 	use({ "leafOfTree/vim-vue-plugin", ft = "vue" })
-	use("mattn/emmet-vim")
+	use({"mattn/emmet-vim", ft = { "javascript", "javascript.jsx", "html", "css", "vue" }})
 
 	-- Python
 	use({
