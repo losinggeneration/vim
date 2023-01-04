@@ -36,7 +36,13 @@ return require("packer").startup(function()
 	-- coding improvments
 	use({
 		"ciaranm/securemodelines",
-		{ "Shougo/echodoc.vim", run = "make" },
+		{
+			"Shougo/echodoc.vim",
+			run = "make",
+			config = function()
+				require("cfg.echodoc")
+			end,
+		},
 		"vim-autoformat/vim-autoformat",
 		--"is0n/fm-nvim", -- fuzzy finders
 	})
@@ -53,8 +59,16 @@ return require("packer").startup(function()
 			"Shougo/deoplete.nvim",
 			tag = "6.1",
 			run = ":UpdateRemotePlugins",
+			config = function()
+				require("cfg.deoplete")
+			end,
 			requires = {
-				"Shougo/neosnippet",
+				{
+					"Shougo/neosnippet",
+					config = function()
+						require("cfg.neosnippet")
+					end,
+				},
 				-- deoplete code completion language support
 				{
 					"neovim/nvim-lspconfig",
@@ -152,6 +166,8 @@ return require("packer").startup(function()
 					ft = "go",
 					config = function()
 						require("cfg.languages.go")
+					config = function()
+						require("cfg.languages.sql")
 					end,
 				},
 			},
@@ -197,7 +213,12 @@ return require("packer").startup(function()
 	-- editing improvements
 	use({
 		"christoomey/vim-sort-motion",
-		"terryma/vim-expand-region",
+		{
+			"terryma/vim-expand-region",
+			config = function()
+				require("cfg.expand-region")
+			end,
+		},
 		"tpope/vim-abolish",
 		"tpope/vim-repeat",
 		"tpope/vim-sensible",
@@ -226,13 +247,32 @@ return require("packer").startup(function()
 	})
 
 	-- UI additions
-	use({
-		"szw/vim-ctrlspace",
-		"majutsushi/tagbar",
+		{
+			"vim-ctrlspace/vim-ctrlspace",
+			config = function()
+				require("cfg.ctrlspace")
+			end,
+		},
+		{
+			"majutsushi/tagbar",
+			config = function()
+				require("cfg.tagbar")
+			end,
+		},
 		"scrooloose/nerdcommenter",
-		"scrooloose/nerdtree",
-		"severin-lemaignan/vim-minimap",
-		use({
+		{
+			"scrooloose/nerdtree",
+			config = function()
+				require("cfg.nerdtree")
+			end,
+		},
+		{
+			"severin-lemaignan/vim-minimap",
+			config = function()
+				require("cfg.minimap")
+			end,
+		},
+		{
 			"ibhagwan/fzf-lua",
 			-- optional for icon support
 			requires = {
@@ -288,7 +328,12 @@ return require("packer").startup(function()
 				require("cfg.gitsigns")
 			end,
 		},
-		"tpope/vim-fugitive",
+		{
+			"tpope/vim-fugitive",
+			config = function()
+				require("cfg.fugitive")
+			end,
+		},
 		"tpope/vim-git",
 		{
 			"pwntester/octo.nvim",
@@ -307,6 +352,13 @@ return require("packer").startup(function()
 	use({
 		{ "ziglang/zig.vim", ft = "zig" },
 		{ "luishdez/vim-less", ft = "less" },
+		{
+			"leafo/moonscript-vim",
+			ft = "moon",
+			config = function()
+				require("cfg.languages.moon")
+			end,
+		},
 		{ "elzr/vim-json", ft = "json" },
 		{ "mxw/vim-jsx", ft = { "javascript", "javascript.jsx" } },
 		{ "pangloss/vim-javascript", ft = { "javascript", "javascript.jsx" } },
@@ -314,6 +366,14 @@ return require("packer").startup(function()
 		{ "maralla/vim-toml-enhance", ft = "toml" },
 		{ "mattn/vim-sqlfmt", ft = { "sql", "mysql" }, run = "go get -u github.com/jackc/sqlfmt/cmd/sqlfmt" },
 		{ "teal-language/vim-teal", ft = "teal" },
+		{
+			"iamcco/markdown-preview.nvim",
+			run = "cd app && yarn install",
+			ft = { "md", "markdown" },
+			config = function()
+				require("cfg.markdown-preview")
+			end,
+		},
 	})
 
 	-- Typescript
@@ -334,14 +394,30 @@ return require("packer").startup(function()
 	})
 
 	-- Mostly employment project languages
-	use({ "hashivim/vim-terraform", ft = "terraform" })
+	use({
+		{
+			"hashivim/vim-terraform",
+			ft = "terraform",
+			config = function()
+				require("cfg.languages.terraform")
+			end,
+		},
+	})
 	use({ "cappyzawa/starlark.vim", ft = "starlark" })
 
 	-- Mostly personal project languages
 	use({ "jdonaldson/vaxe", ft = "haxe" })
 	use({ "leafo/moonscript-vim", ft = "moon" })
 	use({ "rust-lang/rust.vim", ft = "rust" })
-	use({ "ElmCast/elm-vim", ft = "elm" })
+	use(
+		{
+			"ElmCast/elm-vim",
+			ft = "elm",
+			config = function()
+				require("cfg.languages.elm")
+			end,
+		},
+	)
 	use({ "jansenm/vim-cmake", ft = "cmake" })
 	use({ "elixir-lang/vim-elixir", ft = "elixir" })
 
