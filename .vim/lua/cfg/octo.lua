@@ -1,3 +1,3 @@
-require("octo").setup({})
+require("octo").setup()
 
-vim.keymap.set("n", "<space>tr", [[:lua require("octo.reviews").show_review_threads()<cr>]])
+vim.keymap.set("n", "<space>tr", [[:lua require("octo.reviews.thread-panel").show_review_threads()<cr>]])
