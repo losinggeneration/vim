@@ -26,3 +26,5 @@ elseif matcher(term, "^%s", "xterm") ~= "" then
 else
 	vim.opt.termguicolors = false
 end
+
+vim.cmd.colorscheme("gruvbox-material")

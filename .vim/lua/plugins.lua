@@ -14,21 +14,14 @@ end
 vim.g.completion = "cmp" -- one of ['deoplete', 'cmp'] or unset
 
 vim.cmd([[
-augroup packer_user_config
-autocmd!
-autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-augroup end
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
 ]])
 
 return require("packer").startup(function()
 	use("wbthomason/packer.nvim")
-
-	-- my settings and extensions
-	use({
-		"~/.vim/local",
-		as = "local.nvim",
-		after = { "gruvbox-material" },
-	})
 
 	-- color schemes
 	use({
