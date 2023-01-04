@@ -1,5 +1,4 @@
 " The Silver Searcher
-if 0
 if executable('ag')
 	" Use ag over grep
 	set grepprg=ag\ --vimgrep\ --nogroup\ --nocolor\ --ignore\ \"*~\"
@@ -17,7 +16,6 @@ if executable('ag')
 	command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw|
 
 	nnoremap \ :Ag<SPACE>
-endif
 endif
 
 nnoremap <Leader>K :Ag <C-R><C-W><CR>

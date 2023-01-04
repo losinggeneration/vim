@@ -1,4 +1,3 @@
-if has("nvim")
-	"let g:CtrlSpaceDefaultMappingKey = "<NUL>"
-	nnoremap <c-space> :CtrlSpace<CR>
-end
+"let g:CtrlSpaceDefaultMappingKey = "<NUL>"
+nnoremap <c-space> :CtrlSpace<CR>
+"let g:CtrlSpaceAllowResize = 0
