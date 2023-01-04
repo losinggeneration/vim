@@ -80,8 +80,12 @@ return require("packer").startup(function()
 				{ "Shougo/neco-vim", ft = "vim" },
 				{ "zchee/deoplete-jedi", ft = "python" },
 
-				{ "carlitux/deoplete-ternjs", run = "yarn global add tern", ft = { "javascript", "javascript.jsx" } },
-				{ "wokalski/autocomplete-flow", ft = { "javascript", "javascript.jsx" } },
+				{
+					"carlitux/deoplete-ternjs",
+					run = "yarn global add tern",
+					ft = { "javascript", "javascriptreact", "javascript.jsx" },
+				},
+				{ "wokalski/autocomplete-flow", ft = { "javascript", "javascriptreact", "javascript.jsx" } },
 
 				{ "zchee/deoplete-go", run = "make", ft = "go" },
 				{ "sebastianmarkow/deoplete-rust", ft = "rust" },
@@ -106,11 +110,12 @@ return require("packer").startup(function()
 		use({
 			"hrsh7th/nvim-cmp",
 			requires = {
-				"hrsh7th/cmp-nvim-lsp", -- LSP integration
-				"hrsh7th/cmp-buffer", -- open buffer suggestions
-				"hrsh7th/cmp-path", -- filesystem paths
-				"hrsh7th/cmp-cmdline", -- command line suggestions
-				"hrsh7th/cmp-omni", -- Vim's omnifunc
+				"hrsh7th/cmp-nvim-lsp", -- LSP integration source
+				"hrsh7th/cmp-buffer", -- open buffer suggestions source
+				"hrsh7th/cmp-path", -- filesystem paths source
+				"hrsh7th/cmp-cmdline", -- command line suggestions source
+				"hrsh7th/cmp-omni", -- Vim's omnifunc source
+				"rcarriga/cmp-dap", -- Debug Adapter Protocol source
 				{
 					"neovim/nvim-lspconfig",
 					config = function()
@@ -131,9 +136,9 @@ return require("packer").startup(function()
 				--'SirVer/ultisnips',
 
 				-- snippy
-				"dcampos/cmp-snippy",
 				{
-					"dcampos/nvim-snippy",
+					"dcampos/cmp-snippy",
+					requires = "dcampos/nvim-snippy",
 					config = function()
 						require("cfg.snippy")
 					end,
@@ -161,7 +166,9 @@ return require("packer").startup(function()
 				},
 				{
 					"nvim-treesitter/nvim-treesitter",
-					run = ":TSUpdate",
+					run = function()
+						require("nvim-treesitter.install").update({ with_sync = true })
+					end,
 					config = function()
 						require("cfg.treesitter")
 					end,
@@ -200,36 +207,42 @@ return require("packer").startup(function()
 		})
 
 		use({
-			"ray-x/navigator.lua", -- LSP code navigation
-			requires = {
-				"ray-x/guihua.lua", -- GUI utils, not completions
-				run = "cd lua/fzy && make",
+			{
+				"ray-x/navigator.lua", -- LSP code navigation
+				requires = {
+					"ray-x/guihua.lua", -- GUI utils, not completions
+					run = "cd lua/fzy && make",
+					config = function()
+						require("guihua.maps").setup({})
+					end,
+				},
+				config = function()
+					require("cfg.navigator")
+				end,
 			},
-			config = function()
-				require("cfg.navigator")
-			end,
-		})
 
-		use({
-			"nvim-telescope/telescope.nvim",
-			requires = {
-				"nvim-lua/plenary.nvim",
+			{
+				"nvim-telescope/telescope.nvim",
+				requires = {
+					"nvim-lua/plenary.nvim",
+				},
 			},
-		})
 
-		use({
-			"folke/trouble.nvim",
-			requires = "kyazdani42/nvim-web-devicons",
-		})
-
-		use({
-			"jose-elias-alvarez/null-ls.nvim",
-			requires = {
-				"nvim-lua/plenary.nvim",
+			{
+				"folke/trouble.nvim",
+				requires = "kyazdani42/nvim-web-devicons",
 			},
-			config = function()
-				require("cfg.null-ls")
-			end,
+
+			{
+				"jose-elias-alvarez/null-ls.nvim", -- inject LSP diagnostics, code acitons, etc
+				requires = {
+					"nvim-lua/plenary.nvim",
+					"ThePrimeagen/refactoring.nvim",
+				},
+				config = function()
+					require("cfg.null-ls")
+				end,
+			},
 		})
 	end
 
@@ -245,6 +258,12 @@ return require("packer").startup(function()
 		"tpope/vim-abolish",
 		"tpope/vim-repeat",
 		"tpope/vim-sensible",
+		"tpope/vim-surround",
+		--"xolox/vim-misc",
+		"AndrewRadev/sideways.vim",
+		"ackyshake/VimCompletesMe",
+		"Yggdroot/indentLine",
+		"tpope/vim-endwise",
 		{
 			"tpope/vim-sleuth",
 			-- This can cause some issues with file types not respecting the
@@ -254,22 +273,8 @@ return require("packer").startup(function()
 			-- cause color scheme colors to not load correctly.
 			disable = true,
 		},
-		"tpope/vim-surround",
-		--"xolox/vim-misc",
-		"AndrewRadev/sideways.vim",
-		"ackyshake/VimCompletesMe",
-		"Yggdroot/indentLine",
-		"pedrohdz/vim-yaml-folds",
-		"tpope/vim-endwise",
-	})
 
-	use({
-		"iamcco/markdown-preview.nvim",
-		run = "cd app && yarn install",
-		ft = { "md", "markdown" },
-	})
-
-	-- UI additions
+		-- UI addition
 		{
 			"vim-ctrlspace/vim-ctrlspace",
 			config = function()
@@ -302,28 +307,51 @@ return require("packer").startup(function()
 				"kyazdani42/nvim-web-devicons",
 				{ "junegunn/fzf", run = "./install --bin" },
 			},
-		}),
+		},
 	})
 
+	-- status line replacement
 	use({
-		"nvim-lualine/lualine.nvim",
-		disable = false,
-		requires = { "kyazdani42/nvim-web-devicons", opt = true },
-		config = function()
-			require("cfg.lualine")
-		end,
-	})
-	use({
-		"windwp/windline.nvim",
-		disable = true,
-		requires = {
-			"nvim-lua/plenary.nvim",
-			{ "kyazdani42/nvim-web-devicons", opt = true },
+		{
+			"nvim-lualine/lualine.nvim",
+			disable = false,
+			requires = { "kyazdani42/nvim-web-devicons", opt = true },
+			config = function()
+				require("cfg.lualine")
+			end,
 		},
-		config = function()
-			require("cfg.windline")
-		end,
+
+		{
+			"windwp/windline.nvim",
+			disable = true,
+			requires = {
+				"nvim-lua/plenary.nvim",
+				{ "kyazdani42/nvim-web-devicons", opt = true },
+			},
+			config = function()
+				require("cfg.windline")
+			end,
+		},
 	})
+
+	--[[
+	use({
+		"folke/noice.nvim", -- experimental UI overhaul
+		disabled = true,
+		--event = "VimEnter",
+		config = function()
+			require("noice").setup()
+		end,
+		requires = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			--"rcarriga/nvim-notify",
+		},
+	})
+	--]]
 
 	-- utilities
 	use({
@@ -386,8 +414,9 @@ return require("packer").startup(function()
 
 	-- common languages
 	use({
+		{ "ollykel/v-vim", ft = "vlang" },
 		{ "ziglang/zig.vim", ft = "zig" },
-		{ "luishdez/vim-less", ft = "less" },
+		{ "teal-language/vim-teal", ft = "teal" },
 		{
 			"leafo/moonscript-vim",
 			ft = "moon",
@@ -395,13 +424,51 @@ return require("packer").startup(function()
 				require("cfg.languages.moon")
 			end,
 		},
+
+		-- Mostly personal project languages
+		{ "rust-lang/rust.vim", ft = "rust" },
+		{ "jdonaldson/vaxe", ft = "haxe" },
+		{ "jansenm/vim-cmake", ft = "cmake" },
+		{ "peterhoeg/vim-qml", ft = "qml" },
+
+		-- SQL
+		{ "mattn/vim-sqlfmt", ft = { "sql", "mysql" }, run = "go install github.com/jackc/sqlfmt/cmd/sqlfmt@latest" },
+		{ "kristijanhusak/vim-dadbod-ui" },
+		{ "tpope/vim-dadbod" },
+		{ "chrisbra/csv.vim" },
+
+		{ "mfussenegger/nvim-dap" }, -- Debug adapter protocol
+
+		-- Python
+		{
+			{ "vim-scripts/indentpython.vim", ft = "python" },
+			{ "nvie/vim-flake8", ft = "python" },
+			{ "python-mode/python-mode", branch = "develop", ft = "python" },
+		},
+
+		-- Random just in case languages
+		{ "elixir-lang/vim-elixir", ft = "elixir" },
+		{ "rhysd/vim-crystal", ft = "crystal" },
+		{ "derekwyatt/vim-scala", ft = "scala" },
+
+		-- Ruby
+		{
+			{ "tpope/vim-bundler", ft = "ruby" },
+			{ "tpope/vim-rails", ft = "ruby" },
+			{ "vim-ruby/vim-ruby", ft = "ruby" },
+		},
+
+		{ "fatih/vim-nginx", ft = "nginx" },
 		{ "elzr/vim-json", ft = "json" },
-		{ "mxw/vim-jsx", ft = { "javascript", "javascript.jsx" } },
-		{ "pangloss/vim-javascript", ft = { "javascript", "javascript.jsx" } },
 		{ "cespare/vim-toml", ft = "toml" },
 		{ "maralla/vim-toml-enhance", ft = "toml" },
-		{ "mattn/vim-sqlfmt", ft = { "sql", "mysql" }, run = "go get -u github.com/jackc/sqlfmt/cmd/sqlfmt" },
-		{ "teal-language/vim-teal", ft = "teal" },
+		{
+			"pedrohdz/vim-yaml-folds",
+			ft = "yaml",
+			config = function()
+				vim.o.foldlevelstart = 20
+			end,
+		},
 		{
 			"iamcco/markdown-preview.nvim",
 			run = "cd app && yarn install",
@@ -412,21 +479,41 @@ return require("packer").startup(function()
 		},
 	})
 
-	-- Typescript
+	-- Web dev
 	use({
+		-- Typescript
 		{ "leafgarland/typescript-vim", ft = "typescript" },
 		{ "Quramy/tsuquyomi", ft = "typescript" },
-	})
 
-	-- Vue
-	use({ "leafOfTree/vim-vue-plugin", ft = "vue" })
-	use({"mattn/emmet-vim", ft = { "javascript", "javascript.jsx", "html", "css", "vue" }})
+		{ "pangloss/vim-javascript", ft = { "javascript", "javascriptreact", "javascript.jsx" } },
+		{
+			"MaxMEllon/vim-jsx-pretty",
+			ft = { "javascript", "javascriptreact", "javascript.jsx" },
+			requires = {
+				{ "yuezk/vim-js", ft = { "javascript", "javascriptreact", "javascript.jsx" } },
+				{ "HerringtonDarkholme/yats.vim", ft = { "typescript", "typescript.tsx" } },
+			},
+		},
+		{ "mattn/emmet-vim", ft = { "javascript", "javascriptreact", "javascript.jsx", "html", "css", "vue" } },
 
-	-- Python
-	use({
-		{ "vim-scripts/indentpython.vim", ft = "python" },
-		{ "nvie/vim-flake8", ft = "python" },
-		{ "python-mode/python-mode", branch = "develop", ft = "python" },
+		{ "luishdez/vim-less", ft = "less" },
+
+		-- Vue
+		{ "leafOfTree/vim-vue-plugin", ft = "vue" },
+
+		{
+			"ElmCast/elm-vim",
+			ft = "elm",
+			config = function()
+				require("cfg.languages.elm")
+			end,
+		},
+		-- Reason
+		--{'reasonml-editor/vim-reason-plus', ft = 'reason' },
+		{ "jordwalke/vim-reasonml", ft = "reason" },
+		{ "rescript-lang/vim-rescript", ft = "rescript" },
+
+		{ "kchmck/vim-coffee-script", ft = "coffee" },
 	})
 
 	-- Mostly employment project languages
@@ -438,64 +525,27 @@ return require("packer").startup(function()
 				require("cfg.languages.terraform")
 			end,
 		},
-	})
-	use({ "cappyzawa/starlark.vim", ft = "starlark" })
-
-	-- Mostly personal project languages
-	use({ "jdonaldson/vaxe", ft = "haxe" })
-	use({ "leafo/moonscript-vim", ft = "moon" })
-	use({ "rust-lang/rust.vim", ft = "rust" })
-	use(
+		{ "cappyzawa/starlark.vim", ft = "starlark" },
 		{
-			"ElmCast/elm-vim",
-			ft = "elm",
+			"google/vim-jsonnet",
 			config = function()
-				require("cfg.languages.elm")
+				vim.g.jsonnet_fmt_on_save = 0
 			end,
+			ft = "jsonnet",
 		},
-	)
-	use({ "jansenm/vim-cmake", ft = "cmake" })
-	use({ "elixir-lang/vim-elixir", ft = "elixir" })
-
-	-- Reason
-	--use {'reasonml-editor/vim-reason-plus', ft = 'reason' }
-	use({ "jordwalke/vim-reasonml", ft = "reason" })
-	use({ "rescript-lang/vim-rescript", ft = "rescript" })
-
-	-- Random just in case languages
-	use({
-		"google/vim-jsonnet",
-		config = function()
-			vim.g.jsonnet_fmt_on_save = 0
-		end,
-		ft = "jsonnet",
-	})
-
-	-- PHP
-	use({
-		{ "StanAngeloff/php.vim", ft = "php" },
-		{ "vim-php/tagbar-phpctags.vim", ft = "php" },
 		{
-			"phpactor/phpactor",
-			tag = "0.18.1",
-			run = "composer install --no-dev -o",
-			ft = "php",
+			-- PHP
+			{ "StanAngeloff/php.vim", ft = "php" },
+			{ "vim-php/tagbar-phpctags.vim", ft = "php" },
+			{
+				"phpactor/phpactor",
+				tag = "0.18.1",
+				run = "composer install --no-dev -o",
+				ft = "php",
+			},
 		},
+		{ "aklt/plantuml-syntax", ft = "plantuml" },
 	})
-
-	-- Ruby
-	use({
-		{ "tpope/vim-bundler", ft = "ruby" },
-		{ "tpope/vim-rails", ft = "ruby" },
-		{ "vim-ruby/vim-ruby", ft = "ruby" },
-	})
-
-	use({ "fatih/vim-nginx", ft = "nginx" })
-	use({ "rhysd/vim-crystal", ft = "crystal" })
-	use({ "derekwyatt/vim-scala", ft = "scala" })
-	use({ "kchmck/vim-coffee-script", ft = "coffee" })
-	use({ "peterhoeg/vim-qml", ft = "qml" })
-	use({ "aklt/plantuml-syntax", ft = "plantuml" })
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
