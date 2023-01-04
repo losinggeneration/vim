@@ -2,6 +2,7 @@
 require("nvim-treesitter.configs").setup({
 	incremental_selection = {
 		enable = enable,
+
 		keymaps = {
 			-- mappings for incremental selection (visual mappings)
 			init_selection = "gnn", -- maps in normal mode to init the node/scope selection
@@ -14,6 +15,7 @@ require("nvim-treesitter.configs").setup({
 	textobjects = {
 		-- syntax-aware textobjects
 		enable = enable,
+
 		lsp_interop = {
 			enable = enable,
 			peek_definition_code = {
@@ -21,6 +23,7 @@ require("nvim-treesitter.configs").setup({
 				["DF"] = "@class.outer",
 			},
 		},
+
 		keymaps = {
 			["iL"] = {
 				-- you can define your own textobjects directly here
@@ -43,6 +46,7 @@ require("nvim-treesitter.configs").setup({
 			["am"] = "@call.outer",
 			["im"] = "@call.inner",
 		},
+
 		move = {
 			enable = enable,
 			set_jumps = true, -- whether to set jumps in the jumplist
@@ -63,6 +67,7 @@ require("nvim-treesitter.configs").setup({
 				["[]"] = "@class.outer",
 			},
 		},
+
 		select = {
 			enable = enable,
 			keymaps = {
@@ -81,6 +86,7 @@ require("nvim-treesitter.configs").setup({
 				},
 			},
 		},
+
 		swap = {
 			enable = enable,
 			swap_next = {
