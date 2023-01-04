@@ -92,10 +92,16 @@ return require("packer").startup(function()
 				{ "reasonml-editor/vim-reason-plus", ft = "reason" },
 
 				{ "kristijanhusak/deoplete-phpactor", ft = "php" },
+				{
+					"fatih/vim-go",
+					run = ":GoInstallBinaries",
+					ft = "go",
+					config = function()
+						require("cfg.languages.go").vim()
+					end,
+				},
 			},
 		})
-
-		use({ "fatih/vim-go", run = ":GoInstallBinaries", ft = "go" })
 	elseif vim.g.completion == "cmp" then
 		use({
 			"hrsh7th/nvim-cmp",
@@ -161,11 +167,28 @@ return require("packer").startup(function()
 					end,
 				},
 				{ "reasonml-editor/vim-reason-plus", ft = "reason" },
+				--#[[
+				{
+					"fatih/vim-go",
+					run = ":GoInstallBinaries",
+					ft = "go",
+					config = function()
+						require("cfg.languages.go").vim()
+					end,
+				},
+				--]]
+				--#[[
 				{
 					"ray-x/go.nvim",
 					ft = "go",
 					config = function()
-						require("cfg.languages.go")
+						require("cfg.languages.go").nvim()
+					end,
+				},
+				--]]
+				{
+					"kristijanhusak/vim-dadbod-completion",
+					ft = { "sql", "mysol", "plsql" },
 					config = function()
 						require("cfg.languages.sql")
 					end,
