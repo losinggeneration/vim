@@ -435,7 +435,7 @@ return require("packer").startup(function()
 		{ "mattn/vim-sqlfmt", ft = { "sql", "mysql" }, run = "go install github.com/jackc/sqlfmt/cmd/sqlfmt@latest" },
 		{ "kristijanhusak/vim-dadbod-ui" },
 		{ "tpope/vim-dadbod" },
-		{ "chrisbra/csv.vim" },
+		{ "chrisbra/csv.vim", ft = "csv" },
 
 		{ "mfussenegger/nvim-dap" }, -- Debug adapter protocol
 
