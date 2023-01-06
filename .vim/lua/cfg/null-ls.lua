@@ -4,15 +4,15 @@ null_ls.setup({
 	debug = false,
 	sources = {
 		-- Code Actions
+		null_ls.builtins.code_actions.eslint,
+		--null_ls.builtins.code_actions.gitsigns, -- Git actions at position
 		null_ls.builtins.code_actions.refactoring,
 		null_ls.builtins.code_actions.shellcheck,
-		--null_ls.builtins.code_actions.gitsigns, -- Git actions at position
-		null_ls.builtins.code_actions.eslint,
 
 		-- Completion
 		null_ls.builtins.completion.luasnip, -- luasnip completion
-		null_ls.builtins.completion.tags, -- completion for tags
 		null_ls.builtins.completion.spell, -- completion for spelling
+		null_ls.builtins.completion.tags, -- completion for tags
 
 		-- Linters
 		--null_ls.builtins.diagnostics.cspell, -- code spell checker
@@ -48,17 +48,17 @@ null_ls.setup({
 		-- Formatters
 		null_ls.builtins.formatting.asmfmt,
 		null_ls.builtins.formatting.cljstyle, -- Clojure fmt
-		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.cmake_format,
 		null_ls.builtins.formatting.dfmt, -- D fmt
 		null_ls.builtins.formatting.elm_format,
-		null_ls.builtins.formatting.goimports, -- Go update imports
 		null_ls.builtins.formatting.gofumpt, -- Go fmt
+		null_ls.builtins.formatting.goimports, -- Go update imports
 		null_ls.builtins.formatting.jq,
 		null_ls.builtins.formatting.lua_format,
 		null_ls.builtins.formatting.prettier, -- Typescript with prettier
 		null_ls.builtins.formatting.prettierd, -- yaml with prettier
 		null_ls.builtins.formatting.rustfmt,
+		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.trim_whitespace, -- Remove junk whitespace
 		null_ls.builtins.formatting.zigfmt,
 	},
