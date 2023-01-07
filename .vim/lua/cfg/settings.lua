@@ -52,12 +52,6 @@ vim.o.incsearch = true
 vim.o.showmatch = true
 vim.o.hlsearch = true
 
-vim.o.background = "dark"
--- hack around poorly behaving clients :(
-if vim.gui_running then
-	vim.cmd.colorscheme("desert")
-end
-
 -- Map Esc to exit insert mode in the terminal
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("t", "jj", "<C-\\><C-n>")

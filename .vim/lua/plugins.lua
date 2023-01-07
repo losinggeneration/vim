@@ -25,8 +25,9 @@ return require("packer").startup(function()
 
 	-- color schemes
 	use({
-		"morhetz/gruvbox",
-		"sainnhe/gruvbox-material",
+		--"gruvbox-community/gruvbox",
+		"ellisonleao/gruvbox.nvim",
+		--"sainnhe/gruvbox-material",
 		"tomasr/molokai",
 		"veloce/vim-aldmeris",
 		"bluz71/vim-moonfly-colors",

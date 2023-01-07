@@ -27,4 +27,14 @@ else
 	vim.opt.termguicolors = false
 end
 
-vim.cmd.colorscheme("gruvbox-material")
+vim.o.background = "dark"
+-- hack around poorly behaving clients :(
+if vim.gui_running then
+	vim.cmd.colorscheme("desert")
+end
+
+require("gruvbox").setup({
+	contrast = "soft",
+})
+
+vim.cmd.colorscheme("gruvbox")
