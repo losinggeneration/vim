@@ -11,7 +11,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	})
 end
 
-vim.g.completion = "cmp" -- one of ['deoplete', 'cmp'] or unset
+local completion = "cmp" -- one of ['deoplete', 'cmp'] or unset
 
 vim.cmd([[
   augroup packer_user_config
@@ -54,8 +54,15 @@ return require("packer").startup(function()
 		"honza/vim-snippets",
 	})
 
-	-- completion
-	if vim.g.completion == "deoplete" then
+	use({
+		"neovim/nvim-lspconfig",
+		config = function()
+			require("cfg.lspconfig")
+		end,
+	})
+
+	-- Deoplete completion
+	if completion == "deoplete" then
 		use({
 			"Shougo/deoplete.nvim",
 			tag = "6.1",
@@ -71,12 +78,6 @@ return require("packer").startup(function()
 					end,
 				},
 				-- deoplete code completion language support
-				{
-					"neovim/nvim-lspconfig",
-					config = function()
-						require("cfg.lspconfig")
-					end,
-				},
 				{ "zchee/deoplete-zsh", ft = "zsh" },
 				{ "Shougo/neco-vim", ft = "vim" },
 				{ "zchee/deoplete-jedi", ft = "python" },
@@ -107,7 +108,10 @@ return require("packer").startup(function()
 				},
 			},
 		})
-	elseif vim.g.completion == "cmp" then
+	end
+
+	-- CMP completion
+	if completion == "cmp" then
 		use({
 			"hrsh7th/nvim-cmp",
 			requires = {
@@ -117,12 +121,6 @@ return require("packer").startup(function()
 				"hrsh7th/cmp-cmdline", -- command line suggestions source
 				"hrsh7th/cmp-omni", -- Vim's omnifunc source
 				"rcarriga/cmp-dap", -- Debug Adapter Protocol source
-				{
-					"neovim/nvim-lspconfig",
-					config = function()
-						require("cfg.lspconfig")
-					end,
-				}, -- nvim's LSP server specific configuration
 
 				-- vsnip
 				--'hrsh7th/cmp-vsnip',
