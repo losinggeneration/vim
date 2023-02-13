@@ -89,7 +89,7 @@ return require("packer").startup(function()
 				},
 				{ "wokalski/autocomplete-flow", ft = { "javascript", "javascriptreact", "javascript.jsx" } },
 
-				{ "zchee/deoplete-go", run = "make", ft = "go" },
+				{ "zchee/deoplete-go", run = "make", ft = { "go", "gomod", "gowork", "gotmpl" } },
 				{ "sebastianmarkow/deoplete-rust", ft = "rust" },
 
 				{ "slashmili/alchemist.vim", ft = "elixir" },
@@ -101,9 +101,11 @@ return require("packer").startup(function()
 				{
 					"fatih/vim-go",
 					run = ":GoInstallBinaries",
-					ft = "go",
+					ft = { "go", "gomod", "gowork", "gotmpl" },
 					config = function()
-						require("cfg.languages.go").vim()
+						local go = require("cfg.languages.go")
+						go.vim()
+						go.deoplete()
 					end,
 				},
 			},
@@ -174,13 +176,15 @@ return require("packer").startup(function()
 				},
 
 				{ "reasonml-editor/vim-reason-plus", ft = "reason" },
-				--#[[
+
+				--[[
 				{
 					"fatih/vim-go",
+					--disable = true,
 					run = ":GoInstallBinaries",
-					ft = "go",
+					ft = { "go", "gomod", "gowork", "gotmpl" },
 					config = function()
-						require("cfg.languages.go").vim()
+						require("cfg.languages.go").nvim_go() -- disable all the defaults from vim-go
 					end,
 				},
 				--]]
@@ -188,7 +192,7 @@ return require("packer").startup(function()
 				--#[[
 				{
 					"ray-x/go.nvim",
-					ft = "go",
+					ft = { "go", "gomod", "gowork", "gotmpl" },
 					config = function()
 						require("cfg.languages.go").nvim()
 					end,

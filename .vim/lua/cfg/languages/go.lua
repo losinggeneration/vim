@@ -1,20 +1,25 @@
 local M = {}
 
+-- Use go.nvim
 function M.nvim()
 	require("go").setup({
-		goimport = "gopls", -- if set to 'gopls' will use golsp format
-		gofmt = "gopls", -- if set to gopls will use golsp format
+		-- goimport = "gopls", -- if set to 'gopls' will use golsp format
+		-- gofmt = "gopls", -- if set to gopls will use golsp format
 		max_line_len = 120,
 		tag_transform = false,
 		test_dir = "",
 		comment_placeholder = " 	",
+		lsp_cfg = true, -- false: use your own lspconfig
+		--[[
 		lsp_cfg = { -- false: use your own lspconfig
 			settings = {
+				["go.buildTags"] = "integration",
 				gopls = {
 					usePlaceholders = false,
 				},
 			},
 		},
+		--]]
 		lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
 		lsp_on_attach = true, -- use on_attach from go.nvim
 		dap_debug = true,
@@ -31,8 +36,49 @@ function M.nvim()
 	})
 
 	vim.keymap.set("n", "<Leader>a", ":GoAlt<cr>")
+
+	-- vim-go keys ported to go.nvim
+	vim.keymap.set("n", "<Leader>b", ":GoBuild<cr>")
+	vim.keymap.set("n", "<Leader>f", ":GoFmt<cr>")
+	vim.keymap.set("n", "<Leader>l", ":GoLint<cr>")
+	vim.keymap.set("n", "<Leader>t", ":GoTest -p<cr>")
+	vim.keymap.set("n", "<Leader>tf", ":GoTestFunc<cr>")
+	vim.keymap.set("n", "<Leader>tc", ":GoCoverage<cr>")
+	vim.keymap.set("n", "<Leader>tct", ":GoCoverage -t<cr>")
+	vim.keymap.set("n", "<Leader>tcc", ":GoCoverage -R<cr>")
+	vim.keymap.set("n", "<Leader>v", ":GoVet<cr>")
+	vim.keymap.set("n", "<Leader>d", ":GoDoc<cr>")
+	vim.keymap.set("n", "<Leader>r", ":GoRename<cr>")
+	vim.keymap.set("n", "<Leader>s", ":GoImpl<cr>")
+	vim.keymap.set("n", "<Leader>y", ":GoRun<cr>")
+	vim.keymap.set("n", "<Leader>a", ":GoAlt<cr>")
 end
 
+-- disable all default options from vim-go that are by default enabled
+function M.nvim_go()
+	vim.g.go_version_warning = 0
+	vim.g.go_code_completion_enabled = 0
+	vim.g.go_play_open_browser = 0
+	vim.g.go_jump_to_error = 0
+	vim.g.go_fmt_autosave = 0
+	vim.g.go_doc_keywordprg_enabled = 0
+	vim.g.go_def_mapping_enabled = 0
+	vim.g.go_search_bin_path_first = 0
+	vim.g.go_get_update = 0
+	vim.g.go_textobj_enabled = 0
+	vim.g.go_textobj_include_function_doc = 0
+	vim.g.go_textobj_include_variable = 0
+	vim.g.go_term_close_on_exit = 0
+	vim.g.go_gopls_enabled = 0
+	vim.g.go_template_autocreate = 0
+	vim.g.go_echo_command_info = 0
+	vim.g.go_echo_go_info = 0
+	vim.g.go_highlight_string_spellcheck = 0
+	vim.g.go_highlight_diagnostic_errors = 0
+	vim.g.go_highlight_diagnostic_warnings = 0
+end
+
+-- Using vim-go options
 function M.vim()
 	-- Use goimports for Fmt
 	vim.g.go_fmt_command = "goimports"
@@ -85,21 +131,17 @@ function M.vim()
 	--vim.g.go_snippet_engine = 'neosnippet'
 
 	--[[
-function! go#UpdateTags(start, end, count, ...) abort
-call call("go#tags#Remove", [a:start, a:end, a:count] + a:000)
-call call("go#tags#Add", [a:start, a:end, a:count] + a:000)
-endfunction
+		function! go#UpdateTags(start, end, count, ...) abort
+		call call("go#tags#Remove", [a:start, a:end, a:count] + a:000)
+		call call("go#tags#Add", [a:start, a:end, a:count] + a:000)
+		endfunction
 
-command! -nargs=* -range GoUpdateTags call go#UpdateTags(<line1>, <line2>, <count>, <f-args>)
---]]
+		command! -nargs=* -range GoUpdateTags call go#UpdateTags(<line1>, <line2>, <count>, <f-args>)
+		--]]
 
 	-- Use indent mode for folding
 	--setlocal foldmethod=indent
 	vim.api.nvim_set_option_value("foldmethod", "indent", { scope = "local" })
-
-	if vim.g.completion == "deoplete" then
-		vim.fn["deoplete#custom#option"]("omni_patterns", { go = "[^. *\\t]\\.\\w*" })
-	end
 
 	-- Go tools bindings
 	vim.keymap.set("n", "<Leader>b", "<Plug>(go-build)")
@@ -125,7 +167,7 @@ command! -nargs=* -range GoUpdateTags call go#UpdateTags(<line1>, <line2>, <coun
 	vim.keymap.set("n", "<Leader>a", ":GoAlternate<cr>")
 	vim.keymap.set("n", "<Leader>si", ":GoSameIds<cr>")
 	vim.keymap.set("n", "<Leader>sic", ":GoSameIdsClear<cr>")
-	vim.keymap.set("n", "gd", "<Plug>(go-def)")
+	--vim.keymap.set("n", "gd", "<Plug>(go-def)")
 
 	vim.keymap.set("n", "<Leader>ds", "<Plug>(go-def-split)")
 	vim.keymap.set("n", "<Leader>dv", "<Plug>(go-def-vertical)")
@@ -133,8 +175,12 @@ command! -nargs=* -range GoUpdateTags call go#UpdateTags(<line1>, <line2>, <coun
 	vim.keymap.set("n", "<Leader>dp", "<Plug>(go-deps)")
 	vim.keymap.set("n", "<Leader>df", "<Plug>(go-files)")
 
-	vim.keymap.set("n", "<Leader>gd", "<Plug>(go-doc)")
+	--vim.keymap.set("n", "<Leader>gd", "<Plug>(go-doc)")
 	vim.keymap.set("n", "<Leader>gv", "<Plug>(go-doc-vertical)")
+end
+
+function M.deoplete()
+	vim.fn["deoplete#custom#option"]("omni_patterns", { go = "[^. *\\t]\\.\\w*" })
 end
 
 return M
