@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader><space>", ":noh<cr>")
+vim.keymap.set("n", "<leader>nh", ":noh<cr>")
 --vim.keymap.set({"n","v"}, "<tab>", "%")
 
 -- quick switch to the files cwd
@@ -34,8 +34,8 @@ vim.keymap.set("n", "<Leader>todo", "/c<(to(s\\|-)*do)\\|(fix(s\\|-)*me)>/ <cr>"
 
 -- Map for reformatting a file
 --vim.keymap.set("", "<Leader>rf", "mzgg=G`z<CR>")
-vim.keymap.set("", "<Leader>rf", ":Autoformat<CR>")
-vim.keymap.set("", "<Leader>rfl", ":AutoformatLine<CR>")
+vim.keymap.set("n", "<Leader>rf", ":Autoformat<CR>", { remap = true })
+vim.keymap.set("n", "<Leader>rfl", ":AutoformatLine<CR>")
 
 -- reformat json files with jq
 vim.keymap.set("n", "<Leader>jq", "GVgg :!jq .<cr>")
