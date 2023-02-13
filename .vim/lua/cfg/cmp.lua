@@ -7,16 +7,22 @@ local function has_words_before()
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+vim.opt.completeopt = { "menu,noinsert,noselect" }
+
 cmp.setup({
 	preselect = cmp.PreselectMode.None,
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
-			-- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-			-- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-			-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-			snippy.expand_snippet(args.body) -- For `snippy` users.
+			--vim.fn["vsnip#anonymous"](args.body) -- For vsnip users.
+			--require('luasnip').lsp_expand(args.body) -- For luasnip users.
+			--vim.fn["UltiSnips#Anon"](args.body) -- For ultisnips users.
+			snippy.expand_snippet(args.body) -- For snippy users.
 		end,
+	},
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
 	},
 	mapping = cmp.mapping.preset.insert({
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
@@ -59,9 +65,10 @@ cmp.setup({
 		-- { name = 'spell' },
 
 		-- snippets
-		-- { name = 'luasnip' }, -- For luasnip users.
+		--{ name = "vsnip" }, -- For vsnip users.
+		--{ name = 'luasnip' }, -- For luasnip users.
 		{ name = "snippy" }, -- For snippy users.
-		-- { name = 'neosnippet' }, -- For neosnippet users.
+		--{ name = 'neosnippet' }, -- For neosnippet users.
 
 		{ name = "git" },
 		{ name = "buffer" },
@@ -70,8 +77,16 @@ cmp.setup({
 	}),
 })
 
+cmp.setup.filetype("gitcommit", {
+	sources = cmp.config.sources({
+		{ name = "cmp_git" },
+	}, {
+		{ name = "buffer" },
+	}),
+})
+
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline("/", {
+cmp.setup.cmdline({ "/", "?" }, {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
 		{ name = "buffer" },
