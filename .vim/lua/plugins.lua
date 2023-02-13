@@ -271,6 +271,14 @@ return require("packer").startup(function()
 				requires = {
 					"nvim-lua/plenary.nvim",
 				},
+				config = function()
+					require("cfg.telescope")
+				end,
+			},
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				run = "make",
+				cond = vim.fn.executable("make") == 1,
 			},
 
 			{
@@ -471,11 +479,6 @@ return require("packer").startup(function()
 		"tpope/vim-git",
 		{
 			"pwntester/octo.nvim",
-			requires = {
-				"nvim-lua/plenary.nvim",
-				"nvim-telescope/telescope.nvim",
-				"kyazdani42/nvim-web-devicons",
-			},
 			config = function()
 				require("cfg.octo")
 			end,
