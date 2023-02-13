@@ -23,7 +23,7 @@ end
 
 require("lualine").setup({
 	options = {
-		theme = "gruvbox-material",
+		theme = "gruvbox",
 		globalstatus = true,
 	},
 	sections = {
