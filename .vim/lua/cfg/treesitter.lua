@@ -1,7 +1,32 @@
 -- treesitter textobject support
 require("nvim-treesitter.configs").setup({
+	ensure_installed = {
+		"bash",
+		"c",
+		"cmake",
+		"cpp",
+		"css",
+		"diff",
+		"dockerfile",
+		"gitcommit",
+		"go",
+		"javascript",
+		"json",
+		"jsonnet",
+		"lua",
+		"nix",
+		"qmljs",
+		"rust",
+		"scheme",
+		"typescript",
+		"v",
+		"vim",
+		"zig",
+	},
+	auto_install = true,
+
 	incremental_selection = {
-		enable = enable,
+		enable = true,
 
 		keymaps = {
 			-- mappings for incremental selection (visual mappings)
@@ -12,15 +37,25 @@ require("nvim-treesitter.configs").setup({
 		},
 	},
 
+	highlight = {
+		enable = true,
+	},
+
+	indent = {
+		enable = true,
+	},
+
 	textobjects = {
 		-- syntax-aware textobjects
-		enable = enable,
+		enable = true,
+
+		lookahead = true,
 
 		lsp_interop = {
-			enable = enable,
+			enable = true,
 			peek_definition_code = {
-				["DF"] = "@function.outer",
-				["DF"] = "@class.outer",
+				["<leader>df"] = "@function.outer",
+				["<leader>dF"] = "@class.outer",
 			},
 		},
 
@@ -48,47 +83,39 @@ require("nvim-treesitter.configs").setup({
 		},
 
 		move = {
-			enable = enable,
+			enable = true,
 			set_jumps = true, -- whether to set jumps in the jumplist
 			goto_next_start = {
-				["]m"] = "@function.outer",
-				["]]"] = "@class.outer",
+				["]m"] = "@class.outer",
+				["]]"] = "@function.outer",
 			},
 			goto_next_end = {
-				["]M"] = "@function.outer",
-				["]["] = "@class.outer",
+				["]M"] = "@class.outer",
+				["]["] = "@function.outer",
 			},
 			goto_previous_start = {
-				["[m"] = "@function.outer",
-				["[["] = "@class.outer",
+				["[m"] = "@class.outer",
+				["[["] = "@function.outer",
 			},
 			goto_previous_end = {
-				["[M"] = "@function.outer",
-				["[]"] = "@class.outer",
+				["[M"] = "@class.outer",
+				["[]"] = "@function.outer",
 			},
 		},
 
 		select = {
-			enable = enable,
+			enable = true,
 			keymaps = {
 				-- You can use the capture groups defined in textobjects.scm
 				["af"] = "@function.outer",
 				["if"] = "@function.inner",
 				["ac"] = "@class.outer",
 				["ic"] = "@class.inner",
-				-- Or you can define your own textobjects like this
-				["iF"] = {
-					python = "(function_definition) @function",
-					cpp = "(function_definition) @function",
-					c = "(function_definition) @function",
-					java = "(method_declaration) @function",
-					go = "(method_declaration) @function",
-				},
 			},
 		},
 
 		swap = {
-			enable = enable,
+			enable = true,
 			swap_next = {
 				["<leader>a"] = "@parameter.inner",
 			},
@@ -98,3 +125,4 @@ require("nvim-treesitter.configs").setup({
 		},
 	},
 })
+
