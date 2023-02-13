@@ -56,9 +56,6 @@ return require("packer").startup(function()
 
 	use({
 		"neovim/nvim-lspconfig",
-		config = function()
-			require("cfg.lspconfig")
-		end,
 	})
 
 	-- Deoplete completion
@@ -124,19 +121,59 @@ return require("packer").startup(function()
 				"hrsh7th/cmp-omni", -- Vim's omnifunc source
 				"rcarriga/cmp-dap", -- Debug Adapter Protocol source
 
-				-- vsnip
-				--'hrsh7th/cmp-vsnip',
-				--'hrsh7th/vim-vsnip',
+				-- Automatically install LSPs to stdpath for neovim
+				{
+					"williamboman/mason.nvim",
+					config = function()
+						require("mason").setup()
+					end,
+				},
+				{
+					"williamboman/mason-lspconfig.nvim",
+					config = function()
+						require("cfg.mason-lspconfig")
+					end,
+				},
 
-				-- luasnip
-				--'saadparwaiz1/cmp_luasnip',
-				--'L3MON4D3/LuaSnip',
+				-- Per-project settings
 
-				-- ultasnips
-				--'quangnguyen30192/cmp-nvim-ultisnips'
-				--'SirVer/ultisnips',
+				{
+					"tamago324/nlsp-settings.nvim",
+					--disable = true,
+					before = { "neovim/nvim-lspconfig", "williamboman/mason-lspconfig.nvim" },
+					config = function()
+						require("nlspsettings").setup({
+							config_home = vim.fn.stdpath("config") .. "/nlsp-settings",
+							local_settings_dir = ".nlsp-settings",
+							local_settings_root_markers_fallback = { ".git" },
+							append_default_schemas = true,
+							loader = "json",
+						})
+					end,
+				},
 
-				-- snippy
+				-- Useful status updates for LSP
+				{
+					"j-hui/fidget.nvim",
+					config = function()
+						require("fidget").setup()
+					end,
+				},
+
+				-- vsnip -- VimScript VSCode snippets
+				--"hrsh7th/cmp-vsnip",
+				--"hrsh7th/vim-vsnip",
+				--"hrsh7th/vim-vsnip-integ",
+
+				-- luasnip -- Lua snippets with lsp-syntax support
+				--"saadparwaiz1/cmp_luasnip",
+				--"L3MON4D3/LuaSnip",
+
+				-- ultasnips -- Python snippets engine
+				--"quangnguyen30192/cmp-nvim-ultisnips",
+				--"SirVer/ultisnips",
+
+				-- snippy -- Lua minimal snippets with SnipMate support
 				{
 					"dcampos/cmp-snippy",
 					requires = "dcampos/nvim-snippy",
@@ -145,7 +182,7 @@ return require("packer").startup(function()
 					end,
 				},
 
-				-- neosnippet
+				-- neosnippet -- VimScript SnipMate support (inactive)
 				--'notomo/cmp-neosnippet',
 				--'Shougo/neosnippet-snippets',
 
@@ -157,21 +194,23 @@ return require("packer").startup(function()
 					end,
 				},
 
-				{ "hrsh7th/cmp-nvim-lua", ft = { "lua", "vim" } }, -- Nvim API completions
+				-- Nvim API completions
+				--{ "hrsh7th/cmp-nvim-lua", ft = { "lua", "vim" } },
+				-- Nvim API completions & docs
+				{
+					"folke/neodev.nvim",
+					ft = { "lua", "vim" },
+					config = function()
+						require("neodev").setup()
+					end,
+				},
+
 				--'f3fora/cmp-spell', -- spelling suggestions
+
 				{
 					"windwp/nvim-autopairs",
 					config = function()
 						require("cfg.autopairs")
-					end,
-				},
-				{
-					"nvim-treesitter/nvim-treesitter",
-					run = function()
-						require("nvim-treesitter.install").update({ with_sync = true })
-					end,
-					config = function()
-						require("cfg.treesitter")
 					end,
 				},
 
@@ -281,6 +320,17 @@ return require("packer").startup(function()
 			disable = true,
 		},
 
+		{
+			"nvim-treesitter/nvim-treesitter",
+			requires = "nvim-treesitter/nvim-treesitter-textobjects",
+			run = function()
+				local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+				ts_update()
+			end,
+			config = function()
+				require("cfg.treesitter")
+			end,
+		},
 		-- UI addition
 		{
 			"vim-ctrlspace/vim-ctrlspace",
