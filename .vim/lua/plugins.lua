@@ -25,9 +25,9 @@ return require("packer").startup(function()
 
 	-- color schemes
 	use({
-		--"gruvbox-community/gruvbox",
-		"ellisonleao/gruvbox.nvim",
-		--"sainnhe/gruvbox-material",
+		--"gruvbox-community/gruvbox", -- VimScript standard
+		"ellisonleao/gruvbox.nvim", -- Treesitter highlighting
+		"sainnhe/gruvbox-material", -- VimScript + treesitter support with a softer pallete
 		"tomasr/molokai",
 		"veloce/vim-aldmeris",
 		"bluz71/vim-moonfly-colors",
@@ -172,6 +172,7 @@ return require("packer").startup(function()
 						require("cfg.treesitter")
 					end,
 				},
+
 				{ "reasonml-editor/vim-reason-plus", ft = "reason" },
 				--#[[
 				{
@@ -183,6 +184,7 @@ return require("packer").startup(function()
 					end,
 				},
 				--]]
+
 				--#[[
 				{
 					"ray-x/go.nvim",
@@ -192,6 +194,7 @@ return require("packer").startup(function()
 					end,
 				},
 				--]]
+
 				{
 					"kristijanhusak/vim-dadbod-completion",
 					ft = { "sql", "mysol", "plsql" },
@@ -260,9 +263,10 @@ return require("packer").startup(function()
 		"tpope/vim-surround",
 		--"xolox/vim-misc",
 		"AndrewRadev/sideways.vim",
-		"ackyshake/VimCompletesMe",
+		--"ackyshake/VimCompletesMe",
 		"Yggdroot/indentLine",
 		"tpope/vim-endwise",
+		"mbbill/undotree",
 		{
 			"tpope/vim-sleuth",
 			-- This can cause some issues with file types not respecting the
