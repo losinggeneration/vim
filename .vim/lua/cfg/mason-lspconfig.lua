@@ -91,16 +91,6 @@ local on_attach = function(_, bufnr)
 	end, { desc = "Format current buffer with LSP" })
 end
 
---mason_lspconfig.setup_handlers({
---function(server_name)
---print("mason_lspconfig.init: " .. server_name)
---require("lspconfig")[server_name].setup({
---capabilities = capabilities,
---on_attach = on_attach,
---})
---end,
---})
-
 local lspconfig = require("lspconfig")
 local get_servers = require("mason-lspconfig").get_installed_servers
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -112,3 +102,14 @@ for _, server_name in ipairs(get_servers()) do
 		settings = servers[server_name],
 	})
 end
+
+-- automatic setup for installed servers
+mason_lspconfig.setup_handlers({
+	function(server_name)
+		require("lspconfig")[server_name].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+	end,
+})
+
