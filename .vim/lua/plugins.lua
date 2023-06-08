@@ -48,7 +48,33 @@ return require("packer").startup(function()
 	})
 
 	use({
-		"neovim/nvim-lspconfig",
+		"neovim/nvim-lspconfig", -- Automatically install LSPs to stdpath for neovim
+		"williamboman/mason.nvim",
+
+		{
+			"williamboman/mason-lspconfig.nvim",
+			config = function()
+				require("cfg.mason-lspconfig")
+			end,
+		},
+
+		-- Per-project settings
+		{
+			"tamago324/nlsp-settings.nvim",
+			--disable = true,
+			before = { "neovim/nvim-lspconfig", "williamboman/mason-lspconfig.nvim" },
+			config = function()
+				require("cfg.nlspsettings")
+			end,
+		},
+
+		-- Useful status updates for LSP
+		{
+			"j-hui/fidget.nvim",
+			config = function()
+				require("fidget").setup()
+			end,
+		},
 	})
 
 	-- Deoplete completion
@@ -79,14 +105,21 @@ return require("packer").startup(function()
 				},
 				{ "wokalski/autocomplete-flow", ft = { "javascript", "javascriptreact", "javascript.jsx" } },
 
-				{ "zchee/deoplete-go", run = "make", ft = { "go", "gomod", "gowork", "gotmpl" } },
+				{
+					"zchee/deoplete-go",
+					run = "make",
+					ft = { "go", "gomod", "gowork", "gotmpl" },
+				},
 				{ "sebastianmarkow/deoplete-rust", ft = "rust" },
 
 				{ "slashmili/alchemist.vim", ft = "elixir" },
 
-				{ "pbogut/deoplete-elm", run = "yarn global add elm-oracle", ft = "elm" },
+				{
+					"pbogut/deoplete-elm",
+					run = "yarn global add elm-oracle",
+					ft = "elm",
+				},
 				{ "reasonml-editor/vim-reason-plus", ft = "reason" },
-
 				{ "kristijanhusak/deoplete-phpactor", ft = "php" },
 				{
 					"fatih/vim-go",
@@ -113,45 +146,6 @@ return require("packer").startup(function()
 				"hrsh7th/cmp-cmdline", -- command line suggestions source
 				"hrsh7th/cmp-omni", -- Vim's omnifunc source
 				"rcarriga/cmp-dap", -- Debug Adapter Protocol source
-
-				-- Automatically install LSPs to stdpath for neovim
-				{
-					"williamboman/mason.nvim",
-					config = function()
-						require("mason").setup()
-					end,
-				},
-				{
-					"williamboman/mason-lspconfig.nvim",
-					config = function()
-						require("cfg.mason-lspconfig")
-					end,
-				},
-
-				-- Per-project settings
-
-				{
-					"tamago324/nlsp-settings.nvim",
-					--disable = true,
-					before = { "neovim/nvim-lspconfig", "williamboman/mason-lspconfig.nvim" },
-					config = function()
-						require("nlspsettings").setup({
-							config_home = vim.fn.stdpath("config") .. "/nlsp-settings",
-							local_settings_dir = ".nlsp-settings",
-							local_settings_root_markers_fallback = { ".git" },
-							append_default_schemas = true,
-							loader = "json",
-						})
-					end,
-				},
-
-				-- Useful status updates for LSP
-				{
-					"j-hui/fidget.nvim",
-					config = function()
-						require("fidget").setup()
-					end,
-				},
 
 				-- vsnip -- VimScript VSCode snippets
 				--"hrsh7th/cmp-vsnip",
@@ -310,7 +304,12 @@ return require("packer").startup(function()
 		--"ackyshake/VimCompletesMe",
 		"Yggdroot/indentLine",
 		"tpope/vim-endwise",
-		"mbbill/undotree",
+		{
+			"mbbill/undotree",
+			config = function()
+				vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+			end,
+		},
 		{
 			"tpope/vim-sleuth",
 			-- This can cause some issues with file types not respecting the
