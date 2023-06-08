@@ -63,6 +63,16 @@ return require("packer").startup(function()
 			"weilbith/nvim-code-action-menu",
 			cmd = "CodeActionMenu",
 		},
+
+		-- vscode-like margin hints
+		{
+			"kosayoda/nvim-lightbulb",
+			requires = "antoinemadec/FixCursorHold.nvim",
+			config = function()
+				vim.cmd([[autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()]])
+			end,
+		},
+
 		-- Per-project settings
 		{
 			"tamago324/nlsp-settings.nvim",
