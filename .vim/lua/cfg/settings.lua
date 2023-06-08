@@ -1,6 +1,9 @@
 -- Check for whitespace damage
 vim.g.c_space_errors = 1
 
+-- Modelines have been a source of issue in the past, we'll use a plugin for this
+vim.o.modelines = 0
+
 -- Leader for things like NERDCommenter
 vim.g.mapleader = ","
 
@@ -11,11 +14,11 @@ vim.o.tabstop = 4
 vim.o.backspace = "indent,eol,start"
 
 vim.o.number = true
-vim.o.backup = true        -- keep a backup file
-vim.o.history = 500        -- keep 500 lines of command line history
-vim.o.ruler = true         -- show the cursor position all the time
-vim.o.showcmd = true       -- display incomplete commands
-vim.o.incsearch = true     -- do incremental searching
+vim.o.backup = true -- keep a backup file
+vim.o.history = 500 -- keep 500 lines of command line history
+vim.o.ruler = true -- show the cursor position all the time
+vim.o.showcmd = true -- display incomplete commands
+vim.o.incsearch = true -- do incremental searching
 
 -- Some code folding options
 vim.o.foldmethod = "syntax"
@@ -36,6 +39,7 @@ vim.o.ttyfast = true
 vim.o.laststatus = 2
 vim.o.relativenumber = true
 vim.o.undofile = true
+vim.o.cmdheight = 1
 
 vim.o.wrap = true
 vim.o.textwidth = 79
