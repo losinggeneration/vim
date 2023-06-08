@@ -340,6 +340,7 @@ return require("packer").startup(function()
 				require("cfg.expand-region")
 			end,
 		},
+		"lukas-reineke/indent-blankline.nvim",
 		"tpope/vim-abolish",
 		"tpope/vim-repeat",
 		"tpope/vim-sensible",
