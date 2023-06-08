@@ -1,7 +1,8 @@
--- Ensure the servers are installed
---print("mason-lspconfig")
+require("mason").setup()
+
 local mason_lspconfig = require("mason-lspconfig")
 
+-- Ensure the servers are installed
 local servers = {
 	clangd = {},
 	gopls = {
@@ -14,8 +15,7 @@ local servers = {
 	teal_ls = {},
 	tsserver = {},
 	zls = {},
-
-	sumneko_lua = {
+	lua_ls = {
 		Lua = {
 			workspace = {
 				checkThirdParty = true,
@@ -44,11 +44,12 @@ servers.yamlls = {
 	},
 }
 
--- Diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
+local wrap = function(fn, ...)
+	local arg = ...
+	return function()
+		fn(arg)
+	end
+end
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
@@ -62,16 +63,31 @@ local on_attach = function(_, bufnr)
 		vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
 	end
 
+	vim.b.autoformat = true
+
+	-- Diagnostic keymaps
+	nmap("[d", vim.diagnostic.goto_prev)
+	nmap("]d", vim.diagnostic.goto_next)
+	nmap("<leader>e", vim.diagnostic.open_float)
+	nmap("<leader>q", vim.diagnostic.setloclist)
 	nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 	nmap("<Leader>rf", vim.lsp.buf.format, "[R]e[f]ormat file")
 	nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
-	nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-	nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-	nmap("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-	nmap("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+	nmap("gd", wrap(vim.lsp.buf.definition, { jump_type = "never" }), "[G]oto [D]efinition")
+	nmap("gr", wrap(require("telescope.builtin").lsp_references, { jump_type = "never" }), "[G]oto [R]eferences")
+	nmap(
+		"gI",
+		wrap(require("telescope.builtin").lsp_implementations, { jump_type = "never" }),
+		"[G]oto [I]mplementation"
+	)
+	nmap("td", wrap(require("telescope.builtin").lsp_type_definitions, { jump_type = "never" }), "[T]ype [D]efinition")
 	nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
 	nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+	nmap("<leader>d", require("telescope.builtin").diagnostics, "[D]iagnostics")
+	nmap("<leader>ed", function()
+		require("telescope.builtin").diagnostics({ severity = "error" })
+	end, "[E]rror [D]iagnostics")
 
 	-- See `:help K` for why this keymap
 	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
@@ -89,19 +105,24 @@ local on_attach = function(_, bufnr)
 	vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
 		vim.lsp.buf.format()
 	end, { desc = "Format current buffer with LSP" })
+
+	-- format on save
+	vim.api.nvim_create_autocmd({
+		"BufWritePre",
+		--[[ "InsertLeave", --]]
+	}, {
+		pattern = "<buffer>",
+		callback = function()
+			if vim.b.autoformat then
+				vim.lsp.buf.format()
+			end
+		end,
+	})
 end
 
 local lspconfig = require("lspconfig")
 local get_servers = require("mason-lspconfig").get_installed_servers
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-for _, server_name in ipairs(get_servers()) do
-	lspconfig[server_name].setup({
-		on_attach = on_attach,
-		capabilities = capabilities,
-		settings = servers[server_name],
-	})
-end
 
 -- automatic setup for installed servers
 mason_lspconfig.setup_handlers({
@@ -109,7 +130,7 @@ mason_lspconfig.setup_handlers({
 		require("lspconfig")[server_name].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+			settings = servers[server_name],
 		})
 	end,
 })
-
