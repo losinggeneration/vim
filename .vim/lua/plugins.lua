@@ -330,13 +330,21 @@ return require("packer").startup(function()
 
 		{
 			"nvim-treesitter/nvim-treesitter",
-			requires = "nvim-treesitter/nvim-treesitter-textobjects",
 			run = function()
 				local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
 				ts_update()
 			end,
 			config = function()
-				require("cfg.treesitter")
+				require("cfg.treesitter").treesitter()
+			end,
+		},
+		{
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			--disable = true,
+			after = "nvim-treesitter",
+			requires = "nvim-treesitter/nvim-treesitter",
+			config = function()
+				require("cfg.treesitter").textobjects()
 			end,
 		},
 		-- UI addition
