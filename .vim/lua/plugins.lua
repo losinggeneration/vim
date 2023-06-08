@@ -37,13 +37,6 @@ return require("packer").startup(function()
 	-- coding improvments
 	use({
 		"ciaranm/securemodelines",
-		{
-			"Shougo/echodoc.vim",
-			run = "make",
-			config = function()
-				require("cfg.echodoc")
-			end,
-		},
 		"vim-autoformat/vim-autoformat",
 		--"is0n/fm-nvim", -- fuzzy finders
 	})
