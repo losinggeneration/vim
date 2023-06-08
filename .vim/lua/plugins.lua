@@ -58,6 +58,11 @@ return require("packer").startup(function()
 			end,
 		},
 
+		-- quick fix and other code actions menu
+		{
+			"weilbith/nvim-code-action-menu",
+			cmd = "CodeActionMenu",
+		},
 		-- Per-project settings
 		{
 			"tamago324/nlsp-settings.nvim",
