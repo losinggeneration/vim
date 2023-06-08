@@ -420,10 +420,10 @@ return require("packer").startup(function()
 		},
 	})
 
-	--[[
+	--#[[
 	use({
 		"folke/noice.nvim", -- experimental UI overhaul
-		disabled = true,
+		disable = true,
 		--event = "VimEnter",
 		config = function()
 			require("noice").setup()
@@ -438,7 +438,6 @@ return require("packer").startup(function()
 		},
 	})
 	--]]
-
 	-- utilities
 	use({
 		"robertbasic/vim-hugo-helper",
@@ -513,7 +512,11 @@ return require("packer").startup(function()
 		{ "peterhoeg/vim-qml", ft = "qml" },
 
 		-- SQL
-		{ "mattn/vim-sqlfmt", ft = { "sql", "mysql" }, run = "go install github.com/jackc/sqlfmt/cmd/sqlfmt@latest" },
+		{
+			"mattn/vim-sqlfmt",
+			ft = { "sql", "mysql" },
+			run = "go install github.com/jackc/sqlfmt/cmd/sqlfmt@latest",
+		},
 		{ "kristijanhusak/vim-dadbod-ui" },
 		{ "tpope/vim-dadbod" },
 		{ "chrisbra/csv.vim", ft = "csv" },
@@ -563,8 +566,8 @@ return require("packer").startup(function()
 	-- Web dev
 	use({
 		-- Typescript
-		{ "leafgarland/typescript-vim", ft = "typescript" },
-		{ "Quramy/tsuquyomi", ft = "typescript" },
+		--{ "leafgarland/typescript-vim", ft = "typescript" },
+		--{ "Quramy/tsuquyomi", ft = "typescript" },
 
 		{ "pangloss/vim-javascript", ft = { "javascript", "javascriptreact", "javascript.jsx" } },
 		{
@@ -575,8 +578,10 @@ return require("packer").startup(function()
 				{ "HerringtonDarkholme/yats.vim", ft = { "typescript", "typescript.tsx" } },
 			},
 		},
-		{ "mattn/emmet-vim", ft = { "javascript", "javascriptreact", "javascript.jsx", "html", "css", "vue" } },
-
+		{
+			"mattn/emmet-vim",
+			ft = { "javascript", "javascriptreact", "javascript.jsx", "html", "css", "vue" },
+		},
 		{ "luishdez/vim-less", ft = "less" },
 
 		-- Vue
