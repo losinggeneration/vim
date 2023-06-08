@@ -18,6 +18,7 @@ null_ls.setup({
 
 		-- Linters
 		--null_ls.builtins.diagnostics.cspell, -- code spell checker
+		null_ls.builtins.diagnostics.clang_check, -- C/C++ check with clang-check
 		null_ls.builtins.diagnostics.eslint, -- Typescript check with eslint
 		null_ls.builtins.diagnostics.gitlint, -- Git commit messages linter
 		null_ls.builtins.diagnostics.golangci_lint.with({
