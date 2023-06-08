@@ -548,6 +548,7 @@ return require("packer").startup(function()
 		{ "jdonaldson/vaxe", ft = "haxe" },
 		{ "jansenm/vim-cmake", ft = "cmake" },
 		{ "peterhoeg/vim-qml", ft = "qml" },
+		{ "samsaga2/vim-z80" },
 
 		-- SQL
 		{
