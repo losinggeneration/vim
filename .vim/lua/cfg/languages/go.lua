@@ -4,7 +4,7 @@ local M = {}
 function M.nvim()
 	require("go").setup({
 		-- goimport = "gopls", -- if set to 'gopls' will use golsp format
-		-- gofmt = "gopls", -- if set to gopls will use golsp format
+		-- gofmt = "gofumpt", -- if set to gopls will use golsp format
 		max_line_len = 120,
 		tag_transform = false,
 		test_dir = "",
@@ -28,10 +28,12 @@ function M.nvim()
 	-- run goimports on save & exiting insert mode
 	-- On InsertLeave might be slightly annoying because, unlike on save, it
 	-- doesn't preseve the cursor location
-	vim.api.nvim_create_autocmd({ "BufWritePre", "InsertLeave" }, {
+	vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 		pattern = "<buffer>",
 		callback = function()
 			require("go.format").goimport()
+			require("go.format").org_imports(500)
+			--require("go.format").gofmt()
 		end,
 	})
 
@@ -138,7 +140,6 @@ function M.vim()
 
 		command! -nargs=* -range GoUpdateTags call go#UpdateTags(<line1>, <line2>, <count>, <f-args>)
 		--]]
-
 	-- Use indent mode for folding
 	--setlocal foldmethod=indent
 	vim.api.nvim_set_option_value("foldmethod", "indent", { scope = "local" })
