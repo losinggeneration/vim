@@ -5,7 +5,6 @@ local telescope_custom_actions = {}
 
 function telescope_custom_actions._multiopen(prompt_bufnr, open_cmd)
     local picker = action_state.get_current_picker(prompt_bufnr)
-    local selected_entry = action_state.get_selected_entry()
     local num_selections = #picker:get_multi_selection()
     if not num_selections or num_selections <= 1 then
         actions.add_selection(prompt_bufnr)
@@ -31,25 +30,26 @@ function telescope_custom_actions.multi_selection_open(prompt_bufnr)
     telescope_custom_actions._multiopen(prompt_bufnr, "edit")
 end
 
-require('telescope').setup({
-    defaults = {
-        mappings = {
-            i = {
-                ["<CR>"] = telescope_custom_actions.multi_selection_open,
-                ["<C-V>"] = telescope_custom_actions.multi_selection_open_vsplit,
-                ["<C-S>"] = telescope_custom_actions.multi_selection_open_split,
-                ["<C-T>"] = telescope_custom_actions.multi_selection_open_tab,
-                ["<C-DOWN>"] = require('telescope.actions').cycle_history_next,
-                ["<C-UP>"] = require('telescope.actions').cycle_history_prev,
-            },
-            n = i,
-        },
+local i = {
+	["<CR>"] = telescope_custom_actions.multi_selection_open,
+	["<C-V>"] = telescope_custom_actions.multi_selection_open_vsplit,
+	["<C-S>"] = telescope_custom_actions.multi_selection_open_split,
+	["<C-T>"] = telescope_custom_actions.multi_selection_open_tab,
+	["<C-DOWN>"] = require("telescope.actions").cycle_history_next,
+	["<C-UP>"] = require("telescope.actions").cycle_history_prev,
+}
 
-   }
+require("telescope").setup({
+	defaults = {
+		mappings = {
+			i = i,
+			n = i,
+		},
+	},
 })
 
-builtin = require("telescope.builtin")
-themes = require("telescope.themes")
+local builtin = require("telescope.builtin")
+local themes = require("telescope.themes")
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' })
@@ -62,9 +62,10 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })
 
-vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-
+vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
+vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
+vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
+vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
+vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
+vim.keymap.set("n", "<leader>ss", builtin.symbols, { desc = "[S]earch [S]ymbols" })
+vim.keymap.set("n", "<leader>qf", builtin.quickfix, { desc = "[Q]uick [F]ix" })

@@ -66,25 +66,34 @@ local on_attach = function(_, bufnr)
 	vim.b.autoformat = true
 
 	-- Diagnostic keymaps
-	nmap("[d", vim.diagnostic.goto_prev)
-	nmap("]d", vim.diagnostic.goto_next)
+	nmap("[d", function()
+		if not vim.diagnostic.is_disabled(0) and vim.diagnostic.get_prev() ~= nil then
+			vim.diagnostic.goto_prev()
+		end
+	end)
+	nmap("]d", function()
+		if not vim.diagnostic.is_disabled(0) and vim.diagnostic.get_next() ~= nil then
+			vim.diagnostic.goto_next()
+		end
+	end)
+
 	nmap("<leader>e", vim.diagnostic.open_float)
 	nmap("<leader>q", vim.diagnostic.setloclist)
 	nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 	nmap("<Leader>rf", vim.lsp.buf.format, "[R]e[f]ormat file")
 	nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
-	nmap("gd", wrap(vim.lsp.buf.definition, { jump_type = "never" }), "[G]oto [D]efinition")
+	nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 	nmap("gr", wrap(require("telescope.builtin").lsp_references, { jump_type = "never" }), "[G]oto [R]eferences")
 	nmap(
-		"gI",
+		"gi",
 		wrap(require("telescope.builtin").lsp_implementations, { jump_type = "never" }),
 		"[G]oto [I]mplementation"
 	)
 	nmap("td", wrap(require("telescope.builtin").lsp_type_definitions, { jump_type = "never" }), "[T]ype [D]efinition")
 	nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
 	nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-	nmap("<leader>d", require("telescope.builtin").diagnostics, "[D]iagnostics")
+	nmap("<leader>fd", wrap(require("telescope.builtin").diagnostics, { buffnr = 0 }), "[F]ile [D]iagnostics")
 	nmap("<leader>ed", function()
 		require("telescope.builtin").diagnostics({ severity = "error" })
 	end, "[E]rror [D]iagnostics")
@@ -120,8 +129,6 @@ local on_attach = function(_, bufnr)
 	})
 end
 
-local lspconfig = require("lspconfig")
-local get_servers = require("mason-lspconfig").get_installed_servers
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- automatic setup for installed servers
