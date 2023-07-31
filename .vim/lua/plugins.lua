@@ -414,7 +414,15 @@ return require("packer").startup(function()
 				require("cfg.tagbar")
 			end,
 		},
-		"scrooloose/nerdcommenter",
+		--"scrooloose/nerdcommenter",
+		{
+			"numToStr/Comment.nvim",
+			config = function()
+				require("Comment").setup()
+				local ft = require("Comment.ft")
+				ft.set("forth", { "( %s )" })
+			end,
+		},
 		{
 			"scrooloose/nerdtree",
 			disable = true,
