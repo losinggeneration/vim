@@ -11,7 +11,7 @@ null_ls.setup({
 		null_ls.builtins.code_actions.shellcheck,
 
 		-- Completion
-		null_ls.builtins.completion.luasnip, -- luasnip completion
+		--null_ls.builtins.completion.luasnip, -- luasnip completion
 		--null_ls.builtins.completion.vsnip, -- vsnip completion
 		--null_ls.builtins.completion.spell, -- completion for spelling
 		null_ls.builtins.completion.tags, -- completion for tags
