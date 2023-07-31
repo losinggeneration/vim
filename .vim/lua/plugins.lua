@@ -69,7 +69,15 @@ return require("packer").startup(function()
 			"kosayoda/nvim-lightbulb",
 			requires = "antoinemadec/FixCursorHold.nvim",
 			config = function()
-				vim.cmd([[autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()]])
+				require("nvim-lightbulb").setup({
+					autocmd = { enabled = true },
+					-- virtual_text = { enabled = true },
+					-- float = { enabled = true },
+					status_text = { enabled = true },
+					-- number = { enabled = true },
+					-- line = { enabled = true },
+				})
+				--vim.cmd([[autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()]])
 			end,
 		},
 
@@ -393,7 +401,9 @@ return require("packer").startup(function()
 			end,
 		},
 		{
-			"nvim-treesitter/nvim-treesitter-textobjects",
+			--"nvim-treesitter/nvim-treesitter-textobjects",
+			"theHamsta/nvim-treesitter-textobjects",
+			branch = "fix-go",
 			--disable = true,
 			after = "nvim-treesitter",
 			requires = "nvim-treesitter/nvim-treesitter",
