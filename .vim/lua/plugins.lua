@@ -361,6 +361,12 @@ return require("packer").startup(function()
 		"Yggdroot/indentLine",
 		"tpope/vim-endwise",
 		{
+			"ggandor/leap.nvim",
+			config = function()
+				require("leap").add_default_mappings()
+			end,
+		},
+		{
 			"mbbill/undotree",
 			config = function()
 				vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
