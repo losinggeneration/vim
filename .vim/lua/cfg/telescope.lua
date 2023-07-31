@@ -1,33 +1,33 @@
-local actions = require('telescope.actions')
-local action_state = require('telescope.actions.state')
+local actions = require("telescope.actions")
+local action_state = require("telescope.actions.state")
 
 local telescope_custom_actions = {}
 
 function telescope_custom_actions._multiopen(prompt_bufnr, open_cmd)
-    local picker = action_state.get_current_picker(prompt_bufnr)
-    local num_selections = #picker:get_multi_selection()
-    if not num_selections or num_selections <= 1 then
-        actions.add_selection(prompt_bufnr)
-    end
+	local picker = action_state.get_current_picker(prompt_bufnr)
+	local num_selections = #picker:get_multi_selection()
+	if not num_selections or num_selections <= 1 then
+		actions.add_selection(prompt_bufnr)
+	end
 
-    actions.send_selected_to_qflist(prompt_bufnr)
-    vim.cmd("cfdo " .. open_cmd)
+	actions.send_selected_to_qflist(prompt_bufnr)
+	vim.cmd("cfdo " .. open_cmd)
 end
 
 function telescope_custom_actions.multi_selection_open_vsplit(prompt_bufnr)
-    telescope_custom_actions._multiopen(prompt_bufnr, "vsplit")
+	telescope_custom_actions._multiopen(prompt_bufnr, "vsplit")
 end
 
 function telescope_custom_actions.multi_selection_open_split(prompt_bufnr)
-    telescope_custom_actions._multiopen(prompt_bufnr, "split")
+	telescope_custom_actions._multiopen(prompt_bufnr, "split")
 end
 
 function telescope_custom_actions.multi_selection_open_tab(prompt_bufnr)
-    telescope_custom_actions._multiopen(prompt_bufnr, "tabe")
+	telescope_custom_actions._multiopen(prompt_bufnr, "tabe")
 end
 
 function telescope_custom_actions.multi_selection_open(prompt_bufnr)
-    telescope_custom_actions._multiopen(prompt_bufnr, "edit")
+	telescope_custom_actions._multiopen(prompt_bufnr, "edit")
 end
 
 local i = {
@@ -52,15 +52,15 @@ local builtin = require("telescope.builtin")
 local themes = require("telescope.themes")
 
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  builtin.current_buffer_fuzzy_find(themes.get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end, { desc = '[/] Fuzzily search in current buffer]' })
+vim.keymap.set("n", "<leader>?", builtin.oldfiles, { desc = "[?] Find recently opened files" })
+vim.keymap.set("n", "<leader><space>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+vim.keymap.set("n", "<leader>/", function()
+	-- You can pass additional configuration to telescope to change theme, layout, etc.
+	builtin.current_buffer_fuzzy_find(themes.get_dropdown({
+		winblend = 10,
+		previewer = false,
+	}))
+end, { desc = "[/] Fuzzily search in current buffer]" })
 
 vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
 vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })

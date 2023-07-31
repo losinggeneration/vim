@@ -2,7 +2,7 @@ vim.g["neosnippet#enable_completed_snippet"] = 1
 
 -- Plugin key-mappings.
 -- Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-vim.keymap.set({"i", "s"}, "<C-k>", "<Plug>(neosnippet_expand_or_jump)")
+vim.keymap.set({ "i", "s" }, "<C-k>", "<Plug>(neosnippet_expand_or_jump)")
 vim.keymap.set("x", "<C-k>", "<Plug>(neosnippet_expand_target)")
 
 -- SuperTab like snippets behavior.

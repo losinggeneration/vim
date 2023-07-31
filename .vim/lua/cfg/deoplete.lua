@@ -2,7 +2,7 @@ vim.g["deoplete#enable_at_startup"] = 1
 
 -- go options
 vim.g["deoplete.sources.go.gocode_binary"] = vim.env.HOME .. "/Programs/bin/gocode"
-vim.g["deoplete.sources.go.sort_class"] = {"package", "func", "type", "var", "const"}
+vim.g["deoplete.sources.go.sort_class"] = { "package", "func", "type", "var", "const" }
 vim.g["deoplete.sources.go.pointer"] = 1
 vim.g["deoplete.sources.go.use_cache"] = 1
 vim.g["deoplete.sources.go.json_directory"] = vim.env.HOME .. "/.deoplete/cache/go"

@@ -7,8 +7,8 @@ local defaults = {
 }
 
 function timer.new(opts)
-	opts = vim.tbl_extend('force', defaults, opts or {})	
-	local t = setmetatable(opts, {__index = timer})
+	opts = vim.tbl_extend("force", defaults, opts or {})
+	local t = setmetatable(opts, { __index = timer })
 	return t
 end
 
@@ -18,22 +18,24 @@ function timer:start()
 	local start_time = vim.loop.hrtime()
 	local tick = self.on_tick
 
-	timer:start(self.delay, self.interval,
-	vim.schedule_wrap(function()
-		if not self.started then
-			return
-		end
+	timer:start(
+		self.delay,
+		self.interval,
+		vim.schedule_wrap(function()
+			if not self.started then
+				return
+			end
 
-		local current_time = vim.loop.hrtime()
-		if self.timeout and current_time > start_time + self.timeout then
-			self:stop()
-			return
-		end
+			local current_time = vim.loop.hrtime()
+			if self.timeout and current_time > start_time + self.timeout then
+				self:stop()
+				return
+			end
 
-		if tick then
-			tick(self)
-		end
-	end)
+			if tick then
+				tick(self)
+			end
+		end)
 	)
 
 	self.timer = timer
