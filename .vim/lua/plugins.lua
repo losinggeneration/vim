@@ -75,6 +75,15 @@ return require("packer").startup(function()
 
 		-- Per-project settings
 		{
+			"folke/neoconf.nvim",
+			before = { "neovim/nvim-lspconfig", "williamboman/mason-lspconfig.nvim" },
+			disable = true,
+			config = function()
+				require("cfg.neoconf")
+			end,
+		},
+
+		{
 			"tamago324/nlsp-settings.nvim",
 			--disable = true,
 			before = { "neovim/nvim-lspconfig", "williamboman/mason-lspconfig.nvim" },
