@@ -69,3 +69,4 @@ vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]re
 vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 vim.keymap.set("n", "<leader>ss", builtin.symbols, { desc = "[S]earch [S]ymbols" })
 vim.keymap.set("n", "<leader>qf", builtin.quickfix, { desc = "[Q]uick [F]ix" })
+vim.keymap.set("n", "<leader>ts", builtin.treesitter, { desc = "[T]ree[s]itter" })
