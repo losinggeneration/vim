@@ -12,19 +12,16 @@ local function matcher(s, fmt, ...)
 	end
 end
 
-local term = os.getenv("TERM")
-if matcher(term, "^%s", "rxvt", "screen", "putty") then
-	vim.opt.termguicolors = false
-elseif matcher(term, "^%s", "tmux", "item", "iterm", "gnome") then
+-- default false, but turn on if we can
+vim.opt.termguicolors = false
+
+local term = os.getenv("TERM") or ""
+if matcher(term, "^%s", "tmux", "item", "iterm", "gnome") then
 	vim.opt.termguicolors = true
 elseif matcher(term, "^%s", "xterm") ~= "" then
 	if (os.getenv("XTERM_VERSION") or os.getenv("KONSOLE_VERSION") or os.getenv("VTE_VERSION")) ~= "" then
 		vim.opt.termguicolors = true
-	else
-		vim.opt.termguicolors = true
 	end
-else
-	vim.opt.termguicolors = false
 end
 
 vim.o.background = "dark"
