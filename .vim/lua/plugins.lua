@@ -95,6 +95,7 @@ return require("packer").startup(function()
 		-- Useful status updates for LSP
 		{
 			"j-hui/fidget.nvim",
+			tag = "legacy",
 			config = function()
 				require("fidget").setup()
 			end,
