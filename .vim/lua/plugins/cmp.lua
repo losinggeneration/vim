@@ -10,6 +10,38 @@ return {
 				require("cmp_git").setup()
 			end,
 		},
+		-- Nvim API completions & docs
+		{
+			"folke/neodev.nvim",
+			ft = { "lua", "vim" },
+			config = function()
+				require("neodev").setup()
+			end,
+		},
+		{
+			"windwp/nvim-autopairs",
+			config = function()
+				require("cfg.autopairs")
+			end,
+		},
+
+		{ "reasonml-editor/vim-reason-plus", ft = "reason" },
+		{
+			"kristijanhusak/vim-dadbod-completion",
+			ft = { "sql", "mysol", "plsql" },
+			config = function()
+				require("cfg.languages.sql")
+			end,
+		},
+		{
+			"nvim-telescope/telescope-fzf-native.nvim",
+			build = "make",
+			cond = vim.fn.executable("make") == 1,
+		},
+		{
+			"folke/trouble.nvim",
+			dependencies = "nvim-tree/nvim-web-devicons",
+		},
 	},
 	opts = function()
 		local cmp = require("cmp")

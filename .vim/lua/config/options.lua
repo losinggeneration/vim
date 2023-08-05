@@ -87,7 +87,6 @@ vim.keymap.set("n", "vs", "<C-w>s", { silent = true })
 -- Map Q to :q
 vim.keymap.set("n", "Q", ":q<cr>", { silent = true })
 
-require("cfg.keymaps")
 require("cfg.indention")
 require("cfg.spaces")
 require("cfg.visual-at")

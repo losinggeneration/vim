@@ -1,11 +1,12 @@
 return {
 	"jose-elias-alvarez/null-ls.nvim",
+	enabled = false,
 	opts = function(_, opts)
 		if type(opts.sources) == "table" then
 			local nls = require("null-ls")
-			-- vim.list_extend(opts.sources, {
-			-- 	nls.builtins.formatting.oimports, -- Go update imports
-			-- })
+			vim.list_extend(opts.sources, {
+				nls.builtins.formatting.goimports, -- Go update imports
+			})
 			for index, value in ipairs(opts.sources) do
 				if value == nls.builtins.formatting.goimports_reviser then
 					table.remove(opts.sources, index)
@@ -43,7 +44,7 @@ return {
 			-- run goimports on save & exiting insert mode
 			-- On InsertLeave might be slightly annoying because, unlike on save, it
 			-- doesn't preseve the cursor location
-			vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+			vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 				pattern = "<buffer>",
 				callback = function()
 					require("go.format").goimport()
@@ -66,7 +67,7 @@ return {
 			vim.keymap.set("n", "<Leader>cr", ":GoRename<cr>", { desc = "Go Rename" })
 			vim.keymap.set("n", "<Leader>cs", ":GoImpl<cr>", { desc = "Go Impl" })
 			vim.keymap.set("n", "<Leader>cy", ":GoRun<cr>", { desc = "Go Run" })
-			vim.keymap.set("n", "<Leader>ca", ":GoAlt<cr>", { desc = "To Test" })
+			vim.keymap.set("n", "<Leader>cta", ":GoAlt<cr>", { desc = "To Test" })
 		end,
 	},
 }
