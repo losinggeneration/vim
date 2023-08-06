@@ -1,49 +1,33 @@
 return {
 	"hrsh7th/nvim-cmp",
+	version = false,
+	event = "InsertEnter",
 	dependencies = {
 		"hrsh7th/cmp-cmdline", -- command line suggestions source
 		"hrsh7th/cmp-omni", -- Vim's omnifunc source
 		{
 			"petertriho/cmp-git",
-			requires = "nvim-lua/plenary.nvim",
-			config = function()
-				require("cmp_git").setup()
-			end,
+			dependencies = "nvim-lua/plenary.nvim",
 		},
-		-- Nvim API completions & docs
-		{
-			"folke/neodev.nvim",
-			ft = { "lua", "vim" },
-			config = function()
-				require("neodev").setup()
-			end,
-		},
-		{
-			"windwp/nvim-autopairs",
-			config = function()
-				require("cfg.autopairs")
-			end,
-		},
-
-		{ "reasonml-editor/vim-reason-plus", ft = "reason" },
-		{
-			"kristijanhusak/vim-dadbod-completion",
-			ft = { "sql", "mysol", "plsql" },
-			config = function()
-				require("cfg.languages.sql")
-			end,
-		},
+		-- {
+		-- 	"kristijanhusak/vim-dadbod-completion",
+		-- 	ft = { "sql", "mysol", "plsql" },
+		-- 	config = function()
+		-- 		require("cmp").setup.buffer({
+		-- 			sources = { {
+		-- 				name = "vim-dadbod-completion",
+		-- 			} },
+		-- 		})
+		-- 	end,
+		-- },
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "make",
 			cond = vim.fn.executable("make") == 1,
 		},
-		{
-			"folke/trouble.nvim",
-			dependencies = "nvim-tree/nvim-web-devicons",
-		},
 	},
-	opts = function()
+
+	opts = function(_, opts)
 		local cmp = require("cmp")
 
 		cmp.setup.filetype("gitcommit", {
@@ -71,5 +55,7 @@ return {
 				{ name = "cmdline" },
 			}),
 		})
+
+		return opts
 	end,
 }

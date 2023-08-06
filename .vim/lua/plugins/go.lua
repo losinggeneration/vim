@@ -1,6 +1,5 @@
 return {
 	"jose-elias-alvarez/null-ls.nvim",
-	enabled = false,
 	opts = function(_, opts)
 		if type(opts.sources) == "table" then
 			local nls = require("null-ls")
@@ -13,33 +12,36 @@ return {
 				end
 			end
 		end
+
+		return opts
 	end,
 	{
 		"ray-x/go.nvim",
 		ft = { "go", "gomod", "gowork", "gotmpl" },
-		config = function()
-			require("go").setup({
-				-- goimport = "gopls", -- if set to 'gopls' will use golsp format
-				-- gofmt = "gofumpt", -- if set to gopls will use golsp format
-				max_line_len = 120,
-				tag_transform = false,
-				test_dir = "",
-				comment_placeholder = " 	",
-				lsp_cfg = true, -- false: use your own lspconfig
-				--[[
-		lsp_cfg = { -- false: use your own lspconfig
-			settings = {
-				["go.buildTags"] = "integration",
-				gopls = {
-					usePlaceholders = false,
-				},
-			},
+		opts = {
+			-- goimport = "gopls", -- if set to 'gopls' will use golsp format
+			-- gofmt = "gofumpt", -- if set to gopls will use golsp format
+			max_line_len = 120,
+			tag_transform = false,
+			test_dir = "",
+			comment_placeholder = " 	",
+			lsp_cfg = true, -- false: use your own lspconfig
+			--[[
+                lsp_cfg = { -- false: use your own lspconfig
+                    settings = {
+                        ["go.buildTags"] = "integration",
+                        gopls = {
+                            usePlaceholders = false,
+                        },
+                    },
+                },
+                --]]
+			lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
+			lsp_on_attach = true, -- use on_attach from go.nvim
+			dap_debug = true,
 		},
-		--]]
-				lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
-				lsp_on_attach = true, -- use on_attach from go.nvim
-				dap_debug = true,
-			})
+		config = function(_, opts)
+			require("go").setup(opts)
 
 			-- run goimports on save & exiting insert mode
 			-- On InsertLeave might be slightly annoying because, unlike on save, it
@@ -52,22 +54,23 @@ return {
 					--require("go.format").gofmt()
 				end,
 			})
-
-			-- vim-go keys ported to go.nvim
-			vim.keymap.set("n", "<Leader>cb", ":GoBuild<cr>", { desc = "Go Build" })
-			vim.keymap.set("n", "<Leader>cf", ":GoFmt<cr>", { desc = "Go Fmt" })
-			vim.keymap.set("n", "<Leader>cl", ":GoLint<cr>", { desc = "Go Lint" })
-			vim.keymap.set("n", "<Leader>ct", ":GoTest -p<cr>", { desc = "Go Test" })
-			vim.keymap.set("n", "<Leader>ctf", ":GoTestFunc<cr>", { desc = "Func" })
-			vim.keymap.set("n", "<Leader>ctc", ":GoCoverage<cr>", { desc = "Go Coverage" })
-			vim.keymap.set("n", "<Leader>ctct", ":GoCoverage -t<cr>", { desc = "Go Coverage?" })
-			vim.keymap.set("n", "<Leader>ctcc", ":GoCoverage -R<cr>", { desc = "Go Clear Coverage" })
-			vim.keymap.set("n", "<Leader>cv", ":GoVet<cr>", { desc = "Go Vet" })
-			vim.keymap.set("n", "<Leader>cd", ":GoDoc<cr>", { desc = "Go Doc" })
-			vim.keymap.set("n", "<Leader>cr", ":GoRename<cr>", { desc = "Go Rename" })
-			vim.keymap.set("n", "<Leader>cs", ":GoImpl<cr>", { desc = "Go Impl" })
-			vim.keymap.set("n", "<Leader>cy", ":GoRun<cr>", { desc = "Go Run" })
-			vim.keymap.set("n", "<Leader>cta", ":GoAlt<cr>", { desc = "To Test" })
 		end,
+		keys = {
+			-- vim-go keys ported to go.nvim
+			{ "<Leader>cb", ":GoBuild<cr>", desc = "Go Build" },
+			{ "<Leader>cf", ":GoFmt<cr>", desc = "Go Fmt" },
+			{ "<Leader>cl", ":GoLint<cr>", desc = "Go Lint" },
+			{ "<Leader>ct", ":GoTest -p<cr>", desc = "Go Test" },
+			{ "<Leader>ctf", ":GoTestFunc<cr>", desc = "Func" },
+			{ "<Leader>ctc", ":GoCoverage<cr>", desc = "Go Coverage" },
+			{ "<Leader>ctct", ":GoCoverage -t<cr>", desc = "Go Coverage?" },
+			{ "<Leader>ctcc", ":GoCoverage -R<cr>", desc = "Go Clear Coverage" },
+			{ "<Leader>cv", ":GoVet<cr>", desc = "Go Vet" },
+			{ "<Leader>cd", ":GoDoc<cr>", desc = "Go Doc" },
+			{ "<Leader>cr", ":GoRename<cr>", desc = "Go Rename" },
+			{ "<Leader>cs", ":GoImpl<cr>", desc = "Go Impl" },
+			{ "<Leader>cy", ":GoRun<cr>", desc = "Go Run" },
+			{ "<Leader>cta", ":GoAlt<cr>", desc = "To Test" },
+		},
 	},
 }

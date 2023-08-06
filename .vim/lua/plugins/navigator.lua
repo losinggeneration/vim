@@ -7,9 +7,10 @@ return {
 			require("guihua.maps").setup()
 		end,
 	},
-	config = {
-		lsp = {
-			disable_lsp = "all",
-		},
+	opts = {
+		mason = true,
+		-- lsp = {
+		-- disable_lsp = "all",
+		-- },
 	},
 }

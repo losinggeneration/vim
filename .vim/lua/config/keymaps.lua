@@ -7,6 +7,7 @@ vim.keymap.set(
 	require("telescope.builtin").resume,
 	{ noremap = true, silent = true, desc = "Resume" }
 )
+
 vim.keymap.set("n", "<leader>nh", ":noh<cr>", { desc = "no highlight" })
 --vim.keymap.set({"n","v"}, "<tab>", "%")
 
@@ -36,11 +37,6 @@ vim.keymap.set("n", "<Leader>dab", "<Leader>vabd", { desc = "delete block" })
 
 -- Find TODO & FIXME notes
 vim.keymap.set("n", "<Leader>todo", "/c<(to(s\\|-)*do)\\|(fix(s\\|-)*me)>/ <cr>", { desc = "go to todos" })
-
--- Map for reformatting a file
---vim.keymap.set("", "<Leader>rf", "mzgg=G`z<CR>")
-vim.keymap.set("n", "<Leader>rf", ":Autoformat<CR>", { remap = true, desc = "reformat file" })
-vim.keymap.set("n", "<Leader>rfl", ":AutoformatLine<CR>", { desc = "reformat line" })
 
 -- reformat json files with jq
 vim.keymap.set("n", "<Leader>jq", "GVgg :!jq .<cr>", { desc = "reformat json" })
