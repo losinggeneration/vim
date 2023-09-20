@@ -24,6 +24,7 @@ return {
 	{
 		"ray-x/go.nvim",
 		ft = { "go", "gomod", "gowork", "gotmpl" },
+		event = { "CmdlineEnter" },
 		opts = {
 			-- goimport = "gopls", -- if set to 'gopls' will use golsp format
 			-- gofmt = "gofumpt", -- if set to gopls will use golsp format
@@ -31,7 +32,7 @@ return {
 			tag_transform = false,
 			test_dir = "",
 			comment_placeholder = " 	",
-			lsp_cfg = true, -- false: use your own lspconfig
+			lsp_cfg = false, -- false: use your own lspconfig
 			--[[
                 lsp_cfg = { -- false: use your own lspconfig
                     settings = {
@@ -42,8 +43,8 @@ return {
                     },
                 },
                 --]]
-			lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
-			lsp_on_attach = true, -- use on_attach from go.nvim
+			-- lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
+			-- lsp_on_attach = true, -- use on_attach from go.nvim
 			dap_debug = true,
 		},
 		config = function(_, opts)
@@ -55,8 +56,8 @@ return {
 			vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 				pattern = "<buffer>",
 				callback = function()
-					require("go.format").goimport()
-					require("go.format").org_imports(500)
+					-- require("go.format").goimport()
+					require("go.format").org_imports()
 					--require("go.format").gofmt()
 				end,
 			})
