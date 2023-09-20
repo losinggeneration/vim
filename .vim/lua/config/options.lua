@@ -60,33 +60,6 @@ vim.o.incsearch = true
 vim.o.showmatch = true
 vim.o.hlsearch = true
 
--- Map Esc to exit insert mode in the terminal
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
-vim.keymap.set("t", "jj", "<C-\\><C-n>")
-
--- resize shortcuts
-vim.keymap.set("n", "<Leader>-", [[:exe "resize " . (winheight(0) * 1/2)<CR>]], { silent = true, desc = "resize -" })
-vim.keymap.set("n", "<Leader>+", [[:exe "resize " . (winheight(0) * 3/2)<CR>]], { silent = true, desc = "resize +" })
-
--- Map ctrl-[hjkl] to change windows
-vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
-
--- Map W-[left,right,up,down] to change windows
-vim.keymap.set("n", "<M-Left>", "<C-w>h", { silent = true })
-vim.keymap.set("n", "<M-Right>", "<C-w>l", { silent = true })
-vim.keymap.set("n", "<M-Up>", "<C-w>k", { silent = true })
-vim.keymap.set("n", "<M-Down>", "<C-w>j", { silent = true })
-
--- Map vv to vertical split
-vim.keymap.set("n", "vv", "<C-w>v", { silent = true })
--- Map vs to horizontal split
-vim.keymap.set("n", "vs", "<C-w>s", { silent = true })
--- Map Q to :q
-vim.keymap.set("n", "Q", ":q<cr>", { silent = true })
-
 require("config.indention")
 require("config.spaces")
 require("config.visual-at")
