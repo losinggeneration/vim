@@ -45,3 +45,7 @@ require("lazy").setup({
 		},
 	},
 })
+
+require("config.indention")
+require("config.spaces")
+require("config.visual-at")

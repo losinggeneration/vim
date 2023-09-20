@@ -60,7 +60,4 @@ vim.o.incsearch = true
 vim.o.showmatch = true
 vim.o.hlsearch = true
 
-require("config.indention")
-require("config.spaces")
-require("config.visual-at")
 require("config.neovide")
