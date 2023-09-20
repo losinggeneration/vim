@@ -1,12 +1,16 @@
 return {
 	"jose-elias-alvarez/null-ls.nvim",
+
 	opts = function(_, opts)
+		-- increase the timeout a bit
+		opts.format = opts.format or {
+			timeout_ms = 1000,
+		}
+
 		if type(opts.sources) == "table" then
 			local nls = require("null-ls")
-			vim.list_extend(opts.sources, {
-				nls.builtins.formatting.goimports, -- Go update imports
-			})
 			for index, value in ipairs(opts.sources) do
+				-- remove this, it fucks up the import groupings
 				if value == nls.builtins.formatting.goimports_reviser then
 					table.remove(opts.sources, index)
 				end
