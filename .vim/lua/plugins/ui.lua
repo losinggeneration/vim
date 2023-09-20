@@ -2,9 +2,13 @@
 return {
 	{
 		"vim-ctrlspace/vim-ctrlspace",
+		enabled = false,
 		cmd = "CtrlSpace",
+		config = function()
+			vim.g.CtrlSpaceSetDefaultMapping = 0
+		end,
 		keys = {
-			{ "<leader>u<space>", [[:CtrlSpace<CR>]], desc = "CtrlSpace" },
+			{ "<leader><space>", [[:CtrlSpace<CR>]], desc = "CtrlSpace" },
 		},
 	},
 	{
