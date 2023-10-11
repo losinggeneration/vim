@@ -1,7 +1,7 @@
 -- editing improvements
 return {
 	"ciaranm/securemodelines",
-	"christoomey/vim-sort-motion",
+	"sQVe/sort.nvim",
 	"tpope/vim-abolish",
 	"tpope/vim-repeat",
 	"tpope/vim-sensible",
@@ -27,10 +27,15 @@ return {
 
 	-- coding improvments
 	{
+		"numToStr/Comment.nvim",
+		opts = {},
+		lazy = false,
+	},
+	{
 		"vim-autoformat/vim-autoformat",
 		keys = {
-			{ "<Leader>rf", ":Autoformat<CR>", remap = true },
-			{ "<Leader>rfl", ":AutoformatLine<CR>" },
+			-- { "<Leader>rf", ":Autoformat<CR>", remap = true },
+			-- { "<Leader>rfl", ":AutoformatLine<CR>" },
 		},
 	},
 	{
