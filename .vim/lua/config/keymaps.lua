@@ -36,38 +36,35 @@ vim.keymap.set(
 	{ noremap = true, silent = true, desc = "Resume" }
 )
 
-vim.keymap.set("n", "<leader>nh", ":noh<cr>", { desc = "no highlight" })
+vim.keymap.set("n", "<leader>uh", ":noh<cr>", { desc = "no highlight" })
 --vim.keymap.set({"n","v"}, "<tab>", "%")
 
 -- quick switch to the files cwd
-vim.keymap.set("n", "<leader>fcd", ":cd %:p:h<cr>", { desc = "change to file current directory" })
+vim.keymap.set("n", "<leader>fd", ":cd %:p:h<cr>", { desc = "change to file current directory" })
 -- vim.keymap.set("n", "<leader>lcd", ":lcd %:p:h<cr>")
 
 -- These only work with C like languages and only if the closing } of a
 -- function is on the first column of a new line
 -- select the entire function
-vim.keymap.set("n", "<Leader>vaf", "][[{V$]}", { desc = "select function" })
+-- vim.keymap.set("n", "<Leader>vaf", "][[{V$]}", { desc = "select function" })
 
 -- yank an entire function
-vim.keymap.set("n", "<Leader>yaf", "<Leader>vafy", { desc = "yank function" })
+-- vim.keymap.set("n", "<Leader>yaf", "<Leader>vafy", { desc = "yank function" })
 
 -- delete an entire function
-vim.keymap.set("n", "<Leader>daf", "<Leader>vafd", { desc = "delete function" })
+-- vim.keymap.set("n", "<Leader>daf", "<Leader>vafd", { desc = "delete function" })
 
 -- select a block
-vim.keymap.set("n", "<Leader>vab", "[{V$]}", { desc = "select block" })
+-- vim.keymap.set("n", "<Leader>vab", "[{V$]}", { desc = "select block" })
 
 -- yank a block
-vim.keymap.set("n", "<Leader>yab", "<Leader>vaby", { desc = "yank block" })
+-- vim.keymap.set("n", "<Leader>yab", "<Leader>vaby", { desc = "yank block" })
 
 -- delete a block
-vim.keymap.set("n", "<Leader>dab", "<Leader>vabd", { desc = "delete block" })
+-- vim.keymap.set("n", "<Leader>dab", "<Leader>vabd", { desc = "delete block" })
 
 -- Find TODO & FIXME notes
-vim.keymap.set("n", "<Leader>todo", "/c<(to(s\\|-)*do)\\|(fix(s\\|-)*me)>/ <cr>", { desc = "go to todos" })
-
--- reformat json files with jq
-vim.keymap.set("n", "<Leader>jq", "GVgg :!jq .<cr>", { desc = "reformat json" })
+-- vim.keymap.set("n", "<Leader>xo", "/c<(to(s\\|-)*do)\\|(fix(s\\|-)*me)>/ <cr>", { desc = "go to todos" })
 
 -- Redirect the output of a Vim or external command into a scratch buffer
 --function! Redir(cmd) abort
