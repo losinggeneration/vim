@@ -24,15 +24,6 @@ return {
 			{ "<leader>uu", vim.cmd.UndotreeToggle, desc = "UndoTree Toggle" },
 		},
 	},
-	{
-		"tpope/vim-sleuth",
-		-- This can cause some issues with file types not respecting the
-		-- desired global indentation. This also is what causes the
-		-- initial text when nvim is open to go away without input.
-		-- Because this also messes with the filetype, it can also
-		-- cause color scheme colors to not load correctly.
-		enabled = false,
-	},
 
 	-- coding improvments
 	{
