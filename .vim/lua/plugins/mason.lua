@@ -40,9 +40,9 @@ return {
 	config = function(_, opts)
 		local mason_lspconfig = require("mason-lspconfig")
 
-		mason_lspconfig.setup({
+		mason_lspconfig.setup(vim.tbl_extend("force", opts, {
 			ensure_installed = vim.tbl_keys(servers),
-		})
+		}))
 
 		servers.yamlls = {
 			yaml = {
@@ -60,69 +60,94 @@ return {
 		-- LSP settings.
 		--  This function gets run when an LSP connects to a particular buffer.
 		local on_attach = function(_, bufnr)
-			--print("on_attach")
-			local nmap = function(keys, func, desc)
-				if desc then
-					desc = "LSP: " .. desc
-				end
+			local nmap = function(keys)
+				for _, k in ipairs(keys) do
+					k.desc = k.desc or k[3]
+					if k.desc then
+						k.desc = "LSP: " .. k.desc
+					end
 
-				vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+					local key, func = k[1], k[2]
+
+					vim.keymap.set("n", key, func, { buffer = bufnr, desc = k.desc })
+				end
 			end
 
 			vim.b.autoformat = true
 
-			-- Diagnostic keymaps
-			nmap("[d", function()
-				if not vim.diagnostic.is_disabled(0) and vim.diagnostic.get_prev() ~= nil then
-					vim.diagnostic.goto_prev()
-				end
-			end)
-			nmap("]d", function()
-				if not vim.diagnostic.is_disabled(0) and vim.diagnostic.get_next() ~= nil then
-					vim.diagnostic.goto_next()
-				end
-			end)
+			nmap({
+				-- Diagnostic keymaps
+				{
+					"[d",
+					function()
+						if not vim.diagnostic.is_disabled(0) and vim.diagnostic.get_prev() ~= nil then
+							vim.diagnostic.goto_prev()
+						end
+					end,
+					"previous issue",
+				},
+				{
+					"]d",
+					function()
+						if not vim.diagnostic.is_disabled(0) and vim.diagnostic.get_next() ~= nil then
+							vim.diagnostic.goto_next()
+						end
+					end,
+					"next issue",
+				},
 
-			nmap("<leader>e", vim.diagnostic.open_float)
-			nmap("<leader>q", vim.diagnostic.setloclist)
-			nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-			nmap("<Leader>rf", vim.lsp.buf.format, "[R]e[f]ormat file")
-			nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+				{ "<leader>ce", vim.diagnostic.open_float, "Diagnostic Float" },
+				{ "<leader>cq", vim.diagnostic.setloclist, "Diagnostic SetLoc" },
+				{ "<leader>crn", vim.lsp.buf.rename, "[R]e[n]ame" },
+				{ "<Leader>crf", vim.lsp.buf.format, "[R]e[f]ormat file" },
+				{ "<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction" },
 
-			nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-			nmap(
-				"gr",
-				wrap(require("telescope.builtin").lsp_references, { jump_type = "never" }),
-				"[G]oto [R]eferences"
-			)
-			nmap(
-				"gi",
-				wrap(require("telescope.builtin").lsp_implementations, { jump_type = "never" }),
-				"[G]oto [I]mplementation"
-			)
-			nmap(
-				"td",
-				wrap(require("telescope.builtin").lsp_type_definitions, { jump_type = "never" }),
-				"[T]ype [D]efinition"
-			)
-			nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-			nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-			nmap("<leader>fd", wrap(require("telescope.builtin").diagnostics, { buffnr = 0 }), "[F]ile [D]iagnostics")
-			nmap("<leader>ed", function()
-				require("telescope.builtin").diagnostics({ severity = "error" })
-			end, "[E]rror [D]iagnostics")
+				{ "gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition" },
+				{
+					"gr",
+					wrap(require("telescope.builtin").lsp_references, { jump_type = "never" }),
+					"[G]oto [R]eferences",
+				},
+				{
+					"gi",
+					wrap(require("telescope.builtin").lsp_implementations, { jump_type = "never" }),
+					"[G]oto [I]mplementation",
+				},
+				{
+					"td",
+					wrap(require("telescope.builtin").lsp_type_definitions, { jump_type = "never" }),
+					"[T]ype [D]efinition",
+				},
+				{ "<leader>cy", require("telescope.builtin").lsp_document_symbols, "Document S[y]mbols" },
+				{ "<leader>cw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace Symbols" },
+				{ "<leader>xf", wrap(require("telescope.builtin").diagnostics, { buffnr = 0 }), "[F]ile Diagnostics" },
+				{
+					"<leader>xe",
+					function()
+						require("telescope.builtin").diagnostics({ severity = "error" })
+					end,
+					"[E]rror Diagnostics",
+				},
 
-			-- See `:help K` for why this keymap
-			-- nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-			nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+				-- See `:help K` for why this keymap
+				-- nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+				{ "<C-k>", vim.lsp.buf.signature_help, "Signature Documentation" },
 
-			-- Lesser used LSP functionality
-			nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-			nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
-			nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
-			nmap("<leader>wl", function()
-				print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-			end, "[W]orkspace [L]ist Folders")
+				-- Lesser used LSP functionality
+				{ "gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration" },
+				{ "<leader>lwa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder" },
+				{ "<leader>lwr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder" },
+				{
+					"<leader>lwl",
+					function()
+						print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+					end,
+					"[W]orkspace [L]ist Folders",
+				},
+				{ "<leader>ls", "<cmd>LspStart<CR>", "[S]tart" },
+				{ "<leader>lp", "<cmd>LspStop<CR>", "Sto[p]" },
+				{ "<leader>lr", "<cmd>LspRestart<CR>", "[R]estart" },
+			})
 
 			-- Create a command `:Format` local to the LSP buffer
 			vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
