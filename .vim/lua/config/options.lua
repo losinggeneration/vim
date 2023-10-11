@@ -10,6 +10,7 @@ vim.o.modelines = 0
 
 -- Leader for things like NERDCommenter
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
