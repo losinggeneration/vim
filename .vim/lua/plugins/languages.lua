@@ -5,11 +5,25 @@ return {
 	{
 		"leafo/moonscript-vim",
 		ft = "moon",
-		keys = {
-			{ "<Leader>mc", [[:!moonc "%:p"<cr>]] },
-			{ "<Leader>mb", [[:!moonc "%:p:h"<cr>]] },
-			{ "<Leader>ml", [[:!moonc -l "%:p"<cr>]] },
-		},
+		config = function(_, opts)
+			local nmap = function(keys)
+				for _, k in ipairs(keys) do
+					if k.desc then
+						k.desc = "Moon: " .. k.desc
+					end
+
+					local key, func = k[1], k[2]
+
+					vim.keymap.set("n", key, func, { desc = k.desc })
+				end
+			end
+
+			nmap({
+				{ "<Leader>mc", [[:!moonc "%:p"<cr>]], desc = "compile" },
+				{ "<Leader>mb", [[:!moonc "%:p:h"<cr>]], desc = "build" },
+				{ "<Leader>ml", [[:!moonc -l "%:p"<cr>]], desc = "lint" },
+			})
+		end,
 	},
 
 	-- Mostly personal project languages
@@ -29,7 +43,7 @@ return {
 	{ "tpope/vim-dadbod" },
 	{ "chrisbra/csv.vim", ft = "csv" },
 
-	-- { "mfussenegger/nvim-dap" }, -- Debug adapter protocol
+	-- { "mfussenegger/nvim-dap", config = function() end }, -- Debug adapter protocol
 
 	-- Python
 	{
@@ -51,7 +65,14 @@ return {
 	},
 
 	{ "fatih/vim-nginx", ft = "nginx" },
-	{ "elzr/vim-json", ft = "json" },
+	{
+		"elzr/vim-json",
+		ft = "json",
+		config = function(_, opts)
+			-- reformat json files with jq
+			vim.keymap.set("n", "<Leader>jq", "GVgg :!jq .<cr>", { desc = "reformat json" })
+		end,
+	},
 	{ "cespare/vim-toml", ft = "toml" },
 	{ "maralla/vim-toml-enhance", ft = "toml" },
 	{
@@ -65,11 +86,25 @@ return {
 		"iamcco/markdown-preview.nvim",
 		build = "cd app && yarn install",
 		ft = { "md", "markdown" },
-		keys = {
-			{ "<C-s>", "<Plug>MarkdownPreview" },
-			{ "<M-s>", "<Plug>MarkdownPreviewStop" },
-			{ "<C-p>", "<Plug>MarkdownPreviewToggle" },
-		},
+		config = function(_, opts)
+			local nmap = function(keys)
+				for _, k in ipairs(keys) do
+					if k.desc then
+						k.desc = "Markdown: " .. k.desc
+					end
+
+					local key, func = k[1], k[2]
+
+					vim.keymap.set("n", key, func, { desc = k.desc })
+				end
+			end
+
+			nmap({
+				{ "<leader>mp", "<Plug>MarkdownPreview", desc = "preview" },
+				{ "<leader>ms", "<Plug>MarkdownPreviewStop", desc = "stop" },
+				{ "<leader>mt", "<Plug>MarkdownPreviewToggle", desc = "toggle" },
+			})
+		end,
 	},
 
 	-- Typescript
@@ -97,11 +132,25 @@ return {
 	{
 		"ElmCast/elm-vim",
 		ft = "elm",
-		keys = {
-			{ "<leader>el", ":ElmEvalLine<CR>" },
-			{ mode = "v", "<leader>es", ":<C-u>ElmEvalSelection<CR>" },
-			{ "<leader>em", ":ElmMakeCurrentFile<CR>" },
-		},
+		config = function(_, opts)
+			local nmap = function(keys)
+				for _, k in ipairs(keys) do
+					if k.desc then
+						k.desc = "Go: " .. k.desc
+					end
+
+					local key, func = k[1], k[2]
+
+					vim.keymap.set("n", key, func, { desc = k.desc })
+				end
+			end
+
+			nmap({
+				{ "<leader>cel", ":ElmEvalLine<CR>" },
+				{ mode = "v", "<leader>ces", ":<C-u>ElmEvalSelection<CR>" },
+				{ "<leader>cem", ":ElmMakeCurrentFile<CR>" },
+			})
+		end,
 	},
 	-- Reason
 	-- { "reasonml-editor/vim-reason-plus", ft = "reason" },
