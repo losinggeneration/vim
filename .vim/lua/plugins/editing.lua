@@ -25,6 +25,13 @@ return {
 		},
 	},
 
+	{
+		"christoomey/vim-tmux-navigator",
+		config = function()
+			vim.keymap.set("n", "C-h", ":<C-U>TmuxNavigateLeft<cr>", { silent = true })
+		end,
+	},
+
 	-- coding improvments
 	{
 		"numToStr/Comment.nvim",
