@@ -32,6 +32,35 @@ return {
 		end,
 	},
 
+	-- LLM
+	{
+		{
+			"David-Kunz/gen.nvim",
+			config = function()
+				local gen = require("gen")
+				gen.prompts["Enhance_Comment"] = {
+					prompt = "Elaborate the comment text as a comment. Only ouput the result as a valid comment. Do not elaborate code about the comment. This is for the comment only. This should be in the syntax of $filetype:\n$text",
+					replace = true,
+				}
+
+				gen.prompts["Add_Comment"] = {
+					prompt = "Add comments for the following code. The response should include all the original code with comments. Do not elaborate on or otherwise change the provided code. The code provide is in the syntax of $filetype:\n$text",
+					replace = true,
+				}
+
+				gen.prompts["Function_Comment"] = {
+					prompt = "Add a top level comment for the following function declaration. The response should only be the comment for the function. The code provide is in the syntax of $filetype:\n$text",
+				}
+			end,
+			keys = {
+				{ "<Leader>]", ":Gen<cr>", mode = "v", desc = "Gen.ai" },
+				{ "<Leader>]", ":Gen<cr>", desc = "Gen.ai" },
+			},
+		},
+
+		"marco-souza/ollero.nvim",
+	},
+
 	-- coding improvments
 	{
 		"numToStr/Comment.nvim",
