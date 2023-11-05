@@ -1,11 +1,40 @@
 return {
+	{
+		"creativenull/efmls-configs-nvim",
+		version = "v1.1.1", -- version is optional, but recommended
+		-- dependencies = { "neovim/nvim-lspconfig", "folke/neoconf.nvim" },
+		lazy = true,
+		config = function(_, opts)
+			local languages = require("efmls-configs.defaults").languages()
+			local efmls_config = {
+				filetypes = vim.tbl_keys(languages),
+				settings = {
+					rootMarkers = { ".git/" },
+					languages = languages,
+				},
+				init_options = {
+					documentFormatting = true,
+					documentRangeFormatting = true,
+				},
+			}
+
+			require("lspconfig").efm.setup(vim.tbl_extend("force", efmls_config, opts))
+		end,
+	},
+	-- {
+	-- 	"neovim/nvim-lspconfig",
+	-- 	config = function(_, opts)
+	-- 		opts.servers = {}
+	-- 		return opts
+	-- 	end,
+	-- },
 	{ "ollykel/v-vim", ft = "vlang" },
 	{ "ziglang/zig.vim", ft = "zig" },
 	{ "teal-language/vim-teal", ft = "teal" },
 	{
 		"leafo/moonscript-vim",
 		ft = "moon",
-		config = function(_, opts)
+		config = function()
 			local nmap = function(keys)
 				for _, k in ipairs(keys) do
 					if k.desc then
