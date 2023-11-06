@@ -89,14 +89,14 @@ return {
 			-- run goimports on save & exiting insert mode
 			-- On InsertLeave might be slightly annoying because, unlike on save, it
 			-- doesn't preseve the cursor location
-			vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-				pattern = "<buffer>",
-				callback = function()
-					-- require("go.format").goimport()
-					require("go.format").org_imports()
-					--require("go.format").gofmt()
-				end,
-			})
+			-- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+			-- 	pattern = "<buffer>",
+			-- 	callback = function()
+			-- 		-- require("go.format").goimport()
+			-- 		require("go.format").org_imports()
+			-- 		--require("go.format").gofmt()
+			-- 	end,
+			-- })
 		end,
 	},
 }
