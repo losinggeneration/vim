@@ -6,7 +6,6 @@ return {
 			ensure_installed = {
 				"clangd",
 				"gopls",
-				"efm",
 				"jsonls",
 				"rust_analyzer",
 				"teal_ls",
@@ -15,13 +14,14 @@ return {
 				"lua_ls",
 			},
 		},
-		config = function(_, opts) end,
 	},
 	{
 		"williamboman/mason.nvim",
-
-		config = function(_, opts)
-			require("mason").setup(opts)
-		end,
+		opts = {
+			ensure_installed = {
+				"golangci-lint",
+				"golangci-lint-langserver",
+			},
+		},
 	},
 }
