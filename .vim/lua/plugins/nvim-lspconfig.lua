@@ -109,7 +109,6 @@ return {
 					},
 				},
 			},
-			efm = {},
 			jsonls = {},
 			rust_analyzer = {},
 			teal_ls = {},
