@@ -24,4 +24,8 @@ return {
 		"echasnovski/mini.comment",
 		enabled = false,
 	},
+	{
+		"nvimtools/none-ls.nvim",
+		enabled = false,
+	},
 }
