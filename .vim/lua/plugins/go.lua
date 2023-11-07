@@ -25,6 +25,13 @@ return {
 		"ray-x/go.nvim",
 		ft = { "go", "gomod", "gowork", "gotmpl" },
 		lazy = true,
+		dependencies = {
+			"ray-x/guihua.lua", -- GUI utils, not completions
+			build = "cd lua/fzy && make",
+			config = function()
+				require("guihua.maps").setup()
+			end,
+		},
 		-- event = { "CmdlineEnter" },
 		opts = {
 			-- goimport = "gopls", -- if set to 'gopls' will use golsp format
