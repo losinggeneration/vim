@@ -24,6 +24,15 @@ return {
 		"Shougo/neosnippet-snippets",
 		"honza/vim-snippets",
 	},
+	{
+		"stevearc/oil.nvim",
+		opts = {},
+		-- Optional dependencies
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		keys = {
+			{ "-", "<CMD>Oil<CR>", desc = "Open parent directory" },
+		},
+	},
 
 	{
 		"neovim/nvim-lspconfig", -- Automatically install LSPs to stdpath for neovim
