@@ -22,8 +22,6 @@ autocmd("Filetype", {
 		"html",
 		"ruby",
 		"eruby",
-		"yaml",
-		"yml",
 		"markdown",
 		"php",
 		"javascript",
@@ -34,6 +32,16 @@ autocmd("Filetype", {
 		"scss",
 	},
 	command = "setlocal ts=4 sts=4 sw=4 expandtab list lcs=tab:»»,trail:…",
+})
+
+-- 2 spaces
+autocmd("Filetype", {
+	group = "vimrcEx",
+	pattern = {
+		"yaml",
+		"yml",
+	},
+	command = "setlocal ts=2 sts=2 sw=2 expandtab list lcs=tab:»»,trail:…",
 })
 
 -- PEP 8
