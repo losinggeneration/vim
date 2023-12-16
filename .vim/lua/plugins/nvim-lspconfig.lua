@@ -137,8 +137,4 @@ return {
 			},
 		},
 	},
-
-	-- config = function(_, opts)
-	-- 	vim.print(opts)
-	-- end,
 }
