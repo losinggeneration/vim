@@ -19,6 +19,15 @@ return {
 		},
 	},
 	{
+		"stevearc/oil.nvim",
+		opts = {},
+		-- Optional dependencies
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		keys = {
+			{ "-", "<CMD>Oil<CR>", desc = "Open parent directory" },
+		},
+	},
+	{
 		"majutsushi/tagbar",
 		keys = {
 			{ "<F8>", ":TagbarToggle<CR>", desc = "Toggle TagBar", silent = true },
