@@ -1,7 +1,5 @@
 return {
 	"hrsh7th/nvim-cmp",
-	version = false,
-	event = "InsertEnter",
 	dependencies = {
 		"hrsh7th/cmp-cmdline", -- command line suggestions source
 		"hrsh7th/cmp-omni", -- Vim's omnifunc source
@@ -20,11 +18,11 @@ return {
 		-- 		})
 		-- 	end,
 		-- },
-		{
-			"nvim-telescope/telescope-fzf-native.nvim",
-			build = "make",
-			cond = vim.fn.executable("make") == 1,
-		},
+		-- {
+		-- 	"nvim-telescope/telescope-fzf-native.nvim",
+		-- 	build = "make",
+		-- 	cond = vim.fn.executable("make") == 1,
+		-- },
 	},
 
 	opts = function(_, opts)
