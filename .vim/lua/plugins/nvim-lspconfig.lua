@@ -5,6 +5,8 @@ local wrap = function(fn, ...)
 	end
 end
 
+-- vim.lsp.set_log_level("debug")
+
 return {
 	"neovim/nvim-lspconfig",
 
@@ -114,6 +116,22 @@ return {
 			teal_ls = {},
 			tsserver = {},
 			zls = {},
+			ols = {
+				settings = {
+					collections = {
+						{ name = "core", path = "/home/harley/Source/languages/odin/Odin/core" },
+					},
+					enable_semantic_tokens = true,
+					enable_document_symbols = true,
+					enable_format = true,
+					enable_hover = true,
+					enable_procedure_context = true,
+					enable_snippets = true,
+					enable_inlay_hints = true,
+					enable_references = true,
+					verbose = false,
+				},
+			},
 			lua_ls = {
 				settings = {
 					Lua = {
