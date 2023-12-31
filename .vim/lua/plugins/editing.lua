@@ -58,7 +58,13 @@ return {
 			},
 		},
 
-		"marco-souza/ollero.nvim",
+		{
+			"marco-souza/ollero.nvim",
+			dependencies = {
+				"nvim-telescope/telescope-ui-select.nvim",
+			},
+			config = true,
+		},
 	},
 
 	-- coding improvments
