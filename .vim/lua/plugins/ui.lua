@@ -1,3 +1,7 @@
+if vim.g.disable_lazy_plugins == true then
+	return {}
+end
+
 -- UI addition
 return {
 	{

@@ -61,6 +61,9 @@ vim.o.incsearch = true
 vim.o.showmatch = true
 vim.o.hlsearch = true
 
+-- disable most plugins, leaving Lazy & some color schemes
+-- vim.g.disable_lazy_plugins = true
+
 require("config.gui")
 require("config.indention")
 require("config.spaces")

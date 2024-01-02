@@ -1,3 +1,7 @@
+if vim.g.disable_lazy_plugins == true then
+	return {}
+end
+
 local wrap = function(fn, ...)
 	local arg = ...
 	return function()
@@ -99,6 +103,8 @@ return {
 		keys[#keys + 1] = { "<leader>ls", "<cmd>LspStart<CR>", desc = "LSP: [S]tart" }
 		keys[#keys + 1] = { "<leader>lp", "<cmd>LspStop<CR>", desc = "LSP: Sto[p]" }
 		keys[#keys + 1] = { "<leader>lr", "<cmd>LspRestart<CR>", desc = "LSP: [R]estart" }
+		keys[#keys + 1] =
+			{ "<leader>sx", require("telescope.builtin").resume, noremap = true, silent = true, desc = "Resume" }
 	end,
 
 	opts = {

@@ -29,13 +29,6 @@ vim.keymap.set("n", "vs", "<C-w>s", { silent = true })
 -- Map Q to :q
 vim.keymap.set("n", "Q", ":q<cr>", { silent = true })
 
-vim.keymap.set(
-	"n",
-	"<leader>sx",
-	require("telescope.builtin").resume,
-	{ noremap = true, silent = true, desc = "Resume" }
-)
-
 vim.keymap.set("n", "<leader>uh", ":noh<cr>", { desc = "no highlight" })
 --vim.keymap.set({"n","v"}, "<tab>", "%")
 
