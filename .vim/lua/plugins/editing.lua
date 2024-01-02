@@ -1,5 +1,16 @@
 -- editing improvements
 return {
+	{
+		"vim-illuminate",
+		opts = {
+			providers = { "lsp", "treesitter" },
+			delay = 500,
+			large_file_cutoff = 1500,
+			large_file_overrides = {
+				providers = { "lsp" },
+			},
+		},
+	},
 	"ciaranm/securemodelines",
 	"sQVe/sort.nvim",
 	"tpope/vim-abolish",
