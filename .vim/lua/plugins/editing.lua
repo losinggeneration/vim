@@ -8,7 +8,7 @@ return {
 		"vim-illuminate",
 		opts = {
 			providers = { "lsp", "treesitter" },
-			delay = 500,
+			delay = 100,
 			large_file_cutoff = 1500,
 			large_file_overrides = {
 				providers = { "lsp" },
