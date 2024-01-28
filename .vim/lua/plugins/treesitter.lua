@@ -39,5 +39,16 @@ return {
 			"zig",
 		},
 		auto_install = true,
+
+		textobjects = {
+			enable = true,
+			lsp_interop = {
+				enable = true,
+				peek_definition_code = {
+					["<leader>ck"] = "@function.outer",
+					["<leader>cK"] = "@class.outer",
+				},
+			},
+		},
 	},
 }
