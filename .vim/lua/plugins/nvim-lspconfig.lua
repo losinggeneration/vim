@@ -126,6 +126,7 @@ return {
 				settings = {
 					collections = {
 						{ name = "core", path = "/home/harley/Source/languages/odin/Odin/core" },
+						{ name = "shared", path = "/home/harley/Source/languages/odin/Odin/shared" },
 						{ name = "vendor", path = "/home/harley/Source/languages/odin/Odin/vendor" },
 					},
 					enable_semantic_tokens = true,
