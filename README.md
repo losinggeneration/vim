@@ -1,24 +1,18 @@
-# Vim configuration
+# Neovim configuration
 
-My personal Vim settings. A lot (but not all) assumes Neovim. Really, it's
-basically just code completion that will break without. Some plugins also
-require a fairly new version of Vim. I believe the default OS X Sierra
-bundled Vim isn't isn't new enough (as an example.)
+My personal Neovim settings using LazyVim to cut down on the amount of
+configuration I have to manually write/maintain. 
 
 # Requirements
 
-* Neovim v0.7.0+ is mostly what I've tested with.
+* Neovim v0.9.0+ is mostly what I've tested with.
 * Git
 
 # Install
 
-This is needed for both the stripped down Vim as well as Neovim.
-
 ```shell
 git clone https://github.com/losinggeneration/vim.git ~/.vim.git
 ln -s ~/.vim.git/.vim ~/
-ln -s ~/.vim.git/.vimrc ~/
-ln -s ~/.vim.git/.gvimrc ~/
 ```
 
 ## Neovim initial setup
@@ -33,29 +27,16 @@ pip install neovim
 pip3 install neovim
 ```
 
-## Install Vim Plugins
-
-```shell
-vim +UpdateRemotePlugins +PlugInstall +qall
-```
-
-## Install Neovim Plugins
-
-```shell
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-```
+Running nvim for the first time should go through and download all plugins.
 
 # Features
 
-* Per-language configuration & loading via `local`
-  [plugin](.vim/local/plugin/languages.vim)
-* Helpers to [select, copy, & delete](.vim/local/plugin/helpers.vim) C-style
-  code blocks & functions.
-* Helper to [trim whitespace](.vim/local/plugin/spaces.vim) line problems.
-* Helper to change [current working directory](.vim/local/plugin/dir.vim).
-* Makes the cmdline height [taller](.vim/local/plugin/echodoc.vim) to allow
-  function declarations to correctly show up there.
-* Window movement [helpers](.vim/local/plugin/window.vim).
-* Run macros against a [visual block](.vim/local/plugin/visual-at.vim).
-* [Work around](.vim/local/plugin/nvim.vim) for some weird behavior in nvim
-  front-ends.
+* Additional plugins & additional configuration. Such as peek_definition to
+  treesitter-textobjects to have a preview popup of the code definition.
+  * Lots of quality of life plugins, such as oil.neovim
+* Switched color scheme to gruvbox
+* Option to quickly disable all (as of this writing) LazyVim plugins. This can
+  be useful for troubleshooting an issue with plugins. For instance, a short
+  time ago, vim-illuminate was having serious issues with medium sized and
+  larger files. Using this, I was more easily able to narrow that down.
+* Bettor go.nvim configuration
