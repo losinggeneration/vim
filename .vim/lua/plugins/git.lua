@@ -1,4 +1,4 @@
-if vim.g.disable_lazy_plugins == true then
+if vim.g.disable_extra_plugins == true then
 	return {}
 end
 

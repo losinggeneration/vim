@@ -63,6 +63,7 @@ vim.o.hlsearch = true
 
 -- disable most plugins, leaving Lazy & some color schemes
 -- vim.g.disable_lazy_plugins = true
+-- vim.g.disable_extra_plugins = vim.g.disable_lazy_plugins or true
 
 require("config.gui")
 require("config.indention")
