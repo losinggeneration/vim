@@ -39,4 +39,4 @@ Running nvim for the first time should go through and download all plugins.
   be useful for troubleshooting an issue with plugins. For instance, a short
   time ago, vim-illuminate was having serious issues with medium sized and
   larger files. Using this, I was more easily able to narrow that down.
-* Bettor go.nvim configuration
+* go.nvim configuration for my usage.
