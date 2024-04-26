@@ -18,6 +18,7 @@ autocmd("FileType", { group = "vimrcEx", pattern = { "text" }, command = "setloc
 autocmd("Filetype", {
 	group = "vimrcEx",
 	pattern = {
+		"ada",
 		"sh",
 		"html",
 		"ruby",
