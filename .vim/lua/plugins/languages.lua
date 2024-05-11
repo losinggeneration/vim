@@ -49,6 +49,8 @@ return {
 	{ "chrisbra/csv.vim", ft = "csv" },
 
 	-- { "mfussenegger/nvim-dap", config = function() end }, -- Debug adapter protocol
+	-- required for nvim-dap-ui but not included elsewhere for some reason
+	"nvim-neotest/nvim-nio",
 
 	-- Python
 	{
