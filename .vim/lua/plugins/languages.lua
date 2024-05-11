@@ -36,6 +36,7 @@ return {
 	{ "jansenm/vim-cmake", ft = "cmake" },
 	{ "peterhoeg/vim-qml", ft = "qml" },
 	{ "samsaga2/vim-z80" },
+	{ "NewLunarFire/wla-vim" },
 
 	-- SQL
 	{

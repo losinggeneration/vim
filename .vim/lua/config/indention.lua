@@ -31,6 +31,7 @@ autocmd("Filetype", {
 		"moon",
 		"less",
 		"scss",
+		"wla.z80",
 	},
 	command = "setlocal ts=4 sts=4 sw=4 expandtab list lcs=tab:»»,trail:…",
 })
