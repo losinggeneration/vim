@@ -53,6 +53,7 @@ autocmd("FileType", {
 	command = "setlocal ts=4 sts=4 sw=4 textwidth=79 expandtab autoindent fileformat=unix lcs=tab:»»,trail:…",
 })
 
+-- tabs
 autocmd("Filetype", {
 	group = "vimrcEx",
 	pattern = { "go", "lua", "vim", "zsh", "jsonnet" },
