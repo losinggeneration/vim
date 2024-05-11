@@ -10,12 +10,6 @@ vim.keymap.set("t", "jj", "<C-\\><C-n>")
 vim.keymap.set("n", "<Leader>-", [[:exe "resize " . (winheight(0) * 1/2)<CR>]], { silent = true, desc = "resize -" })
 vim.keymap.set("n", "<Leader>+", [[:exe "resize " . (winheight(0) * 3/2)<CR>]], { silent = true, desc = "resize +" })
 
--- Map ctrl-[hjkl] to change windows
-vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
-
 -- Map W-[left,right,up,down] to change windows
 vim.keymap.set("n", "<M-Left>", "<C-w>h", { silent = true })
 vim.keymap.set("n", "<M-Right>", "<C-w>l", { silent = true })
