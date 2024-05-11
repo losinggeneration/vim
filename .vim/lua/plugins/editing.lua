@@ -84,14 +84,14 @@ return {
 			},
 		},
 
-		{
-			"marco-souza/ollero.nvim",
-			dependencies = {
-				"marco-souza/term.nvim",
-				"nvim-telescope/telescope-ui-select.nvim",
-			},
-			config = true,
-		},
+		-- 	{
+		-- 		"marco-souza/ollero.nvim",
+		-- 		dependencies = {
+		-- 			"marco-souza/term.nvim",
+		-- 			"nvim-telescope/telescope-ui-select.nvim",
+		-- 		},
+		-- 		config = true,
+		-- 	},
 	},
 
 	-- coding improvments
