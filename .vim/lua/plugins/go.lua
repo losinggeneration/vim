@@ -4,43 +4,15 @@ end
 
 return {
 	{
-		"nvimtools/none-ls.nvim",
-
-		opts = function(_, opts)
-			-- increase the timeout a bit
-			opts.format = opts.format or {
-				timeout_ms = 1000,
-			}
-
-			if type(opts.sources) == "table" then
-				local nls = require("null-ls")
-				for index, value in ipairs(opts.sources) do
-					-- remove this, it fucks up the import groupings
-					if value == nls.builtins.formatting.goimports_reviser then
-						table.remove(opts.sources, index)
-					end
-				end
-			end
-
-			return opts
-		end,
-	},
-	{
 		"ray-x/go.nvim",
 		ft = { "go", "gomod", "gowork", "gotmpl" },
 		lazy = true,
-		dependencies = {
-			"ray-x/guihua.lua", -- GUI utils, not completions
-			build = "cd lua/fzy && make",
-			config = function()
-				require("guihua.maps").setup()
-			end,
-		},
-		-- event = { "CmdlineEnter" },
 		opts = {
 			-- goimport = "gopls", -- if set to 'gopls' will use golsp format
 			-- gofmt = "gofumpt", -- if set to gopls will use golsp format
-			max_line_len = 120,
+			-- goimports = "gopls", -- if set to 'gopls' will use golsp format
+			gofmt = "gofumpt", -- if set to 'gopls' will use golsp format
+			-- max_line_len = 120,
 			tag_transform = false,
 			test_dir = "",
 			comment_placeholder = " 	",
@@ -50,18 +22,18 @@ return {
 			lsp_document_formatting = false,
 			lsp_cfg = false, -- false: use your own lspconfig
 			--[[
-                lsp_cfg = { -- false: use your own lspconfig
-                    settings = {
-                        ["go.buildTags"] = "integration",
-                        gopls = {
-                            usePlaceholders = false,
-                        },
-                    },
-                },
-                --]]
-			-- lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
+			lsp_cfg = { -- false: use your own lspconfig
+				settings = {
+					["go.buildTags"] = "integration",
+					gopls = {
+						usePlaceholders = false,
+					},
+				},
+			},
+			--]]
+			lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
 			-- lsp_on_attach = true, -- use on_attach from go.nvim
-			dap_debug = false,
+			dap_debug = true,
 		},
 		config = function(_, opts)
 			require("go").setup(opts)
