@@ -40,6 +40,7 @@ return {
 
 		{
 			"williamboman/mason-lspconfig.nvim",
+			dependencies = { "hrsh7th/nvim-cmp" },
 			config = function()
 				require("mason").setup()
 
@@ -188,10 +189,8 @@ return {
 					})
 				end
 
-				if completion == "cmp" then
-					local capabilities =
-						require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-				end
+				local capabilities =
+					require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 				-- automatic setup for installed servers
 				mason_lspconfig.setup_handlers({
@@ -208,63 +207,59 @@ return {
 				{
 					"tamago324/nlsp-settings.nvim",
 					--enabled = false,
-					config = function()
-						require("nlspsettings").setup({
-							config_home = vim.fn.stdpath("config") .. "/nlsp-settings",
-							local_settings_dir = ".nlsp-settings",
-							local_settings_root_markers_fallback = { ".git" },
-							append_default_schemas = true,
-							loader = "json",
-						})
-					end,
+					opts = {
+						config_home = vim.fn.stdpath("config") .. "/nlsp-settings",
+						local_settings_dir = ".nlsp-settings",
+						local_settings_root_markers_fallback = { ".git" },
+						append_default_schemas = true,
+						loader = "json",
+					},
 				},
 				{
 					"folke/neoconf.nvim",
 					enabled = false,
-					config = function()
-						require("neoconf").setup({
-							-- name of the local settings files
-							local_settings = ".neoconf.json",
-							-- name of the global settings file in your neovim config directory
-							global_settings = "neoconf.json",
-							-- import existing settinsg from other plugins
-							import = {
-								vscode = true, -- local .vscode/settings.json
-								coc = true, -- global/local coc-settings.json
-								nlsp = true, -- global/local nlsp-settings.nvim json settings
+					opts = {
+						-- name of the local settings files
+						local_settings = ".neoconf.json",
+						-- name of the global settings file in your neovim config directory
+						global_settings = "neoconf.json",
+						-- import existing settinsg from other plugins
+						import = {
+							vscode = true, -- local .vscode/settings.json
+							coc = true, -- global/local coc-settings.json
+							nlsp = true, -- global/local nlsp-settings.nvim json settings
+						},
+						-- send new configuration to lsp clients when changing json settings
+						live_reload = true,
+						-- set the filetype to jsonc for settings files, so you can use comments
+						-- make sure you have the jsonc treesitter parser installed!
+						filetype_jsonc = true,
+						plugins = {
+							-- configures lsp clients with settings in the following order:
+							-- - lua settings passed in lspconfig setup
+							-- - global json settings
+							-- - local json settings
+							lspconfig = {
+								enabled = true,
 							},
-							-- send new configuration to lsp clients when changing json settings
-							live_reload = true,
-							-- set the filetype to jsonc for settings files, so you can use comments
-							-- make sure you have the jsonc treesitter parser installed!
-							filetype_jsonc = true,
-							plugins = {
-								-- configures lsp clients with settings in the following order:
-								-- - lua settings passed in lspconfig setup
-								-- - global json settings
-								-- - local json settings
-								lspconfig = {
-									enabled = true,
-								},
-								gopls = {
-									enabled = true,
-								},
-								-- configures jsonls to get completion in .nvim.settings.json files
-								jsonls = {
-									enabled = true,
-									-- only show completion in json settings for configured lsp servers
-									configured_servers_only = true,
-								},
-								-- configures lua_ls to get completion of lspconfig server settings
-								lua_ls = {
-									-- by default, lua_ls annotations are only enabled in your neovim config directory
-									enabled_for_neovim_config = true,
-									-- explicitely enable adding annotations. mostly relevant to put in your local .nvim.settings.json file
-									enabled = true,
-								},
+							gopls = {
+								enabled = true,
 							},
-						})
-					end,
+							-- configures jsonls to get completion in .nvim.settings.json files
+							jsonls = {
+								enabled = true,
+								-- only show completion in json settings for configured lsp servers
+								configured_servers_only = true,
+							},
+							-- configures lua_ls to get completion of lspconfig server settings
+							lua_ls = {
+								-- by default, lua_ls annotations are only enabled in your neovim config directory
+								enabled_for_neovim_config = true,
+								-- explicitely enable adding annotations. mostly relevant to put in your local .nvim.settings.json file
+								enabled = true,
+							},
+						},
+					},
 				},
 			},
 		},
@@ -279,26 +274,20 @@ return {
 		{
 			"kosayoda/nvim-lightbulb",
 			dependencies = "antoinemadec/FixCursorHold.nvim",
-			config = function()
-				require("nvim-lightbulb").setup({
-					autocmd = { enabled = true },
-					-- virtual_text = { enabled = true },
-					-- float = { enabled = true },
-					status_text = { enabled = true },
-					-- number = { enabled = true },
-					-- line = { enabled = true },
-				})
-				--vim.cmd([[autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()]])
-			end,
+			opts = {
+				autocmd = { enabled = true },
+				-- virtual_text = { enabled = true },
+				-- float = { enabled = true },
+				status_text = { enabled = true },
+				-- number = { enabled = true },
+				-- line = { enabled = true },
+			},
 		},
 
 		-- Useful status updates for LSP
 		{
 			"j-hui/fidget.nvim",
 			tag = "legacy",
-			config = function()
-				require("fidget").setup()
-			end,
 		},
 	},
 
@@ -307,10 +296,10 @@ return {
 		"christoomey/vim-sort-motion",
 		{
 			"terryma/vim-expand-region",
-			config = function()
-				vim.keymap.set("v", "K", "<Plug>(expand_region_expand)")
-				vim.keymap.set("v", "J", "<Plug>(expand_region_shrink)")
-			end,
+			keys = {
+				{ "K", "<Plug>(expand_region_expand)", mode = "v" },
+				{ "J", "<Plug>(expand_region_shrink)", mode = "v" },
+			},
 		},
 		"lukas-reineke/indent-blankline.nvim",
 		"tpope/vim-abolish",
@@ -330,9 +319,9 @@ return {
 		},
 		{
 			"mbbill/undotree",
-			config = function()
-				vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
-			end,
+			keys = {
+				{ "<leader>u", vim.cmd.UndotreeToggle, desc = "Undotree" },
+			},
 		},
 		{
 			"tpope/vim-sleuth",
@@ -350,133 +339,130 @@ return {
 				local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
 				ts_update()
 			end,
-			config = function()
-				require("nvim-treesitter.configs").setup({
-					ensure_installed = {
-						"bash",
-						"c",
-						"cmake",
-						"cpp",
-						"css",
-						"diff",
-						"dockerfile",
-						"gitcommit",
-						"go",
-						"javascript",
-						"json",
-						"jsonnet",
-						"lua",
-						"nix",
-						"qmljs",
-						"rust",
-						"scheme",
-						"typescript",
-						"v",
-						"vim",
-						"zig",
+			opts = {
+				ensure_installed = {
+					"bash",
+					"c",
+					"cmake",
+					"cpp",
+					"css",
+					"diff",
+					"dockerfile",
+					"gitcommit",
+					"go",
+					"javascript",
+					"json",
+					"jsonnet",
+					"lua",
+					"nix",
+					"qmljs",
+					"rust",
+					"scheme",
+					"typescript",
+					"v",
+					"vim",
+					"zig",
+				},
+				auto_install = true,
+				incremental_selection = {
+					enable = true,
+					keymaps = {
+						-- mappings for incremental selection (visual mappings)
+						init_selection = "gnn", -- maps in normal mode to init the node/scope selection
+						node_incremental = "grn", -- increment to the upper named parent
+						scope_incremental = "grc", -- increment to the upper scope (as defined in locals.scm)
+						node_decremental = "grm", -- decrement to the previous node
 					},
-					auto_install = true,
-					incremental_selection = {
+				},
+				highlight = {
+					enable = true,
+				},
+				indent = {
+					enable = true,
+				},
+			},
+			dependencies = {
+				--"nvim-treesitter/nvim-treesitter-textobjects",
+				"theHamsta/nvim-treesitter-textobjects",
+				-- branch = "fix-go",
+				--enabled = false,
+				config = function(opts)
+					require("nvim-treesitter.configs").setup(opts)
+				end,
+				opts = {
+					textobjects = {
+						--syntax-aware textobjects
 						enable = true,
+						lookahead = true,
+						lsp_interop = {
+							enable = true,
+							peek_definition_code = {
+								["<leader>df"] = "@function.outer",
+								["<leader>dF"] = "@class.outer",
+							},
+						},
 						keymaps = {
-							-- mappings for incremental selection (visual mappings)
-							init_selection = "gnn", -- maps in normal mode to init the node/scope selection
-							node_incremental = "grn", -- increment to the upper named parent
-							scope_incremental = "grc", -- increment to the upper scope (as defined in locals.scm)
-							node_decremental = "grm", -- decrement to the previous node
+							["iL"] = {
+								-- you can define your own textobjects directly here
+								go = "(function_definition) @function",
+							},
+							-- or you use the queries from supported languages with textobjects.scm
+							["af"] = "@function.outer",
+							["if"] = "@function.inner",
+							["aC"] = "@class.outer",
+							["iC"] = "@class.inner",
+							["ac"] = "@conditional.outer",
+							["ic"] = "@conditional.inner",
+							["ae"] = "@block.outer",
+							["ie"] = "@block.inner",
+							["al"] = "@loop.outer",
+							["il"] = "@loop.inner",
+							["is"] = "@statement.inner",
+							["as"] = "@statement.outer",
+							["ad"] = "@comment.outer",
+							["am"] = "@call.outer",
+							["im"] = "@call.inner",
+						},
+						move = {
+							enable = true,
+							set_jumps = true, -- whether to set jumps in the jumplist
+							goto_next_start = {
+								["]m"] = "@class.outer",
+								["]]"] = "@function.outer",
+							},
+							goto_next_end = {
+								["]M"] = "@class.outer",
+								["]["] = "@function.outer",
+							},
+							goto_previous_start = {
+								["[m"] = "@class.outer",
+								["[["] = "@function.outer",
+							},
+							goto_previous_end = {
+								["[M"] = "@class.outer",
+								["[]"] = "@function.outer",
+							},
+						},
+						select = {
+							enable = true,
+							keymaps = {
+								-- You can use the capture groups defined in textobjects.scm
+								["af"] = "@function.outer",
+								["if"] = "@function.inner",
+								["ac"] = "@class.outer",
+								["ic"] = "@class.inner",
+							},
+						},
+						swap = {
+							enable = true,
+							swap_next = {
+								["<leader>s"] = "@parameter.inner",
+							},
+							swap_previous = {
+								["<leader>S"] = "@parameter.inner",
+							},
 						},
 					},
-					highlight = {
-						enable = true,
-					},
-					indent = {
-						enable = true,
-					},
-				})
-			end,
-			dependencies = {
-				{
-					--"nvim-treesitter/nvim-treesitter-textobjects",
-					"theHamsta/nvim-treesitter-textobjects",
-					branch = "fix-go",
-					--enabled = false,
-					config = function()
-						require("nvim-treesitter.configs").setup({
-							textobjects = {
-								--syntax-aware textobjects
-								enable = true,
-								lookahead = true,
-								lsp_interop = {
-									enable = true,
-									peek_definition_code = {
-										["<leader>df"] = "@function.outer",
-										["<leader>dF"] = "@class.outer",
-									},
-								},
-								keymaps = {
-									["iL"] = {
-										-- you can define your own textobjects directly here
-										go = "(function_definition) @function",
-									},
-									-- or you use the queries from supported languages with textobjects.scm
-									["af"] = "@function.outer",
-									["if"] = "@function.inner",
-									["aC"] = "@class.outer",
-									["iC"] = "@class.inner",
-									["ac"] = "@conditional.outer",
-									["ic"] = "@conditional.inner",
-									["ae"] = "@block.outer",
-									["ie"] = "@block.inner",
-									["al"] = "@loop.outer",
-									["il"] = "@loop.inner",
-									["is"] = "@statement.inner",
-									["as"] = "@statement.outer",
-									["ad"] = "@comment.outer",
-									["am"] = "@call.outer",
-									["im"] = "@call.inner",
-								},
-								move = {
-									enable = true,
-									set_jumps = true, -- whether to set jumps in the jumplist
-									goto_next_start = {
-										["]m"] = "@class.outer",
-										["]]"] = "@function.outer",
-									},
-									goto_next_end = {
-										["]M"] = "@class.outer",
-										["]["] = "@function.outer",
-									},
-									goto_previous_start = {
-										["[m"] = "@class.outer",
-										["[["] = "@function.outer",
-									},
-									goto_previous_end = {
-										["[M"] = "@class.outer",
-										["[]"] = "@function.outer",
-									},
-								},
-								select = {
-									enable = true,
-									keymaps = {
-										-- You can use the capture groups defined in textobjects.scm
-										["af"] = "@function.outer",
-										["if"] = "@function.inner",
-										["ac"] = "@class.outer",
-										["ic"] = "@class.inner",
-									},
-								},
-								swap = {
-									enable = true,
-									swap_next = {
-										["<leader>s"] = "@parameter.inner",
-									},
-									swap_previous = {
-										["<leader>S"] = "@parameter.inner",
-									},
-								},
-							},
-						})
-					end,
 				},
 			},
 		},
@@ -485,33 +471,23 @@ return {
 	-- UI addition
 	{
 		"vim-ctrlspace/vim-ctrlspace",
-		config = function()
-			vim.keymap.set("n", "<c-space>", [[:CtrlSpace<CR>]])
-		end,
+		keys = {
+			{ "<c-space>", [[:CtrlSpace<CR>]], desc = "CtrlSpace" },
+		},
 	},
 	{
 		"majutsushi/tagbar",
-		config = function()
-			-- Map F4 to toggle Tagbar
-			vim.keymap.set("n", "<F8>", ":TagbarToggle<CR>", { silent = true })
-			--vim.keymap.set("i", "<F8>", ":TagbarToggle<CR>")
-		end,
+		keys = {
+			{ "<F8>", ":TagbarToggle<CR>", { silent = true } },
+		},
 	},
 	--"scrooloose/nerdcommenter",
 	{
 		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
+		config = function(opts)
+			require("Comment").setup(opts)
 			local ft = require("Comment.ft")
 			ft.set("forth", { "( %s )" })
-		end,
-	},
-	{
-		"scrooloose/nerdtree",
-		enabled = false,
-		config = function()
-			-- Map F7 to toggle NERDTree
-			vim.keymap.set("n", "<F7>", ":NERDTreeToggle<CR>", { silent = true })
 		end,
 	},
 	{
@@ -531,17 +507,10 @@ return {
 		},
 	},
 
-	-- status line replacement
-	{},
-
-	--#[[
 	{
 		"folke/noice.nvim", -- experimental UI overhaul
 		enabled = false,
 		--event = "VimEnter",
-		config = function()
-			require("noice").setup()
-		end,
 		dependencies = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 			"MunifTanjim/nui.nvim",
@@ -561,18 +530,17 @@ return {
 			dependencies = {
 				"MunifTanjim/nui.nvim",
 			},
-			config = function()
-				require("pomodoro").setup({
-					time_work = 25,
-					time_break_short = 5,
-					time_break_long = 20,
-					timers_to_long_break = 4,
-				})
-			end,
+			opts = {
+				time_work = 25,
+				time_break_short = 5,
+				time_break_long = 20,
+				timers_to_long_break = 4,
+			},
 		},
 
 		{
 			"nvim-orgmode/orgmode",
+			dependencies = { "hrsh7th/nvim-cmp" },
 			--ft = "org",
 			config = function()
 				local orgmode = require("orgmode")
@@ -609,69 +577,67 @@ return {
 	{
 		{
 			"lewis6991/gitsigns.nvim",
-			config = function()
-				require("gitsigns").setup({
-					numhl = true,
-					on_attach = function(bufnr)
-						local gs = package.loaded.gitsigns
+			opts = {
+				numhl = true,
+				on_attach = function(bufnr)
+					local gs = package.loaded.gitsigns
 
-						local function map(mode, l, r, opts)
-							opts = opts or {}
-							opts.buffer = bufnr
-							vim.keymap.set(mode, l, r, opts)
+					local function map(mode, l, r, opts)
+						opts = opts or {}
+						opts.buffer = bufnr
+						vim.keymap.set(mode, l, r, opts)
+					end
+
+					-- Navigation
+					map("n", "]c", function()
+						if vim.wo.diff then
+							return "]c"
 						end
+						vim.schedule(function()
+							gs.next_hunk()
+						end)
+						return "<Ignore>"
+					end, { expr = true })
 
-						-- Navigation
-						map("n", "]c", function()
-							if vim.wo.diff then
-								return "]c"
-							end
-							vim.schedule(function()
-								gs.next_hunk()
-							end)
-							return "<Ignore>"
-						end, { expr = true })
+					map("n", "[c", function()
+						if vim.wo.diff then
+							return "[c"
+						end
+						vim.schedule(function()
+							gs.prev_hunk()
+						end)
+						return "<Ignore>"
+					end, { expr = true })
 
-						map("n", "[c", function()
-							if vim.wo.diff then
-								return "[c"
-							end
-							vim.schedule(function()
-								gs.prev_hunk()
-							end)
-							return "<Ignore>"
-						end, { expr = true })
+					-- Actions
+					map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>", { desc = "git stage hunk" })
+					map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>", { desc = "git reset hunk" })
+					map("n", "<leader>hS", gs.stage_buffer, { desc = "git stage buffer" })
+					map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "git stage hunk" })
+					map("n", "<leader>hR", gs.reset_buffer, { desc = "git reset buffer" })
+					map("n", "<leader>hp", gs.preview_hunk, { desc = "git preview hunk" })
+					map("n", "<leader>hb", function()
+						gs.blame_line({ full = true })
+					end, { desc = "git blame line" })
+					map("n", "<leader>tb", gs.toggle_current_line_blame, { desc = "git toggle current line blame" })
+					map("n", "<leader>hd", gs.diffthis, { desc = "git diff this" })
+					map("n", "<leader>hD", function()
+						gs.diffthis("~")
+					end, { desc = "" })
+					map("n", "<leader>td", gs.toggle_deleted, { desc = "git toggle deleted" })
 
-						-- Actions
-						map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>", { desc = "git stage hunk" })
-						map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>", { desc = "git reset hunk" })
-						map("n", "<leader>hS", gs.stage_buffer, { desc = "git stage buffer" })
-						map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "git stage hunk" })
-						map("n", "<leader>hR", gs.reset_buffer, { desc = "git reset buffer" })
-						map("n", "<leader>hp", gs.preview_hunk, { desc = "git preview hunk" })
-						map("n", "<leader>hb", function()
-							gs.blame_line({ full = true })
-						end, { desc = "git blame line" })
-						map("n", "<leader>tb", gs.toggle_current_line_blame, { desc = "git toggle current line blame" })
-						map("n", "<leader>hd", gs.diffthis, { desc = "git diff this" })
-						map("n", "<leader>hD", function()
-							gs.diffthis("~")
-						end, { desc = "" })
-						map("n", "<leader>td", gs.toggle_deleted, { desc = "git toggle deleted" })
-
-						-- Text object
-						map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
-					end,
-				})
-			end,
+					-- Text object
+					map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+				end,
+			},
 		},
 		{
 			"tpope/vim-fugitive",
-			config = function()
-				vim.keymap.set("n", "<Leader>Gd", ":Gdiff<cr>")
-				vim.keymap.set("n", "<Leader>Gc", ":Git commit<cr>")
-				vim.keymap.set("n", "<Leader>Gcv", ":Git commit -v<cr>")
-			end,
+			keys = {
+				{ "<Leader>Gd", ":Gdiff<cr>" },
+				{ "<Leader>Gc", ":Git commit<cr>" },
+				{ "<Leader>Gcv", ":Git commit -v<cr>" },
+			},
 		},
 		"tpope/vim-git",
 	},

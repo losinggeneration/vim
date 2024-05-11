@@ -373,21 +373,19 @@ lualine = {
 	"nvim-lualine/lualine.nvim",
 	enabled = true,
 	dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
-	config = function()
-		require("lualine").setup({
-			options = {
-				theme = "gruvbox",
-				globalstatus = true,
-			},
-			sections = {
-				lualine_c = { "filename", pomo },
-				lualine_z = { "location", time },
-			},
-			extensions = {
-				"fugitive",
-			},
-		})
-	end,
+	opts = {
+		options = {
+			theme = "gruvbox",
+			globalstatus = true,
+		},
+		sections = {
+			lualine_c = { "filename", pomo },
+			lualine_z = { "location", time },
+		},
+		extensions = {
+			"fugitive",
+		},
+	},
 }
 
 return lualine
