@@ -129,7 +129,9 @@ local on_attach = function(_, bufnr)
 	})
 end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+if completion == "cmp" then
+	local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+end
 
 -- automatic setup for installed servers
 mason_lspconfig.setup_handlers({
