@@ -160,9 +160,7 @@ return {
 		end,
 	},
 	-- Reason
-	-- { "reasonml-editor/vim-reason-plus", ft = "reason" },
-	-- {'reasonml-editor/vim-reason-plus', ft = 'reason' },
-	{ "jordwalke/vim-reasonml", ft = "reason" },
+	{ "reasonml-editor/vim-reason-plus", ft = "reason" },
 	{ "rescript-lang/vim-rescript", ft = "rescript" },
 
 	{ "kchmck/vim-coffee-script", ft = "coffee" },
