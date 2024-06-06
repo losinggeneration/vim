@@ -19,10 +19,6 @@ return {
 	},
 
 	-- Configure LazyVim to load gruvbox
-	{
-		"LazyVim/LazyVim",
-		opts = {
-			colorscheme = "gruvbox-material",
-		},
-	},
+	{ "LazyVim/LazyVim", opts = { colorscheme = "gruvbox-material" } },
+	{ "lualine.nvim", opts = { theme = "gruvbox-material" } },
 }
