@@ -59,4 +59,7 @@ return {
 	{ "echasnovski/mini.comment", enabled = false },
 	{ "nvimtools/none-ls.nvim", enabled = false },
 	{ "lualine.nvim", opts = { theme = "gruvbox-material" } },
+	-- deprecated, disabed manually until LazyVim catches up and replaces it
+	-- with lazydev.nvim
+	{ "neodev.nvim", enabled = false },
 }

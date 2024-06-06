@@ -3,6 +3,7 @@ if vim.g.disable_extra_plugins == true then
 end
 
 return {
+	{ "folke/lazydev.nvim", ft = "lua" },
 	{ "ollykel/v-vim", ft = "vlang" },
 	{ "ziglang/zig.vim", ft = "zig" },
 	{ "teal-language/vim-teal", ft = "teal" },
