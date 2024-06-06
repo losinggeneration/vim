@@ -23,7 +23,7 @@ vim.keymap.set("n", "vs", "<C-w>s", { silent = true })
 -- Map Q to :q
 vim.keymap.set("n", "Q", ":q<cr>", { silent = true })
 
-vim.keymap.set("n", "<leader>uh", ":noh<cr>", { desc = "no highlight" })
+vim.keymap.set("n", "<leader>uH", ":noh<cr>", { desc = "no highlight" })
 --vim.keymap.set({"n","v"}, "<tab>", "%")
 
 -- quick switch to the files cwd

@@ -157,7 +157,7 @@ return {
 		{
 			"nvim-neorg/neorg",
 			-- build = ":Neorg sync-parsers",
-			lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+			lazy = true, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
 			dependencies = {
 				-- "nvim-lua/plenary.nvim",
 				"vhyrro/luarocks.nvim",

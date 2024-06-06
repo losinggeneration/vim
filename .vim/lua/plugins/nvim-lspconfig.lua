@@ -146,8 +146,8 @@ return {
 						workspace = {
 							checkThirdParty = true,
 							library = {
-								[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-								[vim.fn.stdpath("config") .. "/lua"] = true,
+								vim.fn.expand("$VIMRUNTIME/lua"),
+								vim.fn.stdpath("config") .. "/lua",
 							},
 						},
 						format = {
