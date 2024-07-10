@@ -34,6 +34,10 @@ return {
 			lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
 			-- lsp_on_attach = true, -- use on_attach from go.nvim
 			dap_debug = true,
+			lsp_inlay_hints = {
+				enable = false,
+				only_current_line = true,
+			},
 		},
 		config = function(_, opts)
 			require("go").setup(opts)
@@ -80,6 +84,7 @@ return {
 			-- 		--require("go.format").gofmt()
 			-- 	end,
 			-- })
+			return opts
 		end,
 	},
 }

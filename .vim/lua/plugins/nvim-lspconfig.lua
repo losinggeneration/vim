@@ -108,6 +108,7 @@ return {
 	end,
 
 	opts = {
+		inlay_hints = { enable = false },
 		servers = {
 			clangd = {},
 			gopls = {
