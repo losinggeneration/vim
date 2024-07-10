@@ -8,12 +8,9 @@ return {
 
 		opts = {
 			ensure_installed = {
-				"clangd",
 				"gopls",
-				"jsonls",
 				"rust_analyzer",
 				"teal_ls",
-				"tsserver",
 				"zls",
 				"lua_ls",
 			},

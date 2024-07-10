@@ -65,6 +65,11 @@ vim.o.hlsearch = true
 -- vim.g.disable_lazy_plugins = true
 -- vim.g.disable_extra_plugins = vim.g.disable_lazy_plugins or true
 
+-- extras that may not be needed everywhere
+-- vim.g.local_config_extras_enable_typescript = true
+-- vim.g.local_config_extras_enable_yaml = true
+-- vim.g.local_config_extras_enable_json = true
+
 require("config.gui")
 require("config.indention")
 require("config.spaces")
