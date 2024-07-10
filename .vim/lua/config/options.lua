@@ -70,6 +70,9 @@ vim.o.hlsearch = true
 -- vim.g.local_config_extras_enable_yaml = true
 -- vim.g.local_config_extras_enable_json = true
 
+pcall(function()
+	require("config.local")
+end)
 require("config.gui")
 require("config.indention")
 require("config.spaces")
