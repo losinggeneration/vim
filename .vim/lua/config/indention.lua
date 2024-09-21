@@ -1,13 +1,6 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
--- Enable file type detection.
--- Use the default filetype settings, so that mail gets 'tw' set to 72,
--- 'cindent' is on in C files, etc.
--- Also load indent files, to automatically do language-dependent indenting.
-vim.cmd("filetype plugin indent on")
-vim.cmd("filetype plugin on")
-
 -- Put these in an autocmd group, so that we can delete them easily.
 augroup("vimrcEx", { clear = true })
 
