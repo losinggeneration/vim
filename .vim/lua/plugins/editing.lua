@@ -58,6 +58,8 @@ return {
 		},
 	},
 
+	"norcalli/nvim-colorizer.lua",
+
 	-- LLM
 	{
 		{
