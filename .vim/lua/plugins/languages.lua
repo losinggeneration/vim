@@ -3,7 +3,6 @@ if vim.g.disable_extra_plugins == true then
 end
 
 return {
-	{ "folke/lazydev.nvim", ft = "lua" },
 	{ "ollykel/v-vim", ft = "vlang" },
 	{ "ziglang/zig.vim", ft = "zig" },
 	{ "teal-language/vim-teal", ft = "teal" },
@@ -45,13 +44,8 @@ return {
 		ft = { "sql", "mysql" },
 		build = "go install github.com/jackc/sqlfmt/cmd/sqlfmt@latest",
 	},
-	{ "kristijanhusak/vim-dadbod-ui" },
-	{ "tpope/vim-dadbod" },
+	{ "kristijanhusak/vim-dadbod-ui", dependencies = { "tpope/vim-dadbod" } },
 	{ "chrisbra/csv.vim", ft = "csv" },
-
-	-- { "mfussenegger/nvim-dap", config = function() end }, -- Debug adapter protocol
-	-- required for nvim-dap-ui but not included elsewhere for some reason
-	"nvim-neotest/nvim-nio",
 
 	-- Python
 	{
@@ -62,21 +56,12 @@ return {
 
 	-- Random just in case languages
 	{ "elixir-lang/vim-elixir", ft = "elixir" },
-	{ "rhysd/vim-crystal", ft = "crystal" },
-	{ "derekwyatt/vim-scala", ft = "scala" },
-
-	-- Ruby
-	{
-		{ "tpope/vim-bundler", ft = "ruby" },
-		{ "tpope/vim-rails", ft = "ruby" },
-		{ "vim-ruby/vim-ruby", ft = "ruby" },
-	},
 
 	{ "fatih/vim-nginx", ft = "nginx" },
 	{
 		"elzr/vim-json",
 		ft = "json",
-		config = function(_, opts)
+		config = function(_, _)
 			-- reformat json files with jq
 			vim.keymap.set("n", "<Leader>jq", "GVgg :!jq .<cr>", { desc = "reformat json" })
 		end,
@@ -94,7 +79,7 @@ return {
 		"iamcco/markdown-preview.nvim",
 		build = "cd app && yarn install",
 		ft = { "md", "markdown" },
-		config = function(_, opts)
+		config = function(_, _)
 			local nmap = function(keys)
 				for _, k in ipairs(keys) do
 					if k.desc then
@@ -115,56 +100,10 @@ return {
 		end,
 	},
 
-	-- Typescript
-	--{ "leafgarland/typescript-vim", ft = "typescript" },
-	--{ "Quramy/tsuquyomi", ft = "typescript" },
-
-	{ "pangloss/vim-javascript", ft = { "javascript", "javascriptreact", "javascript.jsx" } },
-	{
-		"MaxMEllon/vim-jsx-pretty",
-		ft = { "javascript", "javascriptreact", "javascript.jsx" },
-		dependencies = {
-			{ "yuezk/vim-js", ft = { "javascript", "javascriptreact", "javascript.jsx" } },
-			{ "HerringtonDarkholme/yats.vim", ft = { "typescript", "typescript.tsx" } },
-		},
-	},
 	{
 		"mattn/emmet-vim",
 		ft = { "javascript", "javascriptreact", "javascript.jsx", "html", "css", "vue" },
 	},
-	{ "luishdez/vim-less", ft = "less" },
-
-	-- Vue
-	{ "leafOfTree/vim-vue-plugin", ft = "vue" },
-
-	{
-		"ElmCast/elm-vim",
-		ft = "elm",
-		config = function(_, opts)
-			local nmap = function(keys)
-				for _, k in ipairs(keys) do
-					if k.desc then
-						k.desc = "Go: " .. k.desc
-					end
-
-					local key, func = k[1], k[2]
-
-					vim.keymap.set("n", key, func, { desc = k.desc })
-				end
-			end
-
-			nmap({
-				{ "<leader>cel", ":ElmEvalLine<CR>" },
-				{ mode = "v", "<leader>ces", ":<C-u>ElmEvalSelection<CR>" },
-				{ "<leader>cem", ":ElmMakeCurrentFile<CR>" },
-			})
-		end,
-	},
-	-- Reason
-	{ "reasonml-editor/vim-reason-plus", ft = "reason" },
-	{ "rescript-lang/vim-rescript", ft = "rescript" },
-
-	{ "kchmck/vim-coffee-script", ft = "coffee" },
 
 	-- Mostly employment project languages
 	{
@@ -175,24 +114,12 @@ return {
 			vim.g.terraform_fmt_on_save = 1
 		end,
 	},
-	{ "cappyzawa/starlark.vim", ft = "starlark" },
 	{
 		"google/vim-jsonnet",
 		config = function()
 			vim.g.jsonnet_fmt_on_save = 0
 		end,
 		ft = "jsonnet",
-	},
-	{
-		-- PHP
-		{ "StanAngeloff/php.vim", ft = "php" },
-		{ "vim-php/tagbar-phpctags.vim", ft = "php" },
-		{
-			"phpactor/phpactor",
-			tag = "0.18.1",
-			build = "composer install --no-dev -o",
-			ft = "php",
-		},
 	},
 	{ "aklt/plantuml-syntax", ft = "plantuml" },
 }
