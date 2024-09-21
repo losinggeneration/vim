@@ -103,8 +103,8 @@ return {
 	{
 		"vim-autoformat/vim-autoformat",
 		keys = {
-			-- { "<Leader>rf", ":Autoformat<CR>", remap = true },
-			-- { "<Leader>rfl", ":AutoformatLine<CR>" },
+			{ "<Leader>rf", ":Autoformat<CR>", remap = true, desc = "Reformat file" },
+			{ "<Leader>rl", ":AutoformatLine<CR>", desc = "Reformat line" },
 		},
 	},
 	{
