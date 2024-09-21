@@ -65,9 +65,18 @@ vim.o.hlsearch = true
 -- vim.g.disable_lazy_plugins = true
 -- vim.g.disable_extra_plugins = vim.g.disable_lazy_plugins or true
 
--- extras that may not be needed everywhere
+-- extras should be defined in local.lua if they're desired locally
+-- vim.g.local_config_extras_enable_rust = true
 -- vim.g.local_config_extras_enable_typescript = true
+-- vim.g.local_config_extras_enable_python = true
+-- vim.g.local_config_extras_enable_elixir = true
+-- vim.g.local_config_extras_enable_sql = true
+--
+-- vim.g.local_config_extras_enable_cmake = true
+-- vim.g.local_config_extras_enable_markdown = true
+-- vim.g.local_config_extras_enable_terraform = true
 -- vim.g.local_config_extras_enable_yaml = true
+-- vim.g.local_config_extras_enable_toml = true
 -- vim.g.local_config_extras_enable_json = true
 
 pcall(function()
