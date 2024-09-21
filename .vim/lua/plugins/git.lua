@@ -3,8 +3,6 @@ if vim.g.disable_extra_plugins == true then
 end
 
 return {
-	"tpope/vim-git",
-
 	{
 		"tpope/vim-fugitive",
 		cmd = { "G", "Gdiff" },
@@ -24,15 +22,13 @@ return {
 	{
 		"folke/which-key.nvim",
 		opts = {
-			defaults = {
-				-- ["<leader>gc"] = { name = "commits" },
+			spec = {
+				{ "<leader>gc", name = "commits" },
 			},
 		},
 	},
 	{
-		"pwntester/octo.nvim",
-		cmd = "Octo",
-
+		import = "lazyvim.plugins.extras.util.octo",
 		keys = {
 			{
 				"<space>gpt",
