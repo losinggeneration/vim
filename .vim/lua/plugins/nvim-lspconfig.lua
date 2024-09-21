@@ -20,7 +20,7 @@ return {
 		keys[#keys + 1] = {
 			"[d",
 			function()
-				if not vim.diagnostic.is_disabled(0) and vim.diagnostic.get_prev() ~= nil then
+				if vim.diagnostic.is_enabled() and vim.diagnostic.get_prev() ~= nil then
 					vim.diagnostic.goto_prev()
 				end
 			end,
@@ -30,7 +30,7 @@ return {
 		keys[#keys + 1] = {
 			"]d",
 			function()
-				if not vim.diagnostic.is_disabled(0) and vim.diagnostic.get_next() ~= nil then
+				if vim.diagnostic.is_enabled() and vim.diagnostic.get_next() ~= nil then
 					vim.diagnostic.goto_next()
 				end
 			end,

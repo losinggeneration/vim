@@ -14,16 +14,15 @@ local extras = {
 }
 
 if vim.g.local_config_extras_enable_typescript then
-	print("typescript")
-	table.insert(extras, {import = "lazyvim.plugins.extras.lang.typescript"})
+	table.insert(extras, { import = "lazyvim.plugins.extras.lang.typescript" })
 end
 
 if vim.g.local_config_extras_enable_yaml then
-	table.insert(extras, {import = "lazyvim.plugins.extras.lang.yaml"})
+	table.insert(extras, { import = "lazyvim.plugins.extras.lang.yaml" })
 end
 
 if vim.g.local_config_extras_enable_json then
-	table.insert(extras, {import = "lazyvim.plugins.extras.lang.json"})
+	table.insert(extras, { import = "lazyvim.plugins.extras.lang.json" })
 end
 
 return extras
