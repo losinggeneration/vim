@@ -80,6 +80,27 @@ vim.o.hlsearch = true
 -- vim.g.local_config_extras_enable_toml = true
 -- vim.g.local_config_extras_enable_json = true
 
+vim.o.clipboard = "unnamedplus"
+
+local function paste(reg)
+	return {
+		vim.fn.split(vim.fn.getreg(reg), "\n"),
+		vim.fn.getregtype(""),
+	}
+end
+
+vim.g.clipboard = {
+	name = "OSC 52",
+	copy = {
+		["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+		["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+	},
+	paste = {
+		["+"] = paste("+"),
+		["*"] = paste("*"),
+	},
+}
+
 pcall(function()
 	require("config.local")
 end)
