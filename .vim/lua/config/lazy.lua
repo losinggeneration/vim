@@ -6,10 +6,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
+local lazyVimVersion = "13.7.0"
+
 require("lazy").setup({
 	spec = {
 		-- add LazyVim and import its plugins
-		{ "LazyVim/LazyVim", import = "lazyvim.plugins", version = "12.39.0", tag = "v12.39.0" },
+		{ "LazyVim/LazyVim", import = "lazyvim.plugins", version = lazyVimVersion, tag = "v" .. lazyVimVersion },
 		-- import any extras modules here
 		-- { import = "lazyvim.plugins.extras.lang.typescript" },
 		-- { import = "lazyvim.plugins.extras.lang.json" },
