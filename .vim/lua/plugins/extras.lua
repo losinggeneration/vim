@@ -16,6 +16,10 @@ if vim.g.local_config_extras_enable_rust then
 	table.insert(extras, { import = "lazyvim.plugins.extras.lang.rust" })
 end
 
+if vim.g.local_config_extras_enable_clangd then
+	table.insert(extras, { import = "lazyvim.plugins.extras.lang.clangd" })
+end
+
 if vim.g.local_config_extras_enable_typescript then
 	table.insert(extras, { import = "lazyvim.plugins.extras.lang.typescript" })
 end

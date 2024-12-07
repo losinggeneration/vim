@@ -67,6 +67,7 @@ vim.o.hlsearch = true
 
 -- extras should be defined in local.lua if they're desired locally
 -- vim.g.local_config_extras_enable_rust = true
+-- vim.g.local_config_extras_enable_clangd = true
 -- vim.g.local_config_extras_enable_typescript = true
 -- vim.g.local_config_extras_enable_python = true
 -- vim.g.local_config_extras_enable_elixir = true
